@@ -13,18 +13,6 @@
 <title>앞날이 창창</title>
 <style>
 /* title */
-.title-join {
-	text-align: center;
-	font-size: 30px;
-	margin: 0;
-}
-
-.text-join {
-	text-align: center;
-	font-size: 20px;
-	padding-top: 20px;
-}
-
 .text-join b {
 	color: #1f618d;
 	font-weight: bold;
