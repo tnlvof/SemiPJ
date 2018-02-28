@@ -9,45 +9,10 @@
 <link rel="shortcut icon" href="/pj//images/slogo.png">
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
+<link rel="stylesheet" href="/pj/css/memberJoin.css">
 <title>앞날이 창창</title>
 <style>
-body {
-	background: lightgray;
-}
-
-.ico-join {
-	display: block;
-	margin: 0 auto;
-}
-
-.join-wrap {
-	width: 1000px;
-	background: white;
-	margin: 0 auto 0;
-}
-
-.agreementHeader {
-	height: 130px;
-	padding-top: 25px;
-	border-bottom: 1px solid lightgray;
-}
-
-.join-logo {
-	display: block;
-	width: 100px;
-	margin: 0 auto;
-	width: 100px;
-}
-
-.join-body {
-	padding-top: 25px;
-}
-
-.wrap-title {
-	padding-top: 40px;
-	padding-bottom: 20px;
-}
-
+/* title */
 .title-join {
 	text-align: center;
 	font-size: 30px;
@@ -65,6 +30,8 @@ body {
 	font-weight: bold;
 }
 
+/* paging-step */
+
 .paging-step {
 	overflow: hidden;
 	margin: 0 auto;
@@ -79,6 +46,8 @@ body {
 .on {
 	color: #000;
 }
+
+/* 약관 동의 */
 
 fieldset {
 	border: 0 none;
