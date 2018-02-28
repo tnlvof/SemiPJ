@@ -15,7 +15,7 @@
 <body>
 <div class="join-wrap">
 		<div class="join-head">
-			<div class="agreementHeader">
+			<div class="agreementHeader"> 
 				<a class="ico-join"><img src="/pj/images/llogo.png"
 					class="join-logo"></a>
 			</div>
@@ -35,6 +35,7 @@
 			<form>
 				<fieldset>
 					<legend></legend>
+					
 				</fieldset>
 			</form>
 		</div>

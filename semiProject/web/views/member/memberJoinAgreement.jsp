@@ -19,7 +19,6 @@
 }
 
 /* 약관 동의 */
-
 fieldset {
 	border: 0 none;
 }
@@ -142,14 +141,14 @@ button {
 }
 
 .wrap-btns {
+	width: 900px;
 	padding-bottom: 50px;
+	margin: 0 auto;
 }
 
 .link_back {
 	position: absolute;
-	top: 20px;
-	left: 0;
-	line-height: 21px;
+	line-height: 60px;
 }
 
 .btn_type1.disabled {
@@ -371,7 +370,7 @@ button {
 					</div>
 					<div class="wrap-btns">
 						<button type="button" class="link_back">
-							<span class="ico_join"></span>이전으로
+							<span class="ico_join"></span>◀ 이전으로
 						</button>
 						<button type="submit" id="nextBtn"
 							class="btn_comm btn_type1 disabled">동의하기</button>
@@ -402,7 +401,7 @@ button {
 				});
 
 		$(".link_back").click(function() {
-			
+
 		});
 	</script>
 </body>
