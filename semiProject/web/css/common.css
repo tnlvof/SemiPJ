@@ -1,0 +1,136 @@
+@CHARSET "UTF-8";
+
+/* common */
+body, input, button, select, textarea {
+	font-size: 15px;
+	line-height: 1.4;
+	color: #666;
+}
+
+a, a:hover {
+	text-decoration: none !important;
+	color: #666;
+}
+
+.container {
+	width: 1400px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+/* header */
+.header {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.logo {
+	width: 240px;
+	height: 92px;
+}
+
+/* header-login,join */
+.loginBtns {
+	margin-top: 60px;
+}
+
+#loginForm {
+	float: right;
+	margin-right: 20px;
+}
+
+#loginBtn, #joinBtn {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	height: 25px;
+	width: 70px;
+}
+
+#loginBtn:hover, #joinBtn:hover {
+	cursor: pointer;
+}
+
+/* header-navbar */
+.nav-wrap {
+	width: 100%;
+	height: 60px;
+	border-top: 1px solid lightgray;
+	border-bottom: 2px solid midnightblue;
+	width: 100%;
+}
+
+.inner-nav{
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.nav {
+	margin: 0 auto;
+}
+
+.nav li {
+	display: inline-block;
+}
+
+.menu {
+	text-align: center;
+	vertical-align: middle;
+	width: 250px;
+	height: 60px;
+	font-weight: bold;
+	font-size: 18px;
+	margin: 0 auto;
+	line-height: 55px;
+	margin: 0 auto;
+}
+
+.menu:hover {
+	color: midnightblue;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.bar {
+	text-align: center;
+	vertical-align: middle;
+	width: 10px;
+	height: 60px;
+	font-size: 18px;
+	margin: 0 auto;
+	line-height: 50px;
+}
+
+/* footer */
+footer {
+	height: 100px;
+	border-top: 1px solid lightgray;
+	text-align: left;
+	margin-top: 200px;
+	padding: 15px;
+}
+
+.column {
+	position: relative;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.footer-logo img {
+	width: 93px;
+	height: 69px;
+	float: left;
+	margin-right: 60px;
+}
+
+footer li {
+	display: inline;
+}
+
+.in-area {
+	padding-top: 12px;
+}
