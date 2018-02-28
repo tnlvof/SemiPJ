@@ -18,23 +18,6 @@
 	font-weight: bold;
 }
 
-/* paging-step */
-
-.paging-step {
-	overflow: hidden;
-	margin: 0 auto;
-	width: 100px;
-	text-align: center;
-}
-
-.fa {
-	color: lightgray;
-}
-
-.on {
-	color: #000;
-}
-
 /* 약관 동의 */
 
 fieldset {
