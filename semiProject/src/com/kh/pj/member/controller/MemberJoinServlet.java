@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.member.model.service.MemberService;
-import com.kh.semi.member.model.vo.Member;
+import com.kh.pj.member.model.service.MemberService;
+import com.kh.pj.member.model.vo.Member;
 
 /**
  * Servlet implementation class InsertMemberServlet
