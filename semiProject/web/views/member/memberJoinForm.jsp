@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/pj//images/slogo.png">
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
@@ -13,7 +15,7 @@
 <body>
 <div class="join-wrap">
 		<div class="join-head">
-			<div class="agreementHeader">
+			<div class="agreementHeader"> 
 				<a class="ico-join"><img src="/pj/images/llogo.png"
 					class="join-logo"></a>
 			</div>
@@ -33,6 +35,7 @@
 			<form>
 				<fieldset>
 					<legend></legend>
+					
 				</fieldset>
 			</form>
 		</div>
