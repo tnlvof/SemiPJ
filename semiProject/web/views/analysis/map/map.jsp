@@ -26,7 +26,7 @@
 #map {
 	width: 800px;
 	height: 600px;
-}
+} 
 
 #btn {
 	width: 100px;
@@ -44,10 +44,10 @@
 			<li>업종선택 <select class="form-control" id="sel1"
 					onchange="shoplist();" onload="bigselect();">
 				</select> <select class="form-control" id="sel2">
-				</select> 
+				</select>
 			</td>
 			<td rowspan="5"><div id="map"></div></td>
-		</tr> 
+		</tr>
 		<tr>
 			<td><li><label>영역선택</label> <br>
 					<button class="btn btn-secondary" width=100px id=circle
@@ -55,7 +55,9 @@
 					<button class="btn btn-secondary" width=100px id=square
 						onclick="btnswitch(2);toolchange();">사각형</button>
 					<button class="btn btn-secondary" width=100px id=select
-						onclick="btnswitch(3);toolchange();">상권선택</button></td>
+						onclick="btnswitch(3);toolchange();">상권선택</button>
+					<button class="btn btn-secondary" width=100px id=select
+						onclick="btnswitch(4);toolchange();">도형삭제</button></td>
 		</tr>
 		<tr>
 			<td id=tool>
@@ -67,11 +69,11 @@
 				type="reset" class="btn btn-secondary"></td>
 		</tr>
 	</table>
-	
+
 	<script type="text/javascript">
 	bigselect();
 	</script>
-	
+
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc5oXlzhf_bQjLoeKJKJ-n6-cOXhxQSF0&callback=initMap"></script>
 </body>
