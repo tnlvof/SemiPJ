@@ -39,3 +39,17 @@
 	font-weight: bold;
 	padding-top: 50px;
 }
+
+.tableArea {
+	width: 1000px;
+	height: 350px;
+	margin-left: auto;
+	margin-right: auto;
+	padding:30px;
+}
+
+.tableArea table, th {
+	border: 1px solid lightgray;
+	text-align: center;
+}
+
