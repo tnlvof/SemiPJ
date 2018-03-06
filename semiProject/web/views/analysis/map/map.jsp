@@ -26,7 +26,7 @@
 #map {
 	width: 800px;
 	height: 600px;
-}
+} 
 
 #btn {
 	width: 100px;

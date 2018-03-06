@@ -73,7 +73,7 @@ function placeMarkerAndPanTo(latLng, map) {
 		});
 
 		circle.setMap(map);
-	}
+	} 
 
 	if (shape_sqaure.className == "btn btn-primary") {
 		sqaure = new google.maps.Rectangle({
