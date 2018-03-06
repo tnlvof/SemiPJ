@@ -68,7 +68,7 @@
 </head>
 <body>
 	<%@ include file="views/common/menubar.jsp"%>
-	<div class="container">
+	<div class="indexDiv">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">

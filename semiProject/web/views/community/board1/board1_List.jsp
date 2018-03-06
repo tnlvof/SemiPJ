@@ -11,7 +11,7 @@
 </head>
 <%@ include file="/views/common/menubar.jsp" %>
 <body>
-	<div class="container">
+	<div class="div1">
 		<h1>리스트</h1>	
 	</div>
 </body>
