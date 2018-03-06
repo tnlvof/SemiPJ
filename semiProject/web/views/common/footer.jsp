@@ -11,7 +11,7 @@
 	<footer>
 		<div class="column">
 			<p class="footer-logo">
-				<img src="images/흑백로고.png">
+				<img src="/pj/images/흑백로고.png">
 			</p>
 			<div class="in-area">
 				<ul>
