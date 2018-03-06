@@ -29,6 +29,8 @@
 <%@ include file="/views/common/menubar.jsp" %>
 <body>
 	<div class="div1">
+		
+		<!-- 검색창 -->
 		<div class="searchBanner">
 			<div class="searchDiv">
 				<select id="searchCategory">
@@ -40,6 +42,14 @@
 				<button id="searchBtn">검색</button>
 			</div>
 		</div>
+		
+		<!-- 게시판 영역 -->
+		<div class="board1">
+		
+		</div>
+		
 	</div>
+	
+	<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>
