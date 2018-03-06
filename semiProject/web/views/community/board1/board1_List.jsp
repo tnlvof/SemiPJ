@@ -22,16 +22,21 @@
 		display:inline-block;
 		width:700px;
 		height:100px;
-		padding:140px;
+		color:white;
+	}
+	.bannerHeader{
+		padding:50px;
+		font-size:40px;
 		color:white;
 	}
 </style>
 <%@ include file="/views/common/menubar.jsp" %>
 <body>
-	<div class="div1">
-		
+	
+		<div class="div1">
 		<!-- 검색창 -->
 		<div class="searchBanner">
+			<div class="bannerHeader">광고게시판</div>
 			<div class="searchDiv">
 				<select id="searchCategory">
 					<option>제목</option>
@@ -43,6 +48,7 @@
 			</div>
 		</div>
 		
+		<%@ include file="/views/common/communitySidebar.jsp" %>
 		<!-- 게시판 영역 -->
 		<div class="board1">
 		
