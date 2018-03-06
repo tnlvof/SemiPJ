@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="shortcut icon" href="/pj/images/slogo.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <title>앞날이 창창</title>
 </head>
 <body>
@@ -34,7 +33,7 @@
 				<li class="bar">|</li>
 				<li class="menu" onclick="location.href='/pj/views/community/board1/board1_List.jsp'">커뮤니티</li>
 				<li class="bar">|</li>
-				<li class="menu" onclick="location.href='/pj/views/support/qna/qnaBoardView.jsp'">고객센터</li>
+				<li class="menu" onclick="location.href='/pj/views/support/qna/qnaList.jsp'">고객센터</li>
 				<li class="bar">|</li>
 			</ul>
 		</div>
