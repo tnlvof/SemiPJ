@@ -12,8 +12,14 @@ a, a:hover {
 	color: #666;
 }
 
-.container {
+.indexDiv{
 	width: 1400px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.div1 {
+	width: 1200px;
 	margin: 0 auto;
 	margin-top: 20px;
 }
