@@ -1,4 +1,17 @@
 @charset "UTF-8";
+.supportContainer {
+	position: absolute;
+	display: inline-block;
+	width: 940px;
+	margin: 30px;
+}
+
+.supportHeader {
+	padding: 30px;
+	font-size: 30px;
+	border-bottom: 1px solid lightgray;
+}
+
 .tableArea {
 	width: 1000px;
 	height: 350px;

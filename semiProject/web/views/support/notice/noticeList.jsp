@@ -20,7 +20,7 @@
 	<%@ include file="/views/common/supportSidebar.jsp"%>
 		<div class="supportContainer">
 			<div class="supportHeader">
-				<h2>FAQ</h2>
+				<h2>공지사항</h2>
 			</div>
 			<div class="tableArea">
 			<table align="center">

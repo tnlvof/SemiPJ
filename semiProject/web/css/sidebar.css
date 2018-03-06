@@ -17,19 +17,6 @@
 	border-top: none;
 }
 
-.sideContainer {
-	position: absolute;
-	display: inline-block;
-	width: 940px;
-	margin: 30px;
-}
-
-.sideHeader {
-	padding: 30px;
-	font-size: 30px;
-	border-bottom: 1px solid lightgray;
-}
-
 .sidenav-header {
 	height: 120px;
 	background: midnightblue;

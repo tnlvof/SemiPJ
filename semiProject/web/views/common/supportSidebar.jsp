@@ -17,6 +17,7 @@
 			<div class="sidenav-header">
 				<h2>고객센터</h2>
 			</div>
+			<a href="/pj/views/support/notice/noticeList.jsp">공지사항</a>
 			<a href="/pj/views/support/qna/qnaList.jsp">Q&A</a>
 			<a href="/pj/views/support/faq/faqList.jsp">FAQ</a>
 		</div>
