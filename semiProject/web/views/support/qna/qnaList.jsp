@@ -18,11 +18,30 @@
 <body>
 	<%@ include file="/views/common/menubar.jsp"%>
 	<%@ include file="/views/common/supportSidebar.jsp"%>
-		<div class="sideContainer">
-			<div class="sideHeader">
-				<h2>Q&A</h2>
-			</div>
+	<div class="sideContainer">
+		<div class="sideHeader">
+			<h2>Q&A</h2>
 		</div>
+		<div class="tableArea">
+			<table align="center">
+				<tr>
+					<th width="100px">번호</th>
+					<th width="100px">분류</th>
+					<th width="300px">제목</th>
+					<th width="100px">작성자</th>
+					<th width="150px">등록일</th>
+					<th width="100px">조회수</th>
+				</tr>
+				<tr>
+				</tr>
+
+				<tr>
+
+				</tr>
+
+			</table>
+		</div>
+	</div>
 	</div>
 	<%@ include file="/views/common/footer.jsp"%>
 </body>
