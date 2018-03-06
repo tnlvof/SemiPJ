@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="header">
-		<img src="images/changchang.png" class="logo">
+		<img src="/pj/images/changchang.png" class="logo">
 		<form id="loginForm">
 			<div class="loginBtns">
 				<span class="glyphicon glyphicon-user"></span>
