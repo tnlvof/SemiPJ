@@ -12,7 +12,6 @@
 <link rel="shortcut icon" href="/pj/images/slogo.png">
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
-<link rel="stylesheet" href="/pj/css/sidebar.css">
 <link rel="stylesheet" href="/pj/css/support.css">
 <title>앞날이 창창</title>
 </head>
