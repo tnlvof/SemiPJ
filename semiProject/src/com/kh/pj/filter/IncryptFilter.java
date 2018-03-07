@@ -40,7 +40,7 @@ public class IncryptFilter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		System.out.println("암호화 필터");
-		request.setAttribute("checkPwd", request.getParameter("userPwd"));
+		request.setAttribute("checkPwd", request.getParameter("memberPwd"));
 		HttpServletRequest h_request = (HttpServletRequest)request;
 		LoginWrapper lw = new LoginWrapper(h_request);
 		// pass the request along the filter chain

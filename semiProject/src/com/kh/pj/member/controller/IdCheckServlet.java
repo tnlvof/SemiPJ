@@ -1,27 +1,27 @@
 package com.kh.pj.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.pj.member.model.service.MemberService;
-import com.kh.pj.member.model.vo.Member;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class IdCheckServlet
  */
-@WebServlet({ "/LoginServlet", "/login.me" })
-public class LoginServlet extends HttpServlet {
+@WebServlet("/idCheck.me")
+public class IdCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public IdCheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,22 +30,25 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setCharacterEncoding("UTF-8");
 		String memberId = request.getParameter("memberId");
-		String memberPwd = request.getParameter("memberPwd");
-		System.out.println("memberId : " + memberId);
-		System.out.println("memberPwd : " + memberPwd);
 		
-		Member loginUser = new MemberService().loginCheck(memberId, memberPwd);
-		System.out.println(loginUser);
-		if(loginUser!=null){
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			response.sendRedirect("index.jsp");
+		System.out.println(memberId);
+		
+		int result = new MemberService().idCheck(memberId);
+		
+		System.out.println(result);
+		
+		PrintWriter out = response.getWriter();
+		
+		if(result > 0){
+			out.append("fail");
 		}else{
-			request.setAttribute("msg", "로그인 실패");
-			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			out.append("success");
 		}
+		
+		out.flush();
+		out.close();
+		
 	}
 
 	/**
