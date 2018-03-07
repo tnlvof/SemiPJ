@@ -1,96 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.pj.member.model.vo.Member"%>
-<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/reset.css">
-<style>
-	.btns{
-		align:center;		
-	}
-	#loginBtn{
-		display:inline-block;
-		vertical-align:middle;
-		text-align:center;
-		background:orangered;
-		color:white;
-		height:20px;
-		width:100px;
-		border-radius:5px;
-	}
-	#loginBtn:hover, #memberJoinBtn:hover, #logoutBtn:hover{
-		cursor:pointer;	
-	}
-	.wrap{
-		background:black;
-		width:100%;
-		height:50px;
-	}
-	.menu{
-		background:black;
-		color:white;
-		text-align:center;
-		vertical-align:middle;
-		width:150px;
-		height:50px;
-		display:table-cell;
-	}
-	.nav{
-		width:600px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.menu:hover{
-		background:darkgray;
-		color:orangered;
-		font-weight:bold;
-		cursor:pointer;
-	}
-	#logoutBtn{
-		background:orangered;
-		color:white;
-		text-decoration:none;
-		border-radius:5px;
-	}	
+<link rel="shortcut icon" href="/pj/images/slogo.png">
+<title>앞날이 창창</title>
+<style type="text/css">
+.loginArea {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.loginFormArea {
+	width: 400px;
+	margin: 50px auto 0 auto;
+}
+
+.loginFormArea label {
+	display: inline-block;
+	width: 130px;
+}
+
+.loginFormArea input {
+	border: 1px solid #d7d7d7;
+	padding: 5px;
+	margin-bottom: 10px;
+	width: 250px;
+}
+
+.loginFormArea li {
+	text-align: right;
+	margin-top: 10px;
+}
+
+.loginFormArea #loginBtn,
+.loginFormArea #searchingBtn {
+	border: 0;
+	background: navy;
+	color: #fff;
+	width: 260px;
+	height: initial;
+	padding: 10px;
+	cursor: pointer;	
+	margin-right: 2px;
+	border-radius: 3px;
+}
+
+.loginFormArea #searchingBtn {
+	border: 0;
+	background: gray;
+	color: #fff;
+	width: 260px;
+	height: initial;
+	padding : 10px;
+	cursor: pointer;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 3px;
+	
+}
+
 </style>
 </head>
 <body>
+	<%@ include file="/views/common/menubar.jsp"%>
 	<div class="loginArea">
-		<form id="loginForm" action="<%=request.getContextPath() %>/login.me" method="post">
-			<table align="center">
-				<tr>
-					<td><label class="text">ID : </label></td>
-					<td><input type="text" name="memberId"></td>
-				</tr>
-				<tr>
-					<td><label class="text">PWD : </label></td>
-					<td><input type="password" name="memberPwd"></td>
-				</tr>				
-			</table>
-			<div class="btns" align="center">
-				<div id="loginBtn" onclick="login();">로그인</div>
-			</div>
+		<form id="loginForm1" action="<%=request.getContextPath()%>/login.me"
+			method="post">
+			<ul class="loginFormArea">
+			<br>
+				<li><label class="text" >ID :</label> <input type="text" name="memberId"></li>
+				<li><label class="text">PASSWORD : </label> <input
+					type="password" name="memberPwd"></li>
+				<li>
+					<button id="loginBtn" onclick="login();">로그인</button>
+				</li>
+
+				<li>
+					<button id="searchingBtn" onclick="searchingIdpwd();">ID/PASSWORD 찾기</button>
+				</li>
+			</ul>
+
 		</form>
-		
+
 		<script>
-			function login(){
-				$('#loginForm').submit();
+			function login() {
+				$('#loginForm1').submit();
 			}
-			<%-- function logout(){
-				location.href="<%=request.getContextPath()%>/logout.me";
-			}
-			function memberJoin(){			
-				location.href="/jsp/views/member/memberJoinForm.jsp";
-			}
-			function changeInfo(){
-				
-			} --%>
 		</script>
 	</div>
+<br><br><br><br><br><br><br><br><br><br>	
+<br><br><br><br><br>
+<br>
+<hr>
+		<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>
