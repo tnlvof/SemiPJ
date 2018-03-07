@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="shortcut icon" href="/smp/images/slogo.png">
-<link rel="stylesheet" href="/smp/css/common.css">
-<link rel="stylesheet" href="/smp/css/reset.css">
-<link rel="stylesheet" href="/smp/css/memberJoin.css">
+<link rel="shortcut icon" href="/pj/images/slogo.png">
+<link rel="stylesheet" href="/pj/css/common.css">
+<link rel="stylesheet" href="/pj/css/reset.css">
+<link rel="stylesheet" href="/pj/css/memberJoin.css">
 <title>앞날이 창창</title>
 <style>
 /* title */
@@ -175,7 +175,7 @@ button {
 	<div class="join-wrap">
 		<div class="join-head">
 			<div class="agreementHeader">
-				<a class="ico-join"><img src="/smp/images/llogo.png"
+				<a class="ico-join"><img src="/pj/images/llogo.png"
 					class="join-logo"></a>
 			</div>
 		</div>
