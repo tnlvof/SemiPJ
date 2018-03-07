@@ -29,7 +29,69 @@ public class MemberService {
 
 	public int changeInfo(Member m) {
 		Connection con = getConnection();
-		return 0;
+		
+		int result = new MemberDao().updateMember(con, m);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int delectMember(Member m) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().delectMember(con, m);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int idCheck(String memberId) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().idCheck(con, memberId);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int changePassword(Member m) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().changePassword(con, m);
+		
+		System.out.println("MemberService changePassword : " + result);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int checkPassword(Member m) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().checkPassword(con, m);
+		
+		close(con);
+		
+		return result;
 	}
 
 }

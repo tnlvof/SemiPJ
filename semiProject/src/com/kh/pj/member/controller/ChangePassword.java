@@ -12,18 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.pj.member.model.service.MemberService;
 import com.kh.pj.member.model.vo.Member;
 
-
 /**
- * Servlet implementation class UpdateMemberServlet
+ * Servlet implementation class ChangePassword
  */
-@WebServlet("/changeInfo.me")
-public class UpdateMemberServlet extends HttpServlet {
+@WebServlet("/changePassword.me")
+public class ChangePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateMemberServlet() {
+    public ChangePassword() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,37 +32,35 @@ public class UpdateMemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		String MemberId = request.getParameter("memberId");
-		String MemberName = request.getParameter("memberName");
-		String NickName = request.getParameter("nickName");
-		String phone = request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3");
-		String email = request.getParameter("email");
-		String address = request.getParameter("address1")+", "+request.getParameter("address2");
+		String MemberPwd = request.getParameter("memberPwd");
 		
 		Member m = new Member();
 		m.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
-		m.setMemberId(request.getParameter("memberId"));
-		m.setMemberName(request.getParameter("memberName"));
-		m.setNickName(request.getParameter("nickName"));
-		m.setBirth(request.getParameter("birthday"));
-		m.setPhone(request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3"));
-		m.setEmail(request.getParameter("email"));
-		m.setAddress(request.getParameter("address1")+", "+request.getParameter("address2"));
-		System.out.println("Servlet : " + m);
+		m.setMemberPwd(request.getParameter("memberPwd"));
 		
-		int result = new MemberService().changeInfo(m);
+		int result = new MemberService().checkPassword(m);
 		
 		String page = "";
 		if(result > 0){
-			page = "views/common/successPage.jsp";
+			m.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
+			m.setMemberPwd(request.getParameter("changeMemberPwd"));
+			System.out.println("Servlet : " + m);
+			int result2 = new MemberService().changePassword(m);
+			if(result2 > 0){
+				page = "views/common/successPage.jsp";
+			}else{
+				page = "views/common/errorPage.jsp";
+				request.setAttribute("msg", "비밀번호 수정 실패!");
+			}
 			//request.setAttribute("n", new NoticeService().selectOne(String.valueOf(nno)));
 		}else{
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "회원 수정 실패!");
+			request.setAttribute("msg", "비밀번호가 일치하지 않습니다!");
+			System.out.println("Servlet : " + m);
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
+
 	}
 
 	/**
