@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -68,8 +69,81 @@ public class BoardDao {
 	}
 
 	public int getListCount(Connection con) {
-		// TODO Auto-generated method stub
-		return 0;
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+		}		
+
+		return listCount;
+	}
+
+	public Board selectOne(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+
+		String query = prop.getProperty("selectOne");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()){
+				b = new Board();
+
+				b.setbId(rset.getInt("bId"));
+			}
+
+			System.out.println(b);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return b;
+	}
+
+	public int updateCount(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateCount");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, num);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+
+		return result;
 	}
 
 }
