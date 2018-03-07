@@ -29,8 +29,8 @@
 			<div class="loginBtns">
 				<span class="glyphicon glyphicon-user"></span>
 					<% if(loginUser == null){ %>
-						<div id="loginBtn"><a href="views/login/loginForm.jsp">로그인</a></div>
-						<div id="joinBtn"><a href="views/member/memberJoinAgreement.jsp">회원가입</a></div>
+						<div id="loginBtn"><a href="/pj/views/login/loginForm.jsp">로그인</a></div>
+						<div id="joinBtn"><a href="/pj/views/member/memberJoinAgreement.jsp">회원가입</a></div>
 					<% }else{%>
 						<div id="userInfo">
 						<label><%= loginUser.getMemberName() %>님의 방문을 환영합니다.</label>
@@ -63,10 +63,9 @@
 	<script type="text/javascript">
 		function logout(){
 			location.href="<%= request.getContextPath() %>/logout.me";
-		
 		}
 		function changeInfo(){
-			location.href="views/member/memberUpdateForm.jsp";
+			location.href="/pj/views/member/memberUpdateForm.jsp";
 		}
 	</script>
 </body>
