@@ -50,13 +50,6 @@
 				</table>
 			</div>
 			
-			<div class="writeBtnArea">
-				<hr class="hr">
-					<% if(loginUser != null){ %>
-					<button class="btn btn-default" onclick="location.href='/pj/views/community/board1/board1_insert.jsp'">글쓰기</button>
-					<% } %>
-				<hr class="hr2">
-			</div>
 		</div>
 		
 	</div>

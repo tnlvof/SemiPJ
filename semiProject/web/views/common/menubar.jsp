@@ -6,17 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="/pj/css/common.css">
+<link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="shortcut icon" href="/pj/images/slogo.png">
 <style type="text/css">
 	#logoutBtn, #changeInfo {
 		cursor:pointer;
 		display:inline-block;
-		
 	}
 	#loginOkBtns{
 		vertical-align:middle;
+	}
+	.loginBtns1{
+		margin-top:50px;
 	}
 </style>
 
@@ -26,9 +28,10 @@
 	<div class="header">
 <a href="/pj/index.jsp"><img src="/pj/images/changchang.png" class="logo"></a>
 		<form id="loginForm">
-			<div class="loginBtns">
-				<span class="glyphicon glyphicon-user"></span>
+			<div class="loginBtns1">
+				<!--  <span class="glyphicon glyphicon-user floatLeft"></span>-->
 					<% if(loginUser == null){ %>
+						<br>
 						<div id="loginBtn"><a href="/pj/views/login/loginForm.jsp">로그인</a></div>
 						<div id="joinBtn"><a href="/pj/views/member/memberJoinAgreement.jsp">회원가입</a></div>
 					<% }else{%>
@@ -58,7 +61,6 @@
 				<li class="bar">|</li>
 			</ul>
 		</div>
-
 	</div>
 	<script type="text/javascript">
 		function logout(){
