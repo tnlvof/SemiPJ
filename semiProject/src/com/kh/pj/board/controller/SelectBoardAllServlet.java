@@ -47,6 +47,7 @@ public class SelectBoardAllServlet extends HttpServlet {
 					currentPage = Integer.parseInt(request.getParameter("currentPage"));
 				}
 				
+				System.out.println(currentPage);
 				//한 페이지에 보여질 목록 갯수
 				limit = 10;
 				
@@ -62,11 +63,7 @@ public class SelectBoardAllServlet extends HttpServlet {
 				//전체 목록 / limit + 0.9
 				maxPage = (int)((double)listCount / limit + 0.9);
 
-				//ArrayList<Board> list = new BoardService().selectList();
-				
 				//현재 페이지에 보여줄 시작 페이지 수 (10개씩 보여지게 할 경우)
-				//아래쪽 페이지 수가 10개씩 보여지게 한다면
-				//1, 11, 21, 31...
 				startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
 				
 				//목록 아래 보여질 마지막 페이지 수(10, 20, 30, ...)
@@ -79,6 +76,8 @@ public class SelectBoardAllServlet extends HttpServlet {
 				PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 				
 				ArrayList<Board> list = new BoardService().selectAll(currentPage,limit);
+				
+				System.out.println(currentPage);
 
 				System.out.println(list);
 

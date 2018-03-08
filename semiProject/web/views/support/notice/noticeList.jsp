@@ -41,7 +41,7 @@
 					<th width="150px">등록일</th>
 					<th width="100px">조회수</th>
 				</tr>
-				<tr>
+ 				<tr>
 					<%
 						for (Board b : list) {
 					%>
@@ -53,16 +53,16 @@
 					<td><%=b.getbCategory()%></td>
 					<td><%=b.getbTitle()%></td>
 					<td><%=b.getmNo()%></td>
-					<td><%=b.getvCount()%></td>
 					<td><%=b.getbDate()%></td>
+					<td><%=b.getvCount()%></td>
 				</tr>
 				<%
 					}
 				%>
 			</table>
 		</div>
-		
-		<%-- 페이지 처리 --%>
+		 
+		<!-- 페이지 처리 -->
 		<div class="pagingArea" align="center">
 		<button onclick="location.href='<%= request.getContextPath() %>/selectAll.bo?currentPage=1'"><<</button>
 		<% if(currentPage <= 1){ %>

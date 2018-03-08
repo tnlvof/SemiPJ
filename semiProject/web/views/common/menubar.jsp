@@ -57,7 +57,7 @@
 				<li class="bar">|</li>
 				<li class="menu" onclick="location.href='/pj/views/community/board1/board1_List.jsp'">커뮤니티</li>
 				<li class="bar">|</li>
-				<li class="menu" onclick="location.href='/pj/views/support/notice/noticeList.jsp'">고객센터</li>
+				<li class="menu" onclick="goSupport();">고객센터</li>
 				<li class="bar">|</li>
 			</ul>
 		</div>
@@ -69,6 +69,9 @@
 		function changeInfo(){
 			location.href="/pj/views/member/memberUpdateForm.jsp";
 		}
+		function goSupport(){
+			  location.href="/pj/selectAll.bo";
+		  }
 	</script>
 </body>
 </html>
