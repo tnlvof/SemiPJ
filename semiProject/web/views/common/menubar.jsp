@@ -70,7 +70,7 @@
 			location.href="/pj/views/member/memberUpdateForm.jsp";
 		}
 		function goSupport(){
-			  location.href="/pj/selectAll.bo";
+			  location.href="/pj/views/support/notice/noticeList.jsp";
 		  }
 	</script>
 </body>
