@@ -1,6 +1,6 @@
 package com.kh.pj.board.model.dao;
 
-import static com.kh.pj.common.JDBCTemplet.close;
+import static com.kh.pj.common.JDBCTemplet.*;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,9 +53,9 @@ public class BoardDao {
 			while(rset.next()){
 				Board b = new Board();
 				
+				b.setbId(rset.getInt("bId"));
 				
-
-
+				
 				list.add(b);
 			}
 		} catch (SQLException e) {

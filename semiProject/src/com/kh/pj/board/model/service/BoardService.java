@@ -1,9 +1,6 @@
 package com.kh.pj.board.model.service;
 
-import static com.kh.pj.common.JDBCTemplet.close;
-import static com.kh.pj.common.JDBCTemplet.commit;
-import static com.kh.pj.common.JDBCTemplet.getConnection;
-import static com.kh.pj.common.JDBCTemplet.rollback;
+import static com.kh.pj.common.JDBCTemplet.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;

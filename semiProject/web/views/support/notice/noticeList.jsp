@@ -61,6 +61,32 @@
 				%>
 			</table>
 		</div>
+		
+		<%-- 페이지 처리 --%>
+		<div class="pagingArea" align="center">
+		<button onclick="location.href='<%= request.getContextPath() %>/selectAll.bo?currentPage=1'"><<</button>
+		<% if(currentPage <= 1){ %>
+		<button disabled><</button>
+		<% } else{ %>
+		<button onclick="location.href='<%= request.getContextPath() %>/selectAll.bo?currentPage=<%= currentPage - 1 %>'"><</button>
+		<% } %>
+		
+		<% for(int p = startPage; p <= endPage; p++){ 
+		        if(p == currentPage){ %>
+		        <button disabled><%= p %></button>
+		     <% } else{ %>
+		     <button onclick="location.href='<%= request.getContextPath() %>/selectAll.bo?currentPage=<%= p %>'"><%= p %></button>
+		     <% } %>
+		<% } %>
+		
+		<% if(currentPage >= maxPage){ %>
+		<button disabled>></button>
+		<% } else{ %>
+		<button onclick="location.href='<%= request.getContextPath() %>/selectAll.bo?currentPage=<%= currentPage + 1 %>'">></button>
+		<% } %>
+		<button onclick="location.href=' <%= request.getContextPath() %>/selectAll.bo?currentPage=<%= maxPage %>'">>></button>
+		</div>
+		
 		<div class="searchArea" align="center">
 			<select id="searchCondition" name="searchCondition">
 				<option>-------</option>

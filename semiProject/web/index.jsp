@@ -80,17 +80,14 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<!-- <img src="images/bg1.jpg" style="width: 100%;"> -->
 					<img src="http://placehold.it/1200x500" width="100%">
 				</div>
 
 				<div class="item">
-					<!-- <img src="images/bg2.jpg" style="width: 100%;"> -->
 					<img src="http://placehold.it/1200x500" width="100%">
 				</div>
 
 				<div class="item">
-					<!-- <img src="images/bg3.jpg" style="width: 100%;"> -->
 					<img src="http://placehold.it/1200x500" width="100%">
 				</div>
 			</div>
