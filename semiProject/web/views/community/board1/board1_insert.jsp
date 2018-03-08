@@ -17,12 +17,13 @@
 		font-weight:600;
 	}
 	.insertArea table tr td{
+		padding:5px;
 		vertical-align:middle;
 	}
 	.insertArea {
 		float:left;
 		width:900px;
-		height:550px;
+		height:600px;
 		margin-top:20px;
 		margin-left:20px;
 		margin-right:auto;
@@ -32,9 +33,6 @@
 	#titleImgArea{
 		width:400px;
 		height:20px;
-		border:2px dashed darkgray;
-		text-align:center;
-		display:table-cell;
 		vertical-align:middle;
 	}
 	#titleImgArea:hover,
@@ -56,6 +54,10 @@
 		margin-left:auto;
 		margin-right:auto;
 	}
+	input[type="text"]{
+		height:25px;
+	} 
+	
 </style>
 <%@ include file="/views/common/menubar.jsp" %>
 <body>
@@ -100,9 +102,7 @@
 						<tr>
 							<td>사진 첨부</td>
 							<td colspan="3">
-								<div id="titleImgArea">
-									<img id="titleImg" width="350" height="50">
-								</div>
+									<input type="text" >
 							</td>
 						</tr>
 						<tr>
