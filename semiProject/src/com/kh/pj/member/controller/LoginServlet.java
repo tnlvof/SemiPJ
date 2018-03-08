@@ -23,14 +23,13 @@ public class LoginServlet extends HttpServlet {
      */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setCharacterEncoding("UTF-8");
+
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
 		System.out.println("memberId : " + memberId);
@@ -44,6 +43,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 		}else{
 			request.setAttribute("msg", "로그인 실패");
+			
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
 	}
@@ -52,7 +52,6 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
