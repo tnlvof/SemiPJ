@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="/pj/css/common.css">
 <title>앞날이 창창</title>
 </head>
 <body>
