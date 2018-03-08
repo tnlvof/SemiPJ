@@ -10,7 +10,7 @@ import java.util.Properties;
 
 import com.kh.pj.member.model.vo.Member;
 import static com.kh.pj.common.JDBCTemplet.*;
-public class MemberDao {
+public class MemberDao { 
 	private Properties prop = new Properties();
 	
 	public MemberDao(){

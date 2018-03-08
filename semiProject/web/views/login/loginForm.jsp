@@ -81,7 +81,8 @@
 					<button id="loginBtn" onclick="login();">로그인</button>
 				</li>
 				<li>
-					<button type="button" id="searchingBtn" onclick="location.href='/pj/views/login/searchingIdpwd.jsp'">ID/PASSWORD 찾기</button>
+					<button type="button" id="searchingBtn" onclick="location.href='/pj/views/login/searchingIdpwd.jsp'">ID 찾기</button><
+					<button type="button" id="searchingBtn" onclick="location.href='/pj/views/login/searchingPwd.jsp'">PASSWORD 찾기</button>
 				</li>
 			</ul>
 		</form>

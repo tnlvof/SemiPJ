@@ -24,7 +24,6 @@ public class SearchPwdServlet extends HttpServlet {
      */
     public SearchPwdServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

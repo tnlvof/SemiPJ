@@ -13,7 +13,7 @@
 <body>
 	<%@ include file="/views/common/menubar.jsp"%>
 <br><br>	
-<h1>아이디 / 비밀번호 찾기</h1>
+<h1 align="center">아이디 찾기</h1>
 	<br>
 	<form action="<%=request.getContextPath()%>/SearchIdServlet.me" id="searchingFor" method="post">
 		<table width="500" border="1" background="grey">
@@ -29,7 +29,6 @@
 	
 			<div align="center">
 				<button onclick="findingId();">아이디 찾기</button>
-				<button onclick="findingPwd();">비밀번호 찾기</button>
 			</div>
 </form>
 			<script>
