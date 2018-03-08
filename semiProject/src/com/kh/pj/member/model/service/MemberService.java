@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import com.kh.pj.member.model.dao.MemberDao;
 import com.kh.pj.member.model.vo.Member;
+
 import static com.kh.pj.common.JDBCTemplet.*;
 public class MemberService {
 
@@ -93,5 +94,29 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public int searchingId(Member m) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().searchingId(con, m);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+
+	public int searchingPwd(Member m) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().searchingPwd(con, m);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		return result;
+
+	}
+	
 
 }
