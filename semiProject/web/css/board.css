@@ -44,7 +44,8 @@
 	width: 980px;
 	margin: 20px 0 0 20px;
 	display: inline-block;
-	background: red;
+	/*background:;*/
+	border:1px solid black;
 }
 
 .tableArea {
@@ -70,6 +71,9 @@
 	background-color: #fff;
 	background-image: none;
 }
+.h2{
+	font-size:20px;
+}
 
 .searchBtn {
 	float:left;
@@ -80,6 +84,15 @@
 	border-top-right-radius: 4px;
 	border-left: 1px solid #d7d7d7;
 	padding: 0 20px;
+}
+.submitBtn{
+	border: 0;
+	background: #fff;
+	height: 30px;
+	border-radius: 4px;
+	border: 1px solid #d7d7d7;
+	padding:10px;
+	line-height:5px;
 }
 .searchCategory{
 	float:left;
@@ -103,4 +116,10 @@
 	border: 0;
     height: 3px;
     background: #ccc;
+}
+
+.boardContent{
+	width:800px;
+	height:400px;
+	resize: none
 }
