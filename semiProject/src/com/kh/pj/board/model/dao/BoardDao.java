@@ -43,8 +43,9 @@ public class BoardDao {
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
 
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setString(1, rset.getString("bCategory"));
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 
 			rset = pstmt.executeQuery();
 
@@ -69,15 +70,16 @@ public class BoardDao {
 	}
 
 	public int getListCount(Connection con) {
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
 
 		String query = prop.getProperty("listCount");
 
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, "bCategory");
 
 			if(rset.next()){
 				listCount = rset.getInt(1);
@@ -86,7 +88,7 @@ public class BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}		
 
