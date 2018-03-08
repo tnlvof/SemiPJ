@@ -80,18 +80,16 @@
 				<li>
 					<button id="loginBtn" onclick="login();">로그인</button>
 				</li>
-
 				<li>
-					<button id="searchingBtn" onclick="searchingIdpwd();">ID/PASSWORD 찾기</button>
+					<button type="button" id="searchingBtn" onclick="location.href='/pj/views/login/searchingIdpwd.jsp'">ID/PASSWORD 찾기</button>
 				</li>
 			</ul>
-
 		</form>
-
 		<script>
 			function login() {
 				$('#loginForm1').submit();
 			}
+			
 		</script>
 	</div>
 <br><br><br><br><br><br><br><br><br><br>	
