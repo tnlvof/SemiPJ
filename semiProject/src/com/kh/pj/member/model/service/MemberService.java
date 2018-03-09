@@ -95,15 +95,12 @@ public class MemberService {
 		return result;
 	}
 
-	public int searchingId(Member m) {
+	public String searchingId(Member m) {
 		Connection con = getConnection();
 		
-		int result = new MemberDao().searchingId(con, m);
+		String userId = new MemberDao().searchingId(con, m);
 		
-		if(result>0) commit(con);
-		else rollback(con);
-		
-		return result;
+		return userId;
 	}
 
 	public int searchingPwd(Member m) {

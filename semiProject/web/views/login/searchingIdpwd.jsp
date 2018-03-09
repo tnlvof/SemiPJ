@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="shortcut icon" href="/pj/images/slogo.png">
-<title>앞날이 창창차라자라창~~~~~~~~</title>
+<title>앞날이 창창</title>
 </head>
 <body>
 	<%@ include file="/views/common/menubar.jsp"%>
