@@ -12,6 +12,7 @@
 		back = allTable.get("상권배후지_추정매출");
 		//out.print(income1);
 	}	
+
 	HashMap<String, String> frontRecentRow = null;
 	HashMap<String, String> backRecentRow = null;
 	

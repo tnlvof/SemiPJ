@@ -48,10 +48,6 @@
 	border:1px solid black;
 }
 
-.tableArea {
-	
-}
-
 .tableArea table, .tableArea th {
 	border: 1px solid lightgray;
 }
@@ -109,9 +105,11 @@
 	height:30px;
 	text-align:right;
 }
+
 .hr{
 	margin:10px 0 10px 0;
 }
+
 .hr2{
 	border: 0;
     height: 3px;
@@ -120,6 +118,6 @@
 
 .boardContent{
 	width:800px;
-	height:400px;
+	height:500px;
 	resize: none
 }
