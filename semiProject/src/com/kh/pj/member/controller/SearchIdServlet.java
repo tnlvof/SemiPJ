@@ -1,11 +1,16 @@
 package com.kh.pj.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.pj.member.model.service.MemberService;
+import com.kh.pj.member.model.vo.Member;
 
 /**
  * Servlet implementation class SearchIdServlet
@@ -26,8 +31,29 @@ public class SearchIdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String name = request.getParameter("member_name");
+		String birth = request.getParameter("birth");
+		
+		Member m = new Member();
+		m.setMemberName(name);
+		m.setBirth(birth);
+		
+		int result = new MemberService().searchingId(m);
+		
+		String page = "";
+		if(result > 0){
+			page = "views/login/foundIdPwd.jsp";
+			request.setAttribute("msg", "까먹엇냐? 사람이냐?" + m.getMemberId());
+
+		}else{
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "메롱 실패네");
+		}
+		
+
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
+
 	}
 
 	/**

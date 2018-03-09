@@ -196,7 +196,6 @@ public class MemberDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, m.getMemberNo());
 			pstmt.setString(2, m.getMemberPwd());
-			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
@@ -204,7 +203,31 @@ public class MemberDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		return result;
+	}
+	public int searchingId(Connection con, Member m) {
+			
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("searchingId");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, m.getMemberName());
+			pstmt.setString(2, m.getBirth());
+			rset= pstmt.executeQuery();
+			
+			
+			System.out.println(m);
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
 			close(pstmt);
@@ -212,7 +235,31 @@ public class MemberDao {
 		}
 		
 		
-		
 		return result;
 	}
+	public int searchingPwd(Connection con, Member m) {
+
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("searchingPwd");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getBirth());
+			rset= pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		return 0;	
+		}
 }
