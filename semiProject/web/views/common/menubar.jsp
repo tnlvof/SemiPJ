@@ -29,13 +29,14 @@
 <a href="/pj/index.jsp"><img src="/pj/images/changchang.png" class="logo"></a>
 		<form id="loginForm">
 			<div class="loginBtns1">
-				<!--  <span class="glyphicon glyphicon-user floatLeft"></span>-->
 					<% if(loginUser == null){ %>
-						<br>
+					<br>
+					<span class="glyphicon glyphicon-user floatLeft"></span>
 						<div id="loginBtn"><a href="/pj/views/login/loginForm.jsp">로그인</a></div>
 						<div id="joinBtn"><a href="/pj/views/member/memberJoinAgreement.jsp">회원가입</a></div>
 					<% }else{%>
 						<div id="userInfo">
+						<span class="glyphicon glyphicon-user floatLeft"></span>
 						<label><%= loginUser.getMemberName() %>님의 방문을 환영합니다.</label>
 							<div class="loginOkbtns">
 								<div id="changeInfo" onclick="changeInfo();">정보수정</div>
