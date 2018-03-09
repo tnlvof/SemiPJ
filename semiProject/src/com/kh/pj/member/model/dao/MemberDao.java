@@ -210,12 +210,10 @@ public class MemberDao {
 		}
 		return result;
 	}
-	public int searchingId(Connection con, Member m) {
-			
+	public String searchingId(Connection con, Member m) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
-		int result = 0;
+		String userId = null;
 		
 		String query = prop.getProperty("searchingId");
 		
@@ -223,8 +221,13 @@ public class MemberDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, m.getMemberName());
 			pstmt.setString(2, m.getBirth());
-			rset= pstmt.executeQuery();
+			rset = pstmt.executeQuery();
 			
+			
+			
+			if(rset.next()){
+				userId = rset.getString(1);
+			}
 			
 			System.out.println(m);
 		} catch (SQLException e) {
@@ -235,7 +238,7 @@ public class MemberDao {
 		}
 		
 		
-		return result;
+		return userId;
 	}
 	public int searchingPwd(Connection con, Member m) {
 

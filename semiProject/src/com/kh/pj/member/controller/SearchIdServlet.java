@@ -38,12 +38,12 @@ public class SearchIdServlet extends HttpServlet {
 		m.setMemberName(name);
 		m.setBirth(birth);
 		
-		int result = new MemberService().searchingId(m);
+		String userId = new MemberService().searchingId(m);
 		
 		String page = "";
-		if(result > 0){
-			page = "views/login/foundIdPwd.jsp";
-			request.setAttribute("msg", "까먹엇냐? 사람이냐?" + m.getMemberId());
+		if(userId  != null){
+			page = "views/common/successPage.jsp";
+			request.setAttribute("msg", "당신의 아이디는 : " + userId);
 
 		}else{
 			page = "views/common/errorPage.jsp";
