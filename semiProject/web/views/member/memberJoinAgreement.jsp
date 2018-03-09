@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="shortcut icon" href="/pj//images/slogo.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" href="/pj/images/slogo.png">
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="stylesheet" href="/pj/css/memberJoin.css">
@@ -18,25 +18,7 @@
 	font-weight: bold;
 }
 
-/* paging-step */
-
-.paging-step {
-	overflow: hidden;
-	margin: 0 auto;
-	width: 100px;
-	text-align: center;
-}
-
-.fa {
-	color: lightgray;
-}
-
-.on {
-	color: #000;
-}
-
 /* 약관 동의 */
-
 fieldset {
 	border: 0 none;
 }
@@ -159,14 +141,14 @@ button {
 }
 
 .wrap-btns {
+	width: 900px;
 	padding-bottom: 50px;
+	margin: 0 auto;
 }
 
 .link_back {
 	position: absolute;
-	top: 20px;
-	left: 0;
-	line-height: 21px;
+	line-height: 60px;
 }
 
 .btn_type1.disabled {
@@ -388,9 +370,9 @@ button {
 					</div>
 					<div class="wrap-btns">
 						<button type="button" class="link_back">
-							<span class="ico_join"></span>이전으로
+							<span class="ico_join"></span>◀ 이전으로
 						</button>
-						<button type="submit" id="nextBtn"
+						<button type="button" id="nextBtn"
 							class="btn_comm btn_type1 disabled">동의하기</button>
 					</div>
 				</fieldset>
@@ -398,6 +380,7 @@ button {
 		</div>
 	</div>
 	<script>
+		
 		function checkAgreeState() {
 			if ($("#termsAgree").is(":checked")
 					&& $("#policyAgree").is(":checked")) {
@@ -406,11 +389,12 @@ button {
 				$("#nextBtn").addClass("disabled");
 			}
 		}
+		
+	
 
-		$("#nextBtn").click(
-				function() {
-					if ($("#termsAgree").prop("checked")
-							&& $("#policyAgree").prop("checked")) {
+		  $("#nextBtn").click(function() {
+					if ($("#termsAgree").prop("checked") && $("#policyAgree").prop("checked")) {
+						location.href="../member/memberJoinForm.jsp";
 						return true;
 					} else {
 						alert("서비스 약관과 개인정보 수집 및 이용에 대해 모두 동의해 주세요.");
@@ -418,9 +402,10 @@ button {
 					}
 				});
 
-		$(".link_back").click(function() {
+		/* $(".link_back").click(function() {
 			
-		});
+		}); */
+
 	</script>
 </body>
 </html>
