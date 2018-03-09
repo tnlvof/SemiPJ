@@ -1,17 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>앞날이 창창</title>
-<link rel="stylesheet" href="/pj/css/common.css">
-<link rel="stylesheet" href="/pj/css/reset.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<title>Summernote</title>
 
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 </head>
 <style>
-	.insertArea table{
+.insertArea table{
 		border:1px solid red;
 		font-size:14px;
 		font-weight:600;
@@ -27,28 +36,8 @@
 		margin-top:20px;
 		margin-left:20px;
 		margin-right:auto;
-		background:salmon;
 /* 		border:1px solid black;
  */	}
-	#titleImgArea{
-		width:400px;
-		height:20px;
-		vertical-align:middle;
-	}
-	#titleImgArea:hover,
-	#contentImgArea1:hover,
-	#contentImgArea2:hover,
-	#contentImgArea3:hover{
-		cursor:pointer;
-	}
-	#contentImgArea1,#contentImgArea2,#contentImgArea3{
-		width:150px;
-		height:100px;
-		border:2px dashed darkgray;
-		text-align:center;
-		display:table-cell;
-		vertical-align:middle;
-	}
 	.btnArea {
 		wdith:150px;
 		margin-left:auto;
@@ -57,10 +46,16 @@
 	input[type="text"]{
 		height:25px;
 	} 
-	
+.note-editor.note-frame .note-editing-area .note-editable{
+	min-height: 400px;
+}
+.note-statusbar{
+	/*  visibility: hidden;*/
+}
 </style>
-<%@ include file="/views/common/menubar.jsp" %>
 <body>
+
+	<%@ include file="/views/common/menubar.jsp"%>
 
 	<!-- 검색창 -->
 	<div class="searchContainer">
@@ -75,23 +70,23 @@
 				</select>
 				<div class="inputDiv">
 					<input type="text" class="form_text" name="searchValue">
-				</div> 
-					<button class="searchBtn">검색</button>
+				</div>
+				<button class="searchBtn">검색</button>
 			</div>
 		</div>
 	</div>
 
+	<!--본문-->
 	<div class="div1">
 
 		<%@ include file="/views/common/communitySidebar.jsp"%>
+
 		<!-- 게시판 영역 -->
 		<div class="board1">
-			
 			<%
 				if (loginUser != null) {
 			%>
-			<form action="<%=request.getContextPath()%>/insert.tn"
-				method="post" encType="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/insert.b1" method="post">
 				<div class="insertArea">
 					<table align="center">
 						<tr>
@@ -100,96 +95,39 @@
 							</td>
 						</tr>
 						<tr>
-							<td>사진 첨부</td>
-							<td colspan="3">
-									<input type="text" >
+							<td colspan="4">
+							<div class="contentDiv">
+								<textarea id="summernote" name="content">
+								</textarea>
+							</div>
+							<script>
+								$(function() {
+									$('#summernote').summernote();
+								});
+							</script>
 							</td>
 						</tr>
-						<tr>
-							<td colspan="4"><textarea name="content" class="boardContent"></textarea></td>
-						</tr>
-
 					</table>
-					<div id="fileArea">
-						<input type="file" id="thumbnail1" name="thumbnailImg1"
-							onchange="LoadImg1(this);">
-					</div>
 				</div>
 				<div class="btnArea" align="center">
-					<button type="button" class="submitBtn" onclick="location.href='/pj/views/community/board1/board1_List.jsp'">뒤로가기</button>
+					<button type="button" class="submitBtn"
+						onclick="location.href='/pj/views/community/board1/board1_List.jsp'">뒤로가기</button>
 					<button type="submit" class="submitBtn">작성완료</button>
 				</div>
 			</form>
 
 		</div>
 		<script>
-			$(function() {
-				$("#fileArea").hide();
-
-				$("#titleImgArea").click(function() {
-					$("#thumbnail1").click();
-				});
-				$("#contentImgArea1").click(function() {
-					$("#thumbnail2").click();
-				});
-				$("#contentImgArea2").click(function() {
-					$("#thumbnail3").click();
-				});
-				$("#contentImgArea3").click(function() {
-					$("#thumbnail4").click();
-				});
-			});
-
-			function LoadImg1(value) {
-				if (value.files && value.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$("#titleImg").attr("src", e.target.result)
-					}
-					reader.readAsDataURL(value.files[0]);
-				}
-			}
-
-			function LoadImg2(value) {
-				if (value.files && value.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$("#contentImg1").attr("src", e.target.result)
-					}
-					reader.readAsDataURL(value.files[0]);
-				}
-			}
-
-			function LoadImg3(value) {
-				if (value.files && value.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$("#contentImg2").attr("src", e.target.result)
-					}
-					reader.readAsDataURL(value.files[0]);
-				}
-			}
-
-			function LoadImg4(value) {
-				if (value.files && value.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$("#contentImg3").attr("src", e.target.result)
-					}
-					reader.readAsDataURL(value.files[0]);
-				}
-			}
 		</script>
-
 
 		<%
 			} else {
 				request.setAttribute("msg", "잘못된 경로로 접근하셨습니다");
-				request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
+				request.getRequestDispatcher("/pj/views/common/errorPage.jsp").forward(request, response);
 			}
 		%>
 	</div>
 
-	<%@ include file="/views/common/footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>
