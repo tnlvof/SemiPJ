@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="shortcut icon" href="/pj/images/slogo.png">
@@ -40,7 +38,7 @@
 						<div id="userInfo">
 						<span class="glyphicon glyphicon-user floatLeft"></span>
 						<label><%= loginUser.getMemberName() %>님의 방문을 환영합니다.</label>
-							<div class="loginOkbtns">
+							<div class="loginOkbtns" style="text-indent:10px;">
 								<div id="changeInfo" onclick="changeInfo();">정보수정</div>
 								<div id="logoutBtn" onclick="logout();">로그아웃</div>
 							</div>
@@ -54,7 +52,7 @@
 		<div class="inner-nav">
 			<ul class="nav" align="center">
 				<li class="bar">|</li>
-				<li class="menu"><a href="<%=request.getContextPath() %>/views/analyseResult/searchTest.jsp">상권분석</a></li>
+				<li class="menu" onclick="location.href='<%=request.getContextPath() %>/views/analyseResult/searchTest.jsp'">상권분석</li>
 				<li class="bar">|</li>
 				<li class="menu">정부시책</li>
 				<li class="bar">|</li>
