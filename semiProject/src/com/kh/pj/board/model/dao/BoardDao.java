@@ -1,18 +1,18 @@
 package com.kh.pj.board.model.dao;
 
+
 import static com.kh.pj.common.JDBCTemplet.*;
+
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.pj.member.model.dao.MemberDao;
+import com.kh.pj.board.model.dao.BoardDao;
+
 import com.kh.pj.board.model.vo.Board;
 
 public class BoardDao {
@@ -27,7 +27,7 @@ public class BoardDao {
 			e.printStackTrace();
 		}
 	}
-
+/*
 	public ArrayList<Board> selectAll(Connection con, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 
@@ -147,5 +147,25 @@ public class BoardDao {
 
 		return result;
 	}
-
+*/
+	public int insertBoard(Connection con, Board b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("inserBoard");
+		
+		try {
+			pstmt= con.prepareStatement(query);
+			pstmt.setString(1, b.getTitle());
+			pstmt.setString(2, b.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

@@ -44,7 +44,7 @@
 		margin-right:auto;
 	}
 	input[type="text"]{
-		height:25px;
+		height:34px;
 	} 
 .note-editor.note-frame .note-editing-area .note-editable{
 	min-height: 400px;
