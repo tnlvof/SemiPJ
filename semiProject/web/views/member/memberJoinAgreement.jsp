@@ -132,42 +132,7 @@ input[type=checkbox]:checked+label .inner {
 	rx: 100px;
 }
 
-/* 버튼 */
-button {
-	border: 0 none;
-	background-color: transparent;
-	cursor: pointer;
-	margin: 0 auto;
-}
 
-.wrap-btns {
-	width: 900px;
-	padding-bottom: 50px;
-	margin: 0 auto;
-}
-
-.link_back {
-	position: absolute;
-	line-height: 60px;
-}
-
-.btn_type1.disabled {
-	background: #999;
-}
-
-.btn_type1 {
-	width: 220px;
-	font-size: 18px;
-	height: 60px;
-}
-
-.btn_comm {
-	display: block;
-	margin: 0 auto;
-	background: #4d87ef;
-	color: #fff;
-	text-align: center;
-	-webkit-appearance: none;
 }
 </style>
 </head>
@@ -369,7 +334,7 @@ button {
 						</div>
 					</div>
 					<div class="wrap-btns">
-						<button type="button" class="link_back">
+						<button type="button" class="link_back"  onclick="location.href='/pj/index.jsp'">
 							<span class="ico_join"></span>◀ 이전으로
 						</button>
 						<button type="button" id="nextBtn"
