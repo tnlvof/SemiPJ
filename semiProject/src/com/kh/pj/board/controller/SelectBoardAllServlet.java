@@ -40,7 +40,7 @@ public class SelectBoardAllServlet extends HttpServlet {
 				int startPage;    //한번에 표시될 페이지가 시작할 페이지
 				int endPage;    //한번에 표시될 페이지가 끝나는 페이지
 				
-				//게시판은 1페이지부터 시작함
+				/*//게시판은 1페이지부터 시작함
 				currentPage = 1;
 				
 				if(request.getParameter("currentPage") != null){
@@ -92,7 +92,7 @@ public class SelectBoardAllServlet extends HttpServlet {
 				}
 
 				RequestDispatcher view = request.getRequestDispatcher(page);
-				view.forward(request, response);
+				view.forward(request, response);*/
 	}
 
 	/**

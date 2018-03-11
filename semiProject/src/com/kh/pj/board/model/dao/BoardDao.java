@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.kh.pj.board.model.dao.BoardDao;
 
 import com.kh.pj.board.model.vo.Board;
+import com.kh.pj.member.model.dao.MemberDao;
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -156,8 +157,9 @@ public class BoardDao {
 		
 		try {
 			pstmt= con.prepareStatement(query);
-			pstmt.setString(1, b.getTitle());
-			pstmt.setString(2, b.getContent());
+			pstmt.setString(1, b.getbTitle());
+			pstmt.setString(2, b.getbText());
+			pstmt.setInt(3, b.getmNo());
 			
 			result = pstmt.executeUpdate();
 			

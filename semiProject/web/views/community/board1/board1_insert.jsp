@@ -20,38 +20,39 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 </head>
 <style>
-.insertArea table{
-		border:1px solid red;
-		font-size:14px;
-		font-weight:600;
-	}
-	.insertArea table tr td{
-		padding:5px;
-		vertical-align:middle;
-	}
-	.insertArea {
-		float:left;
-		width:900px;
-		height:600px;
-		margin-top:20px;
-		margin-left:20px;
-		margin-right:auto;
-/* 		border:1px solid black;
- */	}
-	.btnArea {
-		wdith:150px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	input[type="text"]{
-		height:34px;
-	} 
-.note-editor.note-frame .note-editing-area .note-editable{
+.insertArea table {
+	border: 1px solid lightgray;
+	font-size: 14px;
+	font-weight: 600;
+	
+}
+
+.insertArea table tr td {
+	padding: 5px;
+	vertical-align: middle;
+}
+
+.insertArea {
+	float: left;
+	width: 980px;
+	height: 800px;
+	margin-right: auto;
+}
+
+.btnArea {
+	wdith: 150px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.boardInput {
+	height: 25px;
+}
+
+.note-editor.note-frame .note-editing-area .note-editable {
 	min-height: 400px;
 }
-.note-statusbar{
-	/*  visibility: hidden;*/
-}
+
 </style>
 <body>
 
@@ -82,32 +83,43 @@
 		<%@ include file="/views/common/communitySidebar.jsp"%>
 
 		<!-- 게시판 영역 -->
-		<div class="board1">
+		<div class="board1" style="">
 			<%
 				if (loginUser != null) {
 			%>
-			<form action="<%=request.getContextPath()%>/insert.b1" method="post">
+			<form action="<%=request.getContextPath()%>/insert.b1" method="post" encType="multipart/form-data">
 				<div class="insertArea">
 					<table align="center">
 						<tr>
 							<td width="100px">제목</td>
-							<td colspan="3"><input type="text" size="45" name="title">
+							<td colspan="3"><input type="text" class="boardInput"
+								size="45" name="title"></td>
+						</tr>
+						<tr>
+							<td>대표 이미지</td>
+							<td colspan="3">
+								<div id="titleImgArea">
+									<img id="titleImg" width="390" height="200">
+								</div>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="4">
-							<div class="contentDiv">
-								<textarea id="summernote" name="content">
+								<div class="contentDiv">
+									<textarea id="summernote" name="content">
 								</textarea>
-							</div>
-							<script>
-								$(function() {
-									$('#summernote').summernote();
-								});
-							</script>
+								</div> <script>
+									$(function() {
+										$('#summernote').summernote();
+									});
+								</script>
 							</td>
 						</tr>
 					</table>
+					<div id="fileArea">
+						<input type="file" id="thumbnail1" name="thumbnailImg1"
+							onchange="LoadImg1(this);">
+					</div>
 				</div>
 				<div class="btnArea" align="center">
 					<button type="button" class="submitBtn"
@@ -117,17 +129,34 @@
 			</form>
 
 		</div>
+	</div>
 		<script>
-		</script>
+			$(function() {
+				$("#fileArea").hide();
 
+				$("#titleImgArea").click(function() {
+					$("#thumbnail1").click();
+				});
+			});
+
+			function LoadImg1(value) {
+				if (value.files && value.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						$("#titleImg").attr("src", e.target.result)
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+		</script>
 		<%
 			} else {
 				request.setAttribute("msg", "잘못된 경로로 접근하셨습니다");
 				request.getRequestDispatcher("/pj/views/common/errorPage.jsp").forward(request, response);
 			}
 		%>
-	</div>
+	
 
-	<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>
+	<%@ include file="/views/common/footer.jsp"%>

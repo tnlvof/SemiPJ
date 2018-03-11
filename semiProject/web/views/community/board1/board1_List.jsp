@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="/pj/css/board.css">
 </head>
 <style>
 
