@@ -64,3 +64,111 @@ body {
 .on {
 	color: #000;
 }
+
+#joinForm{
+	margin-top: 50px;
+}
+
+.join-table {
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+
+.join-table th, .join-table td{
+	padding:10px;
+}
+
+.glyphicon{
+	color:salmon;
+}
+
+.table-indent{
+	text-indent:21px;
+}
+
+/* 버튼 */
+button {
+	border: 0 none;
+	background-color: transparent;
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+.wrap-btns {
+	width: 900px;
+	padding-bottom: 50px;
+	margin: 0 auto;
+}
+
+.wrap-btns2 {
+	margin: 0 auto;
+	display: table;
+}
+
+.link_back {
+	position: absolute;
+	line-height: 60px;
+}
+
+.btn_type1.disabled {
+	background: #999;
+}
+
+.btn_type2.disabled{
+	background: #fff;
+	border:1px solid #999;
+}
+
+.btn_type1, .btn_type2 {
+	width: 220px;
+	font-size: 18px;
+	height: 60px;
+}
+
+.btn_comm {
+	display: block;
+	margin: 0 auto;
+	background: #999;
+	color: #fff;
+	text-align: center;
+	-webkit-appearance: none;
+}
+
+.btn_comm2 {
+	margin: 0 auto;
+	margin:20px;
+	background: #999;
+	color: #fff;
+	text-align: center;
+	-webkit-appearance: none;
+}
+
+
+.btn_comm3 {
+	margin: 0 auto;
+	margin:20px;
+	background: #fff;
+	color: #999;
+	text-align: center;
+	-webkit-appearance: none;
+}
+	
+#idCheck {
+	font-size:12px;
+	padding:5px;
+	border:1px solid lightgray;
+	margin: 0 auto;
+	font-weight:bold;
+}
+
+.checkImg{
+	display:block;
+	margin: 100px;
+	margin-bottom:0px;
+}
+
+.checkImg img{
+	display:block;
+	width:200px;
+	margin:0 auto;
+}
