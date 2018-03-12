@@ -210,12 +210,10 @@ public class MemberDao {
 		}
 		return result;
 	}
-	public int searchingId(Connection con, Member m) {
-			
+	public String searchingId(Connection con, Member m) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
-		int result = 0;
+		String userId = null;
 		
 		String query = prop.getProperty("searchingId");
 		
@@ -223,8 +221,13 @@ public class MemberDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, m.getMemberName());
 			pstmt.setString(2, m.getBirth());
-			rset= pstmt.executeQuery();
+			rset = pstmt.executeQuery();
 			
+			
+			
+			if(rset.next()){
+				userId = rset.getString(1);
+			}
 			
 			System.out.println(m);
 		} catch (SQLException e) {
@@ -235,23 +238,29 @@ public class MemberDao {
 		}
 		
 		
-		return result;
+		return userId;
 	}
-	public int searchingPwd(Connection con, Member m) {
-
-
+	public String searchingPwd(Connection con, Member m) {
 		PreparedStatement pstmt = null;
-		
 		ResultSet rset = null;
+		String userPwd = null;
 		
 		String query = prop.getProperty("searchingPwd");
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, m.getMemberId());
-			pstmt.setString(2, m.getBirth());
-			rset= pstmt.executeQuery();
+			pstmt.setString(2, m.getMemberName());
+			pstmt.setString(3, m.getEmail());
+			rset = pstmt.executeQuery();
 			
+			
+			
+			if(rset.next()){
+				userPwd = rset.getString(1);
+			}
+			
+			System.out.println(m);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
@@ -260,6 +269,29 @@ public class MemberDao {
 		}
 		
 		
-		return 0;	
+		return userPwd;
 		}
+	public int emailPwd(Connection con, String pass2, String userNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("changePassword");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, pass2);
+			pstmt.setInt(2, Integer.parseInt(userNo));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 }

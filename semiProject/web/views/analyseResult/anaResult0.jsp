@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp"%>
+
 	<%@ include file="../common/resultMenu.jsp" %>
 	<h1 align="center">종합결과</h1>
 	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
