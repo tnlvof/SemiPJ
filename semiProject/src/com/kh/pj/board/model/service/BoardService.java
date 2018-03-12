@@ -13,7 +13,7 @@ import com.kh.pj.board.model.vo.Board;
 public class BoardService {
 
 
-	public int insertBoard(Board b) {
+	public int insertBoard(Board b, ArrayList<Attachment> fileList) {
 		Connection con = getConnection();
 
 		int result = 0;
