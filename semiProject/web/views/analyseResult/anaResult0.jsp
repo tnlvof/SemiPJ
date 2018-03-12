@@ -38,6 +38,7 @@
 			break;
 		}
 	}
+	
 	String[] lineText = {"detailResult0", catagoryName[1] + " 지수지표", catagoryCode};
 	out.print(da.get4Line(lineText, front));
 	%>
