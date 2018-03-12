@@ -53,7 +53,7 @@
 			<button onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
 		</div>
 	</div>
-	</div>
+	</div>	
 	<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>
