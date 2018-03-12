@@ -41,6 +41,7 @@ public class RunAnalyseServlet extends HttpServlet {
 		
 		//ArrayList<ArrayList> allList = new DoAnalyse().doAnalyse(code);
 		
+
 		HashMap<String, ArrayList<HashMap>> allTable = new AnalyseService().doAnalyse(areaCode);
 		
 		if(allTable!=null){
