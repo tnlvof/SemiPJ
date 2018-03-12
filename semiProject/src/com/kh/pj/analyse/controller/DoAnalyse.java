@@ -57,6 +57,78 @@ public class DoAnalyse {
 		return line;
 	}
 	
+	public String get4Line(String[] lineText, ArrayList<HashMap> front){
+		ArrayList<HashMap> list = new ArrayList<HashMap>();
+		String value1 = "";
+		String value2 = "";
+		String value3 = "";
+		String value4 = "";
+		String values1 = "";
+		String values2 = "";
+		String values3 = "";
+		String values4 = "";
+		String xName = "";
+		for (int i = 0; i < front.size(); i++) {		
+			if(String.valueOf(front.get(i).get("서비스_업종_코드")).equals(lineText[2])){
+				list.add(front.get(i));				
+			}			
+		}			
+		
+		for (int j = list.size()-1; j >= 0; j--) {
+			if(!String.valueOf(list.get(j).get("과밀_값")).equals("null")){
+				value1 = String.valueOf(list.get(j).get("과밀_값"));						
+			}else{
+				value1 = "";
+			}
+			
+			if(!String.valueOf(list.get(j).get("활성도_지표_값")).equals("null")){
+				value2 = String.valueOf(list.get(j).get("활성도_지표_값"));						
+			}else{
+				value2 = "";
+			}
+			
+			if(!String.valueOf(list.get(j).get("성장성_지표_값")).equals("null")){
+				value3 = String.valueOf(list.get(j).get("성장성_지표_값"));						
+			}else{
+				value3 = "";
+			}
+			
+			if(!String.valueOf(list.get(j).get("안정성_지표_값")).equals("null")){
+				value4 = String.valueOf(list.get(j).get("안정성_지표_값"));						
+			}else{
+				value4 = "";
+			}
+			
+			if(j==list.size()-1){
+				xName += "'"+list.get(j).get("기준_년월_코드")+"'";
+				values1 += value1;
+				values2 += value2;
+				values3 += value3;
+				values4 += value4;
+			}else{
+				xName += ",'"+list.get(j).get("기준_년월_코드")+"'";
+				values1 += ","+value1;
+				values2 += ","+value2;
+				values3 += ","+value3;
+				values4 += ","+value4;
+			}
+		}
+		String recentDate = String.valueOf(front.get(0).get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(front.get(0).get("기준_년월_코드")).substring(4, 6) + "월";
+		String line = "\n$('."+ lineText[0]+"').highcharts({"+
+					"title: {text: '"+lineText[1]+"("+recentDate+"기준)'},\n"+
+					"xAxis: {categories:["+xName+"]},\n"+
+					"yAxis: {title: {text: '지표'}},\n"+
+				    "legend: {layout: 'vertical',align: 'right',verticalAlign: 'middle'},\n"+
+				    "series: [{name: '과밀 구간',data: ["+values1+"]},\n"+
+				             "{name: '활성도',data: ["+values2+"]},\n"+
+				             "{name: '성장성',data: ["+values3+"]},\n"+
+				             "{name: '안정성',data: ["+values4+"]}],\n"+
+				    "responsive: {rules: [{condition: {maxWidth: 500},chartOptions: {legend: {layout: 'horizontal',align: 'center',verticalAlign: 'bottom'}}}]}"+
+				     "});";
+		
+		return line;
+		
+	}
 	public String[] getCatagoryName(String catagoryCode){
 		String[] catagoryName = new String[2];
 		
@@ -116,7 +188,7 @@ public class DoAnalyse {
 	}
 	
 	public String getBar(String[] barText, String[] xName, String[] code, HashMap<String, String> frontRecentRow, HashMap<String, String> backRecentRow){
-		String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(backRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
+		String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
 		long value1 = 0;
 		long value2 = 0;
 		String values1 = "";
@@ -183,18 +255,18 @@ public class DoAnalyse {
 				if(String.valueOf(front.get(i).get("서비스_업종_코드")).equals(code[j])){
 
 					if(!String.valueOf(front.get(i).get(barText[6])).equals("null")){
-						value1 = Long.parseLong(String.valueOf(front.get(i).get(barText[6])));						
+						value1 = (long)Double.parseDouble(String.valueOf(front.get(i).get(barText[6])));						
 					}else{
 						value1 = 0;
 					}
-					
+
 					if(!String.valueOf(back.get(i).get(barText[6])).equals("null")){
-						value2 = Long.parseLong(String.valueOf(back.get(i).get(barText[6])));
+						value2 = (long)Double.parseDouble(String.valueOf(back.get(i).get(barText[6])));
 					}else{
 						value2 = 0;
 					}
 					
-					if(i==0){
+					if(j==0){
 						values1 += "['"+xName[j]+"',"+(int)(value1/cut)+"]";
 						values2 += "['"+xName[j]+"',"+(int)(value2/cut)+"]";
 					}else{
@@ -216,5 +288,56 @@ public class DoAnalyse {
 		        "series: [{name: '상권', data: ["+ values1 +"],dataLabels: {enabled: true,rotation: 0,color: '#FFFFFF',align: 'center',format: '{point.y:.0f}', y: 50,style: {fontSize: '13px',fontFamily: 'Verdana, sans-serif'}}},"
 		        		+ "{name: '배후지', data: ["+ values2 +"],dataLabels: {enabled: true,rotation: 0,color: '#FFFFFF',align: 'center',format: '{point.y:.0f}', y: 50,style: {fontSize: '13px',fontFamily: 'Verdana, sans-serif'}}}]});";	
 		return bar;
+	}
+	
+	public String getPie(String[] pieText, String[] xName, String[] code,  HashMap<String, String> frontRecentRow, HashMap<String, String> backRecentRow){
+		String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
+		String value1 = "";
+		String value2 = "";
+		String values1 = "";
+		String values2 = "";
+		
+		for (int i = 0; i < xName.length; i++) {
+			if(!String.valueOf(frontRecentRow.get(code[i])).equals("null")){
+				value1 = String.valueOf(frontRecentRow.get(code[i]));
+			}else{
+				value1 = "";
+			}
+			
+			if(!String.valueOf(backRecentRow.get(code[i])).equals("null")){
+				value2 = String.valueOf(backRecentRow.get(code[i]));
+			}else{
+				value2 = "";
+			}
+
+			if(i==0){
+				values1 += "['"+xName[i]+"',"+value1+"]";
+				values2 += "['"+xName[i]+"',"+value2+"]";
+			}else{
+				values1 += ",['"+xName[i]+"',"+value1+"]";
+				values2 += ",['"+xName[i]+"',"+value2+"]";
+			}
+		}
+		
+		String pie="\n$('."+pieText[0]+" .Pie1').highcharts(" +
+				"{chart: {plotBackgroundColor: null,plotBorderWidth: null,plotShadow: false,type: 'pie'}," +
+				"title: {text: '상권 "+pieText[1]+"("+recentDate+"기준)'},"+
+				"tooltip: {pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'},"+
+				"plotOptions: {pie: {allowPointSelect: true,cursor: 'pointer',"+
+							"dataLabels: {enabled: true,format: '<b>{point.name}</b>: {point.percentage:.1f} %',"+
+							"style: {color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'}}}},"+
+				"series: [{name: '"+pieText[2]+"',colorByPoint: true,"+
+						"data: ["+values1+"]}]});"+
+				
+				"\n$('."+pieText[0]+" .Pie2').highcharts(" +
+				"{chart: {plotBackgroundColor: null,plotBorderWidth: null,plotShadow: false,type: 'pie'}," +
+				"title: {text: '배후지 "+pieText[1]+"("+recentDate+"기준)'},"+
+				"tooltip: {pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'},"+
+				"plotOptions: {pie: {allowPointSelect: true,cursor: 'pointer',"+
+							"dataLabels: {enabled: true,format: '<b>{point.name}</b>: {point.percentage:.1f} %',"+
+							"style: {color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'}}}},"+
+				"series: [{name: '"+pieText[2]+"',colorByPoint: true,"+
+						"data: ["+values2+"]}]});";
+		return pie;
 	}
 }
