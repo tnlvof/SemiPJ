@@ -20,7 +20,7 @@
 	<%@ include file="/views/common/supportSidebar.jsp"%>
 	<div class="supportContainer">
 		<br>
-		<h2 align="center">공지사항 작성</h2>
+		<h2 align="center">FAQ 작성</h2>
 		<div class="formArea">
 			<form>
 				<table>
@@ -50,6 +50,6 @@
 			</form>
 		</div>
 	</div>
-	<%@ include file="/views/common/footer.jsp"%>
+
 </body>
 </html>

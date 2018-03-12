@@ -1,10 +1,6 @@
 package com.kh.pj.board.model.service;
 
-
-import static com.kh.pj.common.JDBCTemplet.close;
-import static com.kh.pj.common.JDBCTemplet.commit;
-import static com.kh.pj.common.JDBCTemplet.getConnection;
-import static com.kh.pj.common.JDBCTemplet.rollback;
+import static com.kh.pj.common.JDBCTemplet.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -17,8 +13,9 @@ import com.kh.pj.board.model.vo.Board;
 public class BoardService {
 
 
-	public int insertBoard(Board b, ArrayList<Attachment> fileList) {
+	public int insertBoard(Board b) {
 		Connection con = getConnection();
+
 		int result = 0;
 		
 		int result1 = new BoardDao().insertBoard(con, b);
@@ -39,11 +36,12 @@ public class BoardService {
 		}else {
 			rollback(con);
 		}
-		
+	
 		close(con);
-		
+
 		return result;
-}
+	}
+
 
 	public ArrayList<HashMap<String, Object>> selectList() {
 		Connection con = getConnection();
