@@ -13,8 +13,7 @@
 		//out.print(income1);
 	}	
 	HashMap<String, String> frontRecentRow = null;
-	HashMap<String, String> backRecentRow = null;
-	
+	HashMap<String, String> backRecentRow = null;	
 %>
 <!DOCTYPE html>
 <html>
