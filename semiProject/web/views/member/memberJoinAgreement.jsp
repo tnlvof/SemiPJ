@@ -335,7 +335,7 @@ input[type=checkbox]:checked+label .inner {
 					</div>
 					<div class="wrap-btns">
 						<button type="button" class="link_back"  onclick="location.href='/pj/index.jsp'">
-							<span class="ico_join"></span>◀ 이전으로
+							<span class="ico_join"></span>◀ 메인으로
 						</button>
 						<button type="button" id="nextBtn"
 							class="btn_comm btn_type1 disabled">동의하기</button>

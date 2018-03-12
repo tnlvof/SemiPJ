@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="shortcut icon" href="/pj/images/slogo.png">
@@ -30,17 +32,15 @@
 					<th width="150px">등록일</th>
 					<th width="100px">조회수</th>
 				</tr>
- 				<tr>
-					
+				<tr>
 				</tr>
 
 				<tr>
-					
+
 				</tr>
 
 			</table>
 		</div>
-		
 		<div class="searchArea" align="center">
 			<select id="searchCondition" name="searchCondition">
 				<option>-------</option>
