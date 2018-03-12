@@ -34,8 +34,6 @@
 
 .insertArea {
 	float: left;
-	width: 980px;
-	height: 800px;
 	margin-right: auto;
 }
 
@@ -127,7 +125,6 @@
 					<button type="submit" class="submitBtn">작성완료</button>
 				</div>
 			</form>
-
 		</div>
 	</div>
 		<script>
