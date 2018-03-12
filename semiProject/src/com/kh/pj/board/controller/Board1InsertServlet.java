@@ -144,7 +144,7 @@ public class Board1InsertServlet extends HttpServlet {
 			System.out.println("result : " + result);
 			
 			if(result >0) {
-				//response.sendRedirect(request.getContextPath() + "/selectList.tn");
+				response.sendRedirect(request.getContextPath() + "/selectAllList.b1");
 			}else {
 				//실패시 저장된 사진 삭제
 				for (int i = 0; i < saveFiles.size(); i++) {

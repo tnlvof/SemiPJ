@@ -34,6 +34,8 @@
 
 .insertArea {
 	float: left;
+	width: 980px;
+	height: 800px;
 	margin-right: auto;
 }
 
@@ -48,7 +50,7 @@
 }
 
 .note-editor.note-frame .note-editing-area .note-editable {
-	min-height: 400px;
+	min-height: 400px; 
 }
 
 </style>
@@ -125,6 +127,7 @@
 					<button type="submit" class="submitBtn">작성완료</button>
 				</div>
 			</form>
+
 		</div>
 	</div>
 		<script>

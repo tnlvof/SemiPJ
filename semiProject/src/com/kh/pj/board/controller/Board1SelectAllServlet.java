@@ -17,13 +17,13 @@ import com.kh.pj.board.model.service.BoardService;
  * Servlet implementation class board1SelectAllServlet
  */
 @WebServlet("/selectAllList.b1")
-public class board1SelectAllServlet extends HttpServlet {
+public class Board1SelectAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public board1SelectAllServlet() {
+    public Board1SelectAllServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
