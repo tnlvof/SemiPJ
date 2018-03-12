@@ -100,19 +100,36 @@ public class MemberService {
 		
 		String userId = new MemberDao().searchingId(con, m);
 		
+		close(con);
+		
 		return userId;
 	}
 
-	public int searchingPwd(Member m) {
+	public String searchingPwd(Member m) {
 		Connection con = getConnection();
 		
-		int result = new MemberDao().searchingPwd(con, m);
+		String userPwd = new MemberDao().searchingPwd(con, m);
 		
-		if(result>0) commit(con);
-		else rollback(con);
+		close(con);
+		
+		return userPwd;
+
+	}
+
+	public int emailPwd(String pass2, String userNo) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().emailPwd(con, pass2, userNo);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
 		
 		return result;
-
 	}
 	
 

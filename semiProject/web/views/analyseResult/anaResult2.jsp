@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"  import="java.util.*, org.json.simple.JSONObject, com.kh.pj.analyse.controller.*"%>
 <% 
 	DoAnalyse da = new DoAnalyse();
-	String catagoryCode = (String)session.getAttribute("catagoryCode");
-	String[] catagoryName = da.getCatagoryName(catagoryCode);
+
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> front = null;
 	ArrayList<HashMap> back = null;
@@ -24,10 +23,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
 	<h1 align="center">매출분석</h1>
 	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+
 	<div class="anaResult detailResult0"></div>
 	<div class="anaResult detailResult1"></div>
 	<div class="anaResult detailResult2"></div>
@@ -79,6 +80,7 @@
 		String[] ageMuchxName = {"10대", "20대", "30대", "40대", "50대", "60대 이상"};
 		String[] ageMuchCode = {"연령대_10_금액","연령대_20_금액","연령대_30_금액","연령대_40_금액","연령대_50_금액","연령대_60_이상_금액"};
 		out.print(da.getBar(ageMuchBarText, ageMuchxName, ageMuchCode, frontRecentRow, backRecentRow));
+
 		%>
 	});
 </script>
