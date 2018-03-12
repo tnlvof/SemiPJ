@@ -42,14 +42,11 @@
 .board1 {
 	position: absolute;
 	width: 980px;
-	margin: 20px 0 0 20px;
 	display: inline-block;
+	margin-left:20px;
+	margin-top:20px;
 	/*background:;*/
-	border:1px solid black;
-}
-
-.tableArea {
-	
+	/* border:1px solid black; */
 }
 
 .tableArea table, .tableArea th {
@@ -109,9 +106,11 @@
 	height:30px;
 	text-align:right;
 }
+
 .hr{
 	margin:10px 0 10px 0;
 }
+
 .hr2{
 	border: 0;
     height: 3px;
@@ -120,6 +119,6 @@
 
 .boardContent{
 	width:800px;
-	height:400px;
+	height:500px;
 	resize: none
 }

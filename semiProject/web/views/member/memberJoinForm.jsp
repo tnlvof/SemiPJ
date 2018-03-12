@@ -4,95 +4,78 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="shortcut icon" href="/pj/images/slogo.png">
+<link rel="stylesheet" href="/pj/css/common.css">
+<link rel="stylesheet" href="/pj/css/reset.css">
+<link rel="stylesheet" href="/pj/css/memberJoin.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<style>
-	.outer{
-		width:600px;
-		height:500px;
-		background:lightgrey;
-		color:black;
-		margin-top:50px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	
-	#idCheck, #ckZip, #goMain{
-		background:grey;
-		border-radius:5px;
-		width:80px;
-		height:25px;
-		text-align:center;
-		color: white;
-	}
-	
-
-	
-	#idCheck:hover, #ckZip:hover, #goMain:hover, #joinBtn:hover{
-		cursor:pointer;
-	}
-	td{
-		text-align:right;
-	}
-	#ckZip, #joinBtn{
-		background:navy;
-		color: white;
-	}
-	#goMain, #joinBtn{
-		display:inline-block;
-	}
-</style>
-
 <title>앞날이 창창</title>
 </head>
 <body>
-	<%@ include file="/views/common/menubar.jsp"%>
-
-	<div class="outer">
-		<br>
-		<h1 align="center">회원가입</h1>
-		<br><br>
-		<form id="joinForm" action="<%= request.getContextPath()%>/insertMember.me" method="post">
-			<table align="center">
+<div class="join-wrap">
+		<div class="join-head">
+			<div class="agreementHeader" style="height:156px;"> 
+				<a class="ico-join"><img src="/pj/images/llogo.png"
+					class="join-logo"></a>
+			</div>
+		</div>
+		<div class="join-body">
+			<div class="paging-step">
+				<span class="ico-join ico-paging"> <i class="fa fa-circle"></i>
+					<i class="fa fa-circle on"></i> <i class="fa fa-circle"></i>
+				</span>
+			</div>
+			<div class="wrap-title">
+				<h3 class="title-join">가입 정보 입력</h3>
+				<div class="text-join">
+					로그인 정보 및 가입 정보를 입력하세요.
+				</div>
+			</div>
+			<form id="joinForm" action="<%= request.getContextPath()%>/insertMember.me" method="post">
+			<table align="center" class="join-table">
 				<tr>
-					<th width="200px">* 아이디 : </th>
+					<th width="200px"><span class="glyphicon glyphicon-asterisk"></span> 아이디</th>
 					<td><input type="text" maxlength="13" name="memberId" id="memberId"></td>
-					<td width="200px"><div id="idCheck">중복확인</div></td>
+					<td><div id="idCheck">중복확인</div></td>
 				</tr>
 				<tr>
-					<th>* 비밀번호 :</th>
+					<th><span class="glyphicon glyphicon-asterisk"></span> 비밀번호</th>
 					<td><input type="password" maxlength="13" name="memberPwd"></td>
 					<td></td>
 				</tr>
 				<tr>
-					<th>* 비밀번호 확인 :</th>
+					<th><span class="glyphicon glyphicon-asterisk"></span> 비밀번호 확인</th>
 					<td><input type="password" maxlength="13" name="memberPwd2"></td>
 					<td><label id="pwdResult"></label></td>
 				</tr>
 				<tr>
-					<th>* 이름 : </th>
+					<th><span class="glyphicon glyphicon-asterisk"></span> 이름</th>
 					<td><input type="text" maxlength="13" name="memberName"></td>
 					<td><label id="pwdResult"></label></td>
 				</tr>
 				<tr>
-					<th>* 닉네임 : </th>
+					<th><span class="glyphicon glyphicon-asterisk"></span> 닉네임</th>
 					<td><input type="text" maxlength="5" name="nickName"></td>
 					<td><label id="nnResult"></label></td>
 				</tr>
 				<tr>
-					<th>* 생년월일(ex:950716) : </th>
+					<th><span class="glyphicon glyphicon-asterisk"></span> 생년월일 <span style="font-size:11px;">ex) 950716</span></th>
 					<td><input type="text" maxlength="13" name="birthday"></td>
 					<td><label id="pwdResult"></label></td>
 				</tr>
 				<tr>
-					<th>연락처 : </th>
+					<th class="table-indent">연락처</th>
 					<td>
-						<input type="text" maxlength="3" name="tel1" size="2">-
-						<input type="text" maxlength="4" name="tel2" size="2">-
+						<input type="text" maxlength="3" name="tel1" size="2"> -
+						<input type="text" maxlength="4" name="tel2" size="2"> -
 						<input type="text" maxlength="4" name="tel3" size="2">
 					</td>				
 				</tr>
 				<tr>
-					<th>이메일 : </th>
+					<th class="table-indent">이메일</th>
 					<td><input type="email" name="email"></td>
 					<td></td>
 				</tr>
@@ -102,12 +85,12 @@
 					<td><div id="ckZip">검색</div></td>
 				</tr> -->
 				<tr>
-					<th>주소 : </th>
+					<th class="table-indent">주소</th>
 					<td><input type="text" name="address1"></td>
 					<td></td>
 				</tr>
 				<tr>
-					<th>상세주소 : </th>
+					<th class="table-indent">상세주소</th>
 					<td><input type="text" name="address2"></td>
 					<td></td>
 				</tr>
@@ -124,11 +107,18 @@
 					<td></td>
 				</tr> -->
 			</table>
-			<div align="center">
-				<div id="goMain" onclick="goMain();">메인으로</div>
-				<div id="joinBtn" onclick="insertMember();">가입하기</div>
+
+			<div class="wrap-btns">
+						<button type="button" class="link_back" onclick="location.href='/pj/views/member/memberJoinAgreement.jsp'">
+							<span class="ico_join"></span>◀ 이전으로
+						</button>
+						<button type="button" id="nextBtn"
+							class="btn_comm btn_type1 disabled" onclick="insertMember();">다음단계</button>
 			</div>
-			<script>
+		</form>
+		</div>
+	</div>
+	<script>
 				function insertMember(){
 					$("#joinForm").submit();
 				}
@@ -160,10 +150,6 @@
 						});
 					});
 				});
-			</script>
-		</form>
-	</div>
-			<%@ include file="/views/common/footer.jsp" %>
-	
+			</script>	
 </body>
 </html>
