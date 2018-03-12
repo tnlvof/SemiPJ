@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
+<link rel="stylesheet" href="/pj/js/jquery-3.3.1.js">
 <link rel="shortcut icon" href="/pj/images/slogo.png">
+
 <style type="text/css">
 	#logoutBtn, #changeInfo {
 		cursor:pointer;
@@ -29,15 +30,16 @@
 <a href="/pj/index.jsp"><img src="/pj/images/changchang.png" class="logo"></a>
 		<form id="loginForm">
 			<div class="loginBtns1">
-				<!--  <span class="glyphicon glyphicon-user floatLeft"></span>-->
 					<% if(loginUser == null){ %>
-						<br>
+					<br>
+					<span class="glyphicon glyphicon-user floatLeft"></span>
 						<div id="loginBtn"><a href="/pj/views/login/loginForm.jsp">로그인</a></div>
 						<div id="joinBtn"><a href="/pj/views/member/memberJoinAgreement.jsp">회원가입</a></div>
 					<% }else{%>
 						<div id="userInfo">
+						<span class="glyphicon glyphicon-user floatLeft"></span>
 						<label><%= loginUser.getMemberName() %>님의 방문을 환영합니다.</label>
-							<div class="loginOkbtns">
+							<div class="loginOkbtns" style="text-indent:10px;">
 								<div id="changeInfo" onclick="changeInfo();">정보수정</div>
 								<div id="logoutBtn" onclick="logout();">로그아웃</div>
 							</div>
@@ -57,7 +59,7 @@
 				<li class="bar">|</li>
 				<li class="menu" onclick="location.href='/pj/views/community/board1/board1_List.jsp'">커뮤니티</li>
 				<li class="bar">|</li>
-				<li class="menu" onclick="location.href='/pj/views/support/notice/noticeList.jsp'">고객센터</li>
+				<li class="menu" onclick="goSupport();">고객센터</li>
 				<li class="bar">|</li>
 			</ul>
 		</div>
@@ -69,6 +71,9 @@
 		function changeInfo(){
 			location.href="/pj/views/member/memberUpdateForm.jsp";
 		}
+		function goSupport(){
+			  location.href="/pj/views/support/notice/noticeList.jsp";
+		  }
 	</script>
 </body>
 </html>

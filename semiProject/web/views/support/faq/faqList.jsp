@@ -43,14 +43,14 @@
 		</div>
 		<div class="searchArea" align="center">
 			<select id="searchCondition" name="searchCondition">
-				<option>-----</option>
+				<option>-------</option>
 				<option value="category">분류</option>
 				<option value="title">제목</option>
 				<option value="writer">작성자</option>
 				<option value="content">내용</option>
 			</select> <input type="search" name="searchValue">
 			<button type="button">검색하기</button>
-			<button onclick="#">작성하기</button>
+			<button onclick="#">글쓰기</button>
 		</div>
 		</div>
 	</div>

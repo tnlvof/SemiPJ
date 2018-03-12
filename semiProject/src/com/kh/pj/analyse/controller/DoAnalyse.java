@@ -7,40 +7,7 @@ import org.json.simple.*;
 import org.json.simple.parser.*;
 
 public class DoAnalyse {
-	public ArrayList doAnalyse(String code){
-		ArrayList<ArrayList> allList = new ArrayList<ArrayList>();
-		ArrayList<JSONObject> list;
-		JSONObject jObj = null;
-		JSONArray jArr = null;
-		JSONObject jObj2 = null;		
-		JSONParser parser = new JSONParser();
-		Object obj = null;
-		
-		for(int num=0; num<=16; num++){
-			list = new ArrayList<JSONObject>();
-			if(num!=1){
-				try {
-					obj = parser.parse(new FileReader(DoAnalyse.class.getResource("/jsonFile/"+num+".json").getPath()));
-				} catch (IOException | ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-				jObj = (JSONObject)obj;
-				jArr = (JSONArray) jObj.get("DATA");
-				for(Object obj2:jArr){
-					jObj2 = (JSONObject) obj2;
-					if(jObj2.get("trdar_cd").equals(code)){
-						list.add(jObj2);					
-					}
-				}			
-			}else{
-				list.add(null);
-			}
-			allList.add(list);
-		}
-		return allList;
-	}
-	
+
 	public String get2Line(String[] lineText, ArrayList<HashMap> front, ArrayList<HashMap> back){
 		String xName = "";
 		long value1 = 0;
@@ -48,23 +15,33 @@ public class DoAnalyse {
 		String values1 = "";
 		String values2 = "";
 		Double cut = Double.parseDouble(lineText[5]);
-		System.out.println(front);
+
+
 		String recentDate = String.valueOf(front.get(0).get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(front.get(0).get("기준_년월_코드")).substring(4, 6) + "월";
 		
 		for(int i = front.size()-1; i >= 0; i--){
-			if(!String.valueOf(front.get(i).get(lineText[4])).equals("null")&&!String.valueOf(back.get(i).get(lineText[4])).equals("null")){
+			if(!String.valueOf(front.get(i).get(lineText[4])).equals("null")){
 				value1 = Long.parseLong(String.valueOf(front.get(i).get(lineText[4])));
+			}else{
+				value1 = 0;
+			}
+			
+			if(!String.valueOf(back.get(i).get(lineText[4])).equals("null")){
 				value2 = Long.parseLong(String.valueOf(back.get(i).get(lineText[4])));
+			}else{
+				value2 = 0;
+
 			}
 
 			if(i==front.size()-1){
 				xName += "'"+front.get(i).get("기준_년월_코드")+"'";
-				values1 += (int)(value1*cut) +"";
-				values2 += (int)(value2*cut) +"";
+
+				values1 += (int)(value1/cut) +"";
+				values2 += (int)(value2/cut) +"";
 			}else{
 				xName += ",'"+front.get(i).get("기준_년월_코드")+"'";
-				values1 += ","+(int)(value1*cut);
-				values2 += ","+(int)(value2*cut);
+				values1 += ","+(int)(value1/cut);
+				values2 += ","+(int)(value2/cut);
 			}
 		}
 		
@@ -145,19 +122,27 @@ public class DoAnalyse {
 		String values1 = "";
 		String values2 = "";
 		Double cut = Double.parseDouble(barText[4]);
-
+		
 		for (int i = 0; i < xName.length; i++) {
-			if(!String.valueOf(frontRecentRow.get(code[i])).equals("null")&&!String.valueOf(backRecentRow.get(code[i])).equals("null")){
+			if(!String.valueOf(frontRecentRow.get(code[i])).equals("null")){
 				value1 = Long.parseLong(String.valueOf(frontRecentRow.get(code[i])));
-				value2 = Long.parseLong(String.valueOf(backRecentRow.get(code[i])));
+			}else{
+				value1 = 0;
 			}
 			
-			if(i==0){
-				values1 += "['"+xName[i]+"',"+(int)(value1*cut)+"]";
-				values2 += "['"+xName[i]+"',"+(int)(value2*cut)+"]";
+			if(!String.valueOf(backRecentRow.get(code[i])).equals("null")){
+				value2 = Long.parseLong(String.valueOf(backRecentRow.get(code[i])));
 			}else{
-				values1 += ",['"+xName[i]+"',"+(int)(value1*cut)+"]";
-				values2 += ",['"+xName[i]+"',"+(int)(value2*cut)+"]";
+				value2 = 0;
+			}
+
+			if(i==0){
+				values1 += "['"+xName[i]+"',"+(int)(value1/cut)+"]";
+				values2 += "['"+xName[i]+"',"+(int)(value2/cut)+"]";
+			}else{
+				values1 += ",['"+xName[i]+"',"+(int)(value1/cut)+"]";
+				values2 += ",['"+xName[i]+"',"+(int)(value2/cut)+"]";
+
 			}
 		}
 		
@@ -196,17 +181,25 @@ public class DoAnalyse {
 		for (int i = 0; i < front.size(); i++) {
 			for (int j = 0; j < code.length; j++) {
 				if(String.valueOf(front.get(i).get("서비스_업종_코드")).equals(code[j])){
-					if(!String.valueOf(front.get(i).get(barText[6])).equals("null")&&!String.valueOf(back.get(i).get(barText[6])).equals("null")){
-						value1 = Long.parseLong(String.valueOf(front.get(i).get(barText[6])));
+
+					if(!String.valueOf(front.get(i).get(barText[6])).equals("null")){
+						value1 = Long.parseLong(String.valueOf(front.get(i).get(barText[6])));						
+					}else{
+						value1 = 0;
+					}
+					
+					if(!String.valueOf(back.get(i).get(barText[6])).equals("null")){
 						value2 = Long.parseLong(String.valueOf(back.get(i).get(barText[6])));
+					}else{
+						value2 = 0;
 					}
 					
 					if(i==0){
-						values1 += "['"+xName[j]+"',"+(int)(value1*cut)+"]";
-						values2 += "['"+xName[j]+"',"+(int)(value2*cut)+"]";
+						values1 += "['"+xName[j]+"',"+(int)(value1/cut)+"]";
+						values2 += "['"+xName[j]+"',"+(int)(value2/cut)+"]";
 					}else{
-						values1 += ",['"+xName[j]+"',"+(int)(value1*cut)+"]";
-						values2 += ",['"+xName[j]+"',"+(int)(value2*cut)+"]";
+						values1 += ",['"+xName[j]+"',"+(int)(value1/cut)+"]";
+						values2 += ",['"+xName[j]+"',"+(int)(value2/cut)+"]";
 					}
 				}
 			}

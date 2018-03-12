@@ -6,10 +6,12 @@
 	ArrayList<HashMap> front = null;
 	ArrayList<HashMap> back = null;
 	
-	/* if(allTable!=null){
+
+	if(allTable!=null){
 		front = allTable.get("상권_점포");
 		back = allTable.get("상권배후지_점포");
-	} */	
+	}	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -18,6 +20,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%@ include file="../common/resultMenu.jsp" %>
 	<h1 align="center">업종분석</h1>
 	<div class="anaResult detailResult0"></div>

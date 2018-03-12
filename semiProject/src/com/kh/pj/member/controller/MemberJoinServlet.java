@@ -64,7 +64,7 @@ public class MemberJoinServlet extends HttpServlet {
 		//페이지 연결
 		String page = "";
 		if(result>0){
-			page="views/common/successPage.jsp";
+			page="views/member/joinSuccess.jsp";
 			request.setAttribute("msg", "회원 가입 성공");
 		}else{
 			page="views/common/errorPage.jsp";

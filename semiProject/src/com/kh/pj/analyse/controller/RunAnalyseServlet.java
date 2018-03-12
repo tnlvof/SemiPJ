@@ -41,16 +41,18 @@ public class RunAnalyseServlet extends HttpServlet {
 		
 		//ArrayList<ArrayList> allList = new DoAnalyse().doAnalyse(code);
 		
-		HashMap<String, ArrayList<HashMap>> allTable = new AnalyseService().doAnalyse(areaCode, catagoryCode);
+
+		HashMap<String, ArrayList<HashMap>> allTable = new AnalyseService().doAnalyse(areaCode);
 		
 		if(allTable!=null){
-			java.util.Iterator iter = allTable.keySet().iterator();
+			/*java.util.Iterator iter = allTable.keySet().iterator();
 			while(iter.hasNext()){
 				String key = (String) iter.next();
 				System.out.println("key : " + key + " value : " + allTable.get(key));
-			}
+			}*/
 			HttpSession session = request.getSession();
 			session.setAttribute("allTable", allTable);
+			session.setAttribute("catagoryCode", catagoryCode);
 			request.getRequestDispatcher("/views/analyseResult/anaResult0.jsp").forward(request, response);
 		}
 	}

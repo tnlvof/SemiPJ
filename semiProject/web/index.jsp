@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="shortcut icon" href="/pj/images/slogo.png">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>앞날이 창창</title>
 <style>
 .btns-wrap {
@@ -79,17 +81,14 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<!-- <img src="images/bg1.jpg" style="width: 100%;"> -->
 					<img src="http://placehold.it/1200x500" width="100%">
 				</div>
 
 				<div class="item">
-					<!-- <img src="images/bg2.jpg" style="width: 100%;"> -->
 					<img src="http://placehold.it/1200x500" width="100%">
 				</div>
 
 				<div class="item">
-					<!-- <img src="images/bg3.jpg" style="width: 100%;"> -->
 					<img src="http://placehold.it/1200x500" width="100%">
 				</div>
 			</div>
