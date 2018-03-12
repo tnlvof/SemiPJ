@@ -50,7 +50,7 @@
 }
 
 .note-editor.note-frame .note-editing-area .note-editable {
-	min-height: 400px;
+	min-height: 400px; 
 }
 
 </style>

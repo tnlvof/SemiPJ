@@ -8,7 +8,7 @@
 
 .searchBanner {
 	margin-top: 20px;
-	width: 1200px;
+	width: 1000px;
 	height: 300px;
 	background-image: url("/pj/images/banner2.png");
 	background-size: cover;
@@ -40,13 +40,11 @@
 }
 
 .board1 {
-	position: absolute;
-	width: 980px;
+	float:left;
+	width: 805px;
+	height:500px;
 	display: inline-block;
 	margin-left:20px;
-	margin-top:20px;
-	/*background:;*/
-	/* border:1px solid black; */
 }
 
 .tableArea table, .tableArea th {
@@ -103,7 +101,9 @@
 	float:left;
 }
 .writeBtnArea{
-	height:30px;
+	float:left;
+	width:100%;
+	height:100px;
 	text-align:right;
 }
 

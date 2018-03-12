@@ -19,7 +19,7 @@ a, a:hover {
 }
 
 .div1 { 
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	margin-top: 20px;
 }
@@ -118,6 +118,7 @@ footer {
 	text-align: left;
 	margin-top: 200px;
 	padding: 15px;
+	clear:both;
 }
 
 .column {

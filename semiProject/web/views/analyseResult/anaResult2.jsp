@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"  import="java.util.*, org.json.simple.JSONObject, com.kh.pj.analyse.controller.*"%>
 <% 
 	DoAnalyse da = new DoAnalyse();
+
 	String catagoryCode = (String)session.getAttribute("catagoryCode");
 	String[] catagoryName = da.getCatagoryName(catagoryCode);
 	
@@ -14,7 +15,8 @@
 		//out.print(income1);
 	}	
 	HashMap<String, String> frontRecentRow = null;
-	HashMap<String, String> backRecentRow = null;	
+	HashMap<String, String> backRecentRow = null;
+	
 %>
 <!DOCTYPE html>
 <html>
