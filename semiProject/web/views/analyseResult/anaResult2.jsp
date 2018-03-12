@@ -3,6 +3,10 @@
 <% 
 	DoAnalyse da = new DoAnalyse();
 
+	String catagoryCode = (String)session.getAttribute("catagoryCode");
+	String[] catagoryName = da.getCatagoryName(catagoryCode);
+	
+
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> front = null;
 	ArrayList<HashMap> back = null;
@@ -13,8 +17,7 @@
 	}	
 
 	HashMap<String, String> frontRecentRow = null;
-	HashMap<String, String> backRecentRow = null;
-	
+	HashMap<String, String> backRecentRow = null;	
 %>
 <!DOCTYPE html>
 <html>
