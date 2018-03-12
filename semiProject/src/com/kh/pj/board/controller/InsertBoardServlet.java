@@ -30,7 +30,7 @@ public class InsertBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String bCategory = request.getParameter("bCategory");
+	/*	String bCategory = request.getParameter("bCategory");
 		String bTitle = request.getParameter("bTitle");
 		String bText = request.getParameter("bText");
 		
@@ -50,7 +50,7 @@ public class InsertBoardServlet extends HttpServlet {
 		 } else{
 			 request.setAttribute("msg", "게시판 작성 실패!");
 			 request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		 }
+		 }*/
 	}
 
 	/**
