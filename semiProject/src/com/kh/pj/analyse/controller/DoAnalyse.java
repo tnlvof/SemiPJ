@@ -7,7 +7,7 @@ import org.json.simple.*;
 import org.json.simple.parser.*;
 
 public class DoAnalyse {
-
+	
 	public String get2Line(String[] lineText, ArrayList<HashMap> front, ArrayList<HashMap> back){
 		String xName = "";
 		long value1 = 0;
@@ -15,7 +15,6 @@ public class DoAnalyse {
 		String values1 = "";
 		String values2 = "";
 		Double cut = Double.parseDouble(lineText[5]);
-
 
 		String recentDate = String.valueOf(front.get(0).get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(front.get(0).get("기준_년월_코드")).substring(4, 6) + "월";
 		
@@ -30,12 +29,10 @@ public class DoAnalyse {
 				value2 = Long.parseLong(String.valueOf(back.get(i).get(lineText[4])));
 			}else{
 				value2 = 0;
-
 			}
 
 			if(i==front.size()-1){
 				xName += "'"+front.get(i).get("기준_년월_코드")+"'";
-
 				values1 += (int)(value1/cut) +"";
 				values2 += (int)(value2/cut) +"";
 			}else{
@@ -214,7 +211,6 @@ public class DoAnalyse {
 			}else{
 				values1 += ",['"+xName[i]+"',"+(int)(value1/cut)+"]";
 				values2 += ",['"+xName[i]+"',"+(int)(value2/cut)+"]";
-
 			}
 		}
 		
@@ -253,7 +249,6 @@ public class DoAnalyse {
 		for (int i = 0; i < front.size(); i++) {
 			for (int j = 0; j < code.length; j++) {
 				if(String.valueOf(front.get(i).get("서비스_업종_코드")).equals(code[j])){
-
 					if(!String.valueOf(front.get(i).get(barText[6])).equals("null")){
 						value1 = (long)Double.parseDouble(String.valueOf(front.get(i).get(barText[6])));						
 					}else{

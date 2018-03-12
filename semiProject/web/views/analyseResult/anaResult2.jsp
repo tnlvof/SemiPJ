@@ -2,11 +2,9 @@
     pageEncoding="UTF-8"  import="java.util.*, org.json.simple.JSONObject, com.kh.pj.analyse.controller.*"%>
 <% 
 	DoAnalyse da = new DoAnalyse();
-
 	String catagoryCode = (String)session.getAttribute("catagoryCode");
 	String[] catagoryName = da.getCatagoryName(catagoryCode);
 	
-
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> front = null;
 	ArrayList<HashMap> back = null;
@@ -15,7 +13,6 @@
 		back = allTable.get("상권배후지_추정매출");
 		//out.print(income1);
 	}	
-
 	HashMap<String, String> frontRecentRow = null;
 	HashMap<String, String> backRecentRow = null;	
 %>
@@ -26,12 +23,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
 	<h1 align="center">매출분석</h1>
 	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
-
 	<div class="anaResult detailResult0"></div>
 	<div class="anaResult detailResult1"></div>
 	<div class="anaResult detailResult2"></div>
@@ -148,7 +143,6 @@
 		String[] servPerxName = {"1년이하", "1년~2년", "2년~3년", "3년~5년", "5년이상"};
 		String[] servPerCode = {"생존_율_1년이하", "생존_율_1_2년", "생존_율_2_3년", "생존_율_3_5년", "생존_율_5년이상"};
 		out.print(da.getPie(servPerPieText, servPerxName, servPerCode, frontRecentRow, backRecentRow));
-
 		%>
 	});
 </script>
