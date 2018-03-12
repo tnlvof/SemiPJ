@@ -25,7 +25,7 @@
 					<li>|</li>
 					<li>FAQ</li>
 				</ul>
-				<p>Copyright© 2015. National Intelligence Service, ALL RIGHTS
+				<p>Copyright© 2018. ChangChang , ALL RIGHTS
 					RESERVED.</p>
 			</div>
 		</div>

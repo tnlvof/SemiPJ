@@ -65,6 +65,10 @@
 .carousel-indicators .active {
 	width: 18px;
 }
+
+.item {
+	opacity: 0.8;
+}
 </style>
 </head>
 <body>
@@ -81,7 +85,7 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="http://placehold.it/1200x500" width="100%">
+					<img src="images/bg1.png" width="100%">
 				</div>
 
 				<div class="item">
