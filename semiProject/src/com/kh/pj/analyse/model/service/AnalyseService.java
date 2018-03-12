@@ -10,11 +10,9 @@ import static com.kh.pj.common.JDBCTemplet.*;
 
 public class AnalyseService {
 
-
 	public HashMap<String, ArrayList<HashMap>> doAnalyse(String areaCode) {
 		Connection con = getConnection();
 		HashMap<String, ArrayList<HashMap>> allTable = new AnalyseDao().doAnalyse(areaCode, con);
-
 		
 		if(allTable!=null) close(con);
 		else rollback(con);
