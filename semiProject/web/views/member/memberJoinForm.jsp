@@ -131,7 +131,7 @@
 						console.log(memberId);
 						
 						$.ajax({
-							url:"/smp/idCheck.me",
+							url:"/pj/idCheck.me",
 							type:"post",
 							data:{"memberId":memberId},
 							
