@@ -43,7 +43,6 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 		}else{
 			request.setAttribute("msg", "로그인 실패");
-			
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
 	}

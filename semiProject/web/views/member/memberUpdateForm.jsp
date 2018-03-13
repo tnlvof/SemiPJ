@@ -44,7 +44,7 @@
 </head>
 <body>
 <div class="outer">
-	<h1 align="center"><% loginUser.getMemberName(); %>님의 회원정보 수정 <button onclick="delectMember();">회원탈퇴</button></h1>
+	<h1 align="center"><%= loginUser.getMemberName() %>님의 회원정보 수정 <button onclick="delectMember();">회원탈퇴</button></h1>	
 		<form action="<%=request.getContextPath()%>/changeInfo.me" method="post">
 				<input type="hidden" value="<%= loginUser.getMemberNo() %>" name="memberNo">
 				<table align="center">
@@ -54,7 +54,7 @@
 				</tr>
 				<tr>
 					<td><label>이름</label></td>
-					<td><input type="text" maxlength="13" name="memberName" value="<%= loginUser.getMemberName() %>" readonly></td>
+					<td><input type="text" maxlength="13" name="memberName" value="<%= loginUser.getMemberName() %>"></td>
 				</tr>
 				<tr>
 					<td>닉네임</td>
@@ -86,7 +86,7 @@
 				<tr>
 					<td>주소</td>
 					<%
-						String address[] = loginUser.getAddress().split(",");
+						String address[] = loginUser.getAddress().split(", ");
 						for(int i = 0; i < address.length; i++){
 							
 						}
@@ -96,7 +96,7 @@
 				</tr>
 				<tr>
 					<td>상세주소</td>
-					<td><input type="text" name="address2" value="<%= address[0] %>"></td>
+					<td><input type="text" name="address2" value="<%= address[1] %>"></td>
 					<td></td>
 				</tr>
 				<tr align="center">

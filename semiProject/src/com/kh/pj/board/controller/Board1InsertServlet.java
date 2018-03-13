@@ -42,11 +42,11 @@ public class Board1InsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String title = request.getParameter("title");
+		/*String title = request.getParameter("title");
 		String content = request.getParameter("content");
 
 		System.out.println(title);
-		System.out.println(content);
+		System.out.println(content);*/
 
 		// 폼전송용 multipart/form-data로 전송하는 경우에는
 		// 기존처럼 request.getParameter로 값을 받을 수 없다.
@@ -92,7 +92,6 @@ public class Board1InsertServlet extends HttpServlet {
 			// 파일이 전송된 폼의 이름을 반환한다.
 			Enumeration<String> files = multiRequest.getFileNames();
 
-			while (files.hasMoreElements()) {
 				String name = files.nextElement();
 
 				System.out.println(name);
@@ -104,7 +103,6 @@ public class Board1InsertServlet extends HttpServlet {
 
 				System.out.println("filesystem : " + multiRequest.getFilesystemName(name));
 				System.out.println("originsystem : " + multiRequest.getOriginalFileName(name));
-			}
 
 			// multipartRequest 객체에서 파일 외의 값도 꺼내온다.
 			String multiTitle = multiRequest.getParameter("title");
@@ -122,7 +120,7 @@ public class Board1InsertServlet extends HttpServlet {
 			Member m = (Member) session.getAttribute("loginUser");
 			int mNo = m.getMemberNo();
 			b.setmNo(mNo);
-
+			System.out.println(mNo);
 			//int result = new BoardService().insertBoard(b);
 			
 			//첨부파일의 정보를 저장할 arrayList객체 생성
@@ -146,7 +144,7 @@ public class Board1InsertServlet extends HttpServlet {
 			System.out.println("result : " + result);
 			
 			if(result >0) {
-				response.sendRedirect(request.getContextPath() + "/selectList.tn");
+				response.sendRedirect(request.getContextPath() + "/selectAllList.b1");
 			}else {
 				//실패시 저장된 사진 삭제
 				for (int i = 0; i < saveFiles.size(); i++) {

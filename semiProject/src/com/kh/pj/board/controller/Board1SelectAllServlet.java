@@ -1,6 +1,10 @@
 package com.kh.pj.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,20 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.pj.board.model.service.BoardService;
-import com.kh.pj.board.model.vo.Board;
-import com.kh.pj.member.model.vo.Member;
 
 /**
- * Servlet implementation class InsertBoardServlet
+ * Servlet implementation class board1SelectAllServlet
  */
-@WebServlet("/InsertBoardServlet.bo")
-public class InsertBoardServlet extends HttpServlet {
+@WebServlet("/selectAllList.b1")
+public class Board1SelectAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertBoardServlet() {
+    public Board1SelectAllServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +32,23 @@ public class InsertBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	/*	String bCategory = request.getParameter("bCategory");
-		String bTitle = request.getParameter("bTitle");
-		String bText = request.getParameter("bText");
+		ArrayList<HashMap<String,Object>> list = new BoardService().selectList();
 		
-		String writer = String.valueOf((((Member)(request.getSession().getAttribute("loginUser"))).getMemberNo()));
+		System.out.println(list);
 		
-		Board b = new Board();
-		b.setbCategory(bCategory);
-		b.setbTitle(bTitle);
-		b.setbText(bText);
-		b.setbWriter(writer);
+		String page= "";
+				
+		if(list != null) {
+			page = "views/community/board1/board1_List.jsp"; 
+			request.setAttribute("list", list);
+		}else {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "광고 게시판 조회 실패!");
+		}
 		
-		int result = new BoardService().insertBoard(b);
 		
-		 String page="";
-		 if(result > 0){
-			 response.sendRedirect(request.getContextPath() + "/selectList.bo");
-		 } else{
-			 request.setAttribute("msg", "게시판 작성 실패!");
-			 request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		 }*/
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 	}
 
 	/**
