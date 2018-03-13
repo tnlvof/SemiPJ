@@ -9,10 +9,10 @@ import com.kh.pj.support.model.dao.SupportDao;
 import com.kh.pj.support.model.vo.Support;
 
 public class SupportService {
-	public ArrayList<Support> selectList() {
+	public ArrayList<Support> selectList(int currentPage, int limit) {
 		Connection con = getConnection();
 
-		ArrayList<Support> list = new SupportDao().selectList(con);
+		ArrayList<Support> list = new SupportDao().selectList(con, currentPage, limit);
 
 		close(con);
 
@@ -30,6 +30,16 @@ public class SupportService {
 		close(con);
 
 		return result;
+	}
+
+	public int getListCount(String boardCategory) {
+		Connection con = getConnection();
+
+		int listCount = new SupportDao().getListCount(con, boardCategory);
+
+		close(con);
+
+		return listCount;
 	}
 
 }

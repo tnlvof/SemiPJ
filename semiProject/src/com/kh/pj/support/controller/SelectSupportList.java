@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.pj.board.model.vo.PageInfo;
 import com.kh.pj.support.model.service.SupportService;
 import com.kh.pj.support.model.vo.Support;
 
@@ -32,7 +33,39 @@ public class SelectSupportList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Support> list = new SupportService().selectList();
+		int currentPage;
+		int limit;
+		int maxPage;
+		int startPage;
+		int endPage;
+		
+		currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		limit = 10;
+		
+		SupportService ss = new SupportService();
+		String boardCategory = "6";
+		int listCount = ss.getListCount(boardCategory);
+		
+		System.out.println("listCount : " + listCount);
+
+		maxPage = (int)((double)listCount / limit + 0.9);
+		
+		startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
+		
+		endPage = startPage + limit - 1;
+		
+		if(maxPage < endPage){
+			endPage = maxPage;
+		}
+		
+		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+		
+		ArrayList<Support> list = new SupportService().selectList(currentPage,limit);
 		
 		System.out.println("list : " + list);
 
@@ -40,6 +73,7 @@ public class SelectSupportList extends HttpServlet {
 		if(list != null){
 			page = "views/support/notice/noticeList.jsp";
 			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
 		} else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 조회 실패!");

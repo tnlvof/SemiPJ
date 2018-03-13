@@ -28,16 +28,23 @@ public class SupportDao {
 		}
 	}
 	
-	public ArrayList<Support> selectList(Connection con) {
-		Statement stmt = null;		
+	public ArrayList<Support> selectList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Support> list = null;
 
 		String query = prop.getProperty("selectList");
 		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
 
 			list = new ArrayList<Support>();
 
@@ -58,7 +65,7 @@ public class SupportDao {
 			e.printStackTrace();
 		} finally{
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 
 		return list;
@@ -88,6 +95,33 @@ public class SupportDao {
 		}
 
 		return result;
+	}
+
+	public int getListCount(Connection con, String boardCategory) {
+		PreparedStatement pstmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, boardCategory);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return listCount;
 	}
 
 }
