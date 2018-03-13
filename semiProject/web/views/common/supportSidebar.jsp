@@ -25,10 +25,15 @@
 				<h2>고객센터</h2>
 			</div>
 			<div id="sidenav-menu">
-			<a href="/pj/views/support/notice/noticeList.jsp" class="subMenuOn">공지사항</a>
+			<a onclick="goSupport();">공지사항</a>
 			<a href="/pj/views/support/qna/qnaList.jsp">Q&A</a>
 			<a href="/pj/views/support/faq/faqList.jsp">FAQ</a>
 			</div>
 		</div>
+		<script>
+		function goSupport(){
+			  location.href="<%= request.getContextPath() %>/select.sp";
+		  }
+		</script>
 </body>
 </html>
