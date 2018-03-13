@@ -75,7 +75,7 @@
 			location.href="/pj/views/member/memberUpdateForm.jsp";
 		}
 		function goSupport(){
-			  location.href="/pj/views/support/notice/noticeList.jsp";
+			  location.href="<%= request.getContextPath() %>/select.sp";
 		  }
 	</script>
 </body>

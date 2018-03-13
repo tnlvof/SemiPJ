@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.pj.support.model.vo.*"%>
+<% ArrayList<Support> list = (ArrayList<Support>)request.getAttribute("list"); %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,19 +27,20 @@
 			<table align="center">
 				<tr>
 					<th width="100px">번호</th>
-					<th width="100px">분류</th>
 					<th width="300px">제목</th>
 					<th width="100px">작성자</th>
 					<th width="150px">등록일</th>
 					<th width="100px">조회수</th>
 				</tr>
-				<tr>
-				</tr>
-
-				<tr>
-
-				</tr>
-
+				<% for(Support s : list){ %>
+            <tr>
+               <td><%= s.getbNo() %></td>
+               <td><%= s.getbTitle() %></td>
+               <td><%= s.getbWriter() %></td>
+               <td><%= s.getbDate() %></td>
+               <td><%= s.getvCount() %></td>
+            </tr>
+            <% } %>
 			</table>
 		</div>
 		<div class="searchArea" align="center">
@@ -49,8 +51,8 @@
 				<option value="writer">작성자</option>
 				<option value="content">내용</option>
 			</select> <input type="search" name="searchValue">
-			<button type="button">검색하기</button>
-			<button onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
+			<button type="button" class="boardBtn">검색하기</button>
+			<button onclick="location.href='/pj/views/support/notice/noticeInsertForm.jsp'" class="boardBtn">글쓰기</button>
 		</div>
 	</div>
 	</div>	
