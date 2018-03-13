@@ -71,33 +71,34 @@ public class BoardDao {
 
 		return list;
 	}
-
-	public int getListCount(Connection con) {
+*/
+	
+	public int getListCount(Connection con, String boardCategory) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
-
+		
 		String query = prop.getProperty("listCount");
-
+		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, boardCategory);
 			
-			//pstmt.setString(1, rset.getString("bCategory"));
+			rset = pstmt.executeQuery();
 			
-			if(rset.next()){
+			if(rset.next()) {
 				listCount = rset.getInt(1);
 			}
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally{
-			close(pstmt);
+		}finally {
 			close(rset);
-		}		
-
+			close(pstmt);
+		}
 		return listCount;
 	}
-
+/*
 	public Board selectOne(Connection con, int num) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -259,8 +260,8 @@ public class BoardDao {
 				hmap.put("upload_date", rset.getString("upload_date"));
 				
 				list.add(hmap);
-				
 			}
+			System.out.println(list);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

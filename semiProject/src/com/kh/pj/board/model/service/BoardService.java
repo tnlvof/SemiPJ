@@ -53,6 +53,8 @@ public class BoardService {
 		return list;
 	}
 
+
+
   /*
 	public ArrayList<Board> selectAll(int currentPage, int limit) {
 		Connection con = getConnection();
@@ -63,17 +65,17 @@ public class BoardService {
 
 		return list;
 	}
-	
-	public int getListCount() {
+	*/
+	public int getListCount(String boardCategory) {
 		Connection con = getConnection();
 
-		int listCount = new BoardDao().getListCount(con);
+		int listCount = new BoardDao().getListCount(con,boardCategory);
 
 		close(con);
 
 		return listCount;
 	}
-
+	/*
 	public Board selectOne(int num) {
 		Connection con = getConnection();
 		Board b = null;

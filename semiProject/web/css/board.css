@@ -111,6 +111,7 @@
 }
 
 .hr2{
+	margin:7px auto;
 	border: 0;
     height: 3px;
     background: #ccc;
