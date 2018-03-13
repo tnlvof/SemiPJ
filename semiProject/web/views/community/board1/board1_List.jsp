@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.pj.board.model.vo.*"%>
 <%
 	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -71,12 +77,12 @@
 				<div class="thumb-List">
 					<div>
 						<input type="hidden" value="<%=hmap.get("b_id")%>"> 
-						<img src="/pj/thumbnail_uploadFiles/<%=hmap.get("change_name")%>" width="150px" height="150px">
+						<img src="/pj/thumbnail_uploadFiles/<%=hmap.get("change_name")%>" width="170px" height="170px">
 					</div>
 					<p class="boardListFont">
 						No.
 						<%=hmap.get("b_no")%> &nbsp;
-						<span class="boardListTitle"><%=hmap.get("b_text")%></span>
+						<span class="boardListTitle"><%=hmap.get("b_title")%></span>
 						<br> 조회수 :
 						<%=hmap.get("view_count")%>
 						<br><%=hmap.get("nickname")%>
@@ -97,6 +103,32 @@
 					});
 				});
 			</script>
+
+		<%-- 페이지 처리 --%>
+		<div class="pagingArea" align="center">
+
+			<% if(currentPage <= 1){ %>
+
+			<% }else{ %>
+			<a href="<%= request.getContextPath()%>/selectAllList.b1?currentPage=<%=currentPage -1 %>"> < </a>
+			<% } %>
+			
+			<%for(int p = startPage; p <= endPage; p++){ 
+					if(p == currentPage){
+			%>
+					<a><%= p %></a>	
+			<%		}else{ %>
+					<a href="<%= request.getContextPath() %>/selectAllList.b1?currentPage=<%=p %>"><%= p %></a>
+			<%		}%>
+			<%} %>
+						
+			<% if(currentPage >= maxPage){ %>
+			<a> > </a>
+			<% }else{ %>
+			<a href="<%= request.getContextPath()%>/selectAllList.b1?currentPage=<%=currentPage +1 %>"> > </a>
+			<% } %>
+			
+		</div>
 
 		<div class="writeBtnArea">
 			<hr class="hr">
