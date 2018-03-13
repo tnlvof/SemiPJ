@@ -16,15 +16,24 @@
 </head>
 <style>
 .thumb-List{
-		width: 220px;
+		width: 194px;
 		border:1px solid white;
 		display:inline-block;
 		align:center;
+		margin-bottom:20px;
 	}
 .thumb-List:hover{
 		opacity:0.8;
 		cursor:pointer;
 	}
+.boardListFont{
+	font-size:13px;
+}
+.boardListTitle{
+	color:black;
+	font-weight:600;
+	font-size:14px;
+}
 </style>
 <%@ include file="/views/common/menubar.jsp"%>
 <body>
@@ -62,13 +71,15 @@
 				<div class="thumb-List">
 					<div>
 						<input type="hidden" value="<%=hmap.get("b_id")%>"> 
-						<img src="/pj/thumbnail_uploadFiles/<%=hmap.get("change_name")%>" width="200px" height="150px">
+						<img src="/pj/thumbnail_uploadFiles/<%=hmap.get("change_name")%>" width="150px" height="150px">
 					</div>
-					<p>
+					<p class="boardListFont">
 						No.
-						<%=hmap.get("b_no")%>
-						<%=hmap.get("b_text")%><br> 조회수 :
+						<%=hmap.get("b_no")%> &nbsp;
+						<span class="boardListTitle"><%=hmap.get("b_text")%></span>
+						<br> 조회수 :
 						<%=hmap.get("view_count")%>
+						<br><%=hmap.get("nickname")%>
 					</p>
 				</div>
 				<%

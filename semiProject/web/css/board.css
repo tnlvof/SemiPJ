@@ -42,7 +42,6 @@
 .board1 {
 	float:left;
 	width: 805px;
-	height:500px;
 	display: inline-block;
 	margin-left:20px;
 }
@@ -119,6 +118,5 @@
 
 .boardContent{
 	width:800px;
-	height:500px;
 	resize: none
 }
