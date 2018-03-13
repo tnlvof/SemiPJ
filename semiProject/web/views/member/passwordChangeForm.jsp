@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.pj.member.model.vo.*"%>
-<%
+<%-- <%
 	Member loginUser = (Member)session.getAttribute("loginUser"); 
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,20 +10,20 @@
 <meta charset="UTF-8">
 <!-- <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/reset.css"> -->
-<title>Insert title here</title>
+<title>앞날이 상상</title>
 <style>
 	.btns{
 		align:center;		
 	}
-	#passwordBtn{
+	#passwordBtn{	
 		display:inline-block;
 		vertical-align:middle;
 		text-align:center;
-		background:orangered;
+		background:navy;
 		color:white;
 		height:20px;
 		width:100px;
-		border-radius:5px;
+		border-radius:12px;
 	}
 	#passwordBtn:hover {
 		cursor:pointer;	
@@ -33,27 +33,38 @@
 		width:100%;
 		height:50px;
 	}
+	
+	ps1{
+		margin: 0 auto;
+		align: center;
+		margin-left: auto;
+		margin-right: auto;
+	
+		
+	}
 </style>
 </head>
 <body>
-	<div class="changePasswordArea">
+	<%@ include file="/../views/common/menubar.jsp"%>
+
+	<div class="changePasswordArea" align="center">
 		<form id="changePasswordForm" action="<%=request.getContextPath() %>/changePassword.me" method="post">
 			<table align="center">
 				<tr>
-					<input type="hidden" value="<%= loginUser.getMemberNo() %>" name="memberNo">
-					<td><label class="text">현재 패스워드 : </label></td>
-					<td><input type="text" name="memberPwd" id="currentPassword"></td>
+					<input type="hidden" value="<%= loginUser.getMemberNo() %>" name="memberNo"><br><br>
+					<td><label class="text" class="ps1">현재 패스워드</label></td>
+					<td><input type="text" name="memberPwd" id="currentPassword" placeholder="현재 비밀번호를 입력하세요." ></td>
+				</tr><br>
+				<tr>
+					<td><label class="text" class="newps">변경할 패스워드 </label></td>
+					<td><input type="password" name="changeMemberPwd" id="changeMemberPwd" placeholder="변경할 비밀번호를 입력하세요."></td>
 				</tr>
 				<tr>
-					<td><label class="text">변경할 패스워드 : </label></td>
-					<td><input type="password" name="changeMemberPwd" id="changeMemberPwd"></td>
-				</tr>
-				<tr>
-					<td><label class="text">변경할 패스워드 확인 : </label></td>
-					<td><input type="password" name="changeMemberPwdCheck" id="changeMemberPwdCheck"></td>
+					<td><label class="text" class="newps">변경할 패스워드 확인</label></td>
+					<td><input type="password" name="changeMemberPwdCheck" id="changeMemberPwdCheck"placeholder="변경할 비밀번호를 한 번 더 입력하세요."></td>
 				</tr>				
 			</table>
-			<div class="btns" align="center">
+			<div class="btns" align="center"><br>
 				<div id="passwordBtn" onclick="passwordChange();">변경하기</div>
 			</div>
 		</form>
@@ -76,6 +87,7 @@
 			}
 		</script>
 	</div>
-
+		<%@ include file="/../views/common/footer.jsp"%>
+	
 </body>
 </html>

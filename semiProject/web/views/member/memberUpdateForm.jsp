@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.pj.member.model.vo.*"%>
 <% 
-	Member loginUser = (Member)session.getAttribute("loginUser"); 
+	//Member loginUser = (Member)session.getAttribute("loginUser"); 
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,15 +13,15 @@
 	.outer{
 		width:600px;
 		height:500px;
-		background:black;
-		color:white;
+		background:white;
+		color:black;
 		margin-top:50px;
 		margin-left:auto;
 		margin-right:auto;
 	}
 	
 	#idCheck, #ckZip, #goMain, #joinBtn{
-		background:orangered;
+		background:navy;
 		border-radius:5px;
 		width:80px;
 		height:25px;
@@ -40,14 +40,54 @@
 	#goMain, #joinBtn{
 		display:inline-block;
 	}
+	
+	.name{
+		color: navy;
+		font-weight: bold;
+	}
+	
+	.withdraw {
+		background: navy;
+		color: white;
+		border: 0;
+		cursor:pointer;
+		border-radius:12px;
+	}
+	
+	
+	.b{
+		background: navy;
+		color:white;
+		border: 0;
+		cursor:pointer;
+		border-radius:12px;
+		
+	}
+	
+	
+	.b1{
+		background: grey;
+		color:white;
+		border: 0;
+		cursor:pointer;
+		border-radius:12px;
+		
+	}
+	
+	.class{
+		border : 1px solid black;
+	}
 </style>
 </head>
 <body>
+	<%@ include file="/../views/common/menubar.jsp"%>
+
 <div class="outer">
-	<h1 align="center"><% loginUser.getMemberName(); %>님의 회원정보 수정 <button onclick="delectMember();">회원탈퇴</button></h1>
+	<h1 align="center" class="name">♥<%=loginUser.getMemberName()%>♥님의 회원정보 수정
+	 <button onclick="delectMember();" class="withdraw">회원탈퇴</button></h1><br>
 		<form action="<%=request.getContextPath()%>/changeInfo.me" method="post">
 				<input type="hidden" value="<%= loginUser.getMemberNo() %>" name="memberNo">
-				<table align="center">
+				<table align="center"class="table">
 				<tr>
 					<td width="200px">아이디</td>
 					<td><input type="text" maxlength="13" name="memberId" value="<%= loginUser.getMemberId() %>" readonly></td>
@@ -62,7 +102,7 @@
 					<td><label id="nnResult"></label></td>
 				</tr>
 				<tr>
-					<td>* 생년월일(ex)180502)</td>
+					<td>* 생년월일((ex)180502)</td>
 					<td><input type="text" maxlength="13" name="birthday" value="<%= loginUser.getBirth() %>" readonly></td>
 				</tr>
 				<tr>
@@ -100,10 +140,10 @@
 					<td></td>
 				</tr>
 				<tr align="center">
-					<td colspan="2">
-						<input type="submit" value="수정하기">&nbsp;&nbsp;
-						<input type="button" value="메인으로" onclick="location.href='../../index.jsp'">
-						<input type="button" value="비밀번호 변경" onclick="location.href='passwordChangeForm.jsp'">
+					<td colspan="2"><br>
+						<input type="submit" value="수정하기" class="b">&nbsp;&nbsp;
+						<input type="button" value="메인으로" onclick="location.href='../../index.jsp'" class="b1">
+						<input type="button" value="비밀번호 변경" onclick="location.href='passwordChangeForm.jsp'" class="b1">
 					</td>
 				</tr>
 			</table>
@@ -120,7 +160,7 @@
 		}
 	}
 		
-	
 </script>
+	<%@ include file="/../views/common/footer.jsp"%>
 </body>
 </html>
