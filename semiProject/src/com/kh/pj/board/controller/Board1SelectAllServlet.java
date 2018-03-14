@@ -66,7 +66,8 @@ public class Board1SelectAllServlet extends HttpServlet {
 		//현재 페이지에 보여줄 시작 페이지 수(10개씩 보여지게 할 경우)
 		//아래쪽 페이지 수가 10개씩 보여지게 한다면
 		//1, 11, 21, 31...
-		startPage = ((int)((double)currentPage / limit + 0.9)-1) * limit + 1;
+		System.out.println("startPage"+((int)((double)currentPage / limit + 0.9)-1));
+		startPage = 1;
 
 		//목록 아래 보여질 마지막 페이지 수(10,20,30, ...)
 		endPage = startPage + limit -1;
@@ -76,7 +77,7 @@ public class Board1SelectAllServlet extends HttpServlet {
 		}
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit,maxPage,startPage,endPage);
-
+		System.out.println(pi);
 		ArrayList<HashMap<String,Object>> list = new BoardService().selectList(currentPage,limit);
 		
 		System.out.println(list);
@@ -91,7 +92,6 @@ public class Board1SelectAllServlet extends HttpServlet {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "광고 게시판 조회 실패!");
 		}
-		
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);

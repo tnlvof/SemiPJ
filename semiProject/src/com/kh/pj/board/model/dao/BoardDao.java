@@ -245,7 +245,7 @@ public class BoardDao {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
-			rset =pstmt.executeQuery(query);
+			rset = pstmt.executeQuery();
 			
 		
 			list = new ArrayList<HashMap<String,Object>>();
@@ -278,5 +278,86 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public int updateCount(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, num);
+		
+			result = pstmt.executeUpdate();
+			
+			System.out.println(result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public HashMap<String, Object> selectOneBoard1(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		HashMap<String, Object> hmap = null;
+		Board b = null;
+		Attachment at = null;
+		ArrayList<Attachment> list = null;
+		
+		String query = prop.getProperty("selectOneBoard1");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Attachment>();
+			
+			while(rset.next()) {
+				b = new Board();
+				b.setbId(rset.getInt("b_id"));
+				b.setbTitle(rset.getString("b_title"));
+				b.setbDate(rset.getDate("b_date"));
+				b.setbText(rset.getString("b_text"));
+				b.setbWriter(rset.getString("nickname"));
+				b.setmNo(rset.getInt("member_no"));
+				b.setbCategory(rset.getString("board_category"));
+				b.setvCount(rset.getInt("view_count"));
+				b.setpNo(rset.getInt("p_no"));
+				b.setAdopt(rset.getString("adopt_yn"));
+				b.setbNo(rset.getInt("b_no"));
+				b.setRecCount(rset.getInt("rec_count"));
+				b.setRefLevel(rset.getInt("ref_level"));
+				b.setbPassword(rset.getString("b_password"));
+				
+				at = new Attachment();
+				at.setfNo(rset.getInt("f_no"));
+				at.setOriginName(rset.getString("origin_name"));
+				at.setChangeName(rset.getString("change_name"));
+				at.setFilePath(rset.getString("file_path"));
+				at.setUploadDate(rset.getDate("upload_date"));
+				
+				list.add(at);
+			}
+			
+			hmap = new HashMap<String,Object>();
+			hmap.put("board", b);
+			hmap.put("attachment", list);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return hmap;
 	}
 }
