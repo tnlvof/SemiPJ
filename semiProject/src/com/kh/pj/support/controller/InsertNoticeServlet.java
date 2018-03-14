@@ -1,4 +1,4 @@
-package com.kh.pj.board.controller;
+package com.kh.pj.support.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.pj.board.model.service.BoardService;
-import com.kh.pj.board.model.vo.Board;
+import com.kh.pj.support.model.service.SupportService;
+import com.kh.pj.support.model.vo.Support;
 import com.kh.pj.member.model.vo.Member;
 
 /**
- * Servlet implementation class InsertBoardServlet
+ * Servlet implementation class insertSupportServlet
  */
-@WebServlet("/InsertBoardServlet.bo")
-public class InsertBoardServlet extends HttpServlet {
+@WebServlet("/insertNotice.sp")
+public class InsertNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertBoardServlet() {
+    public InsertNoticeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +30,32 @@ public class InsertBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	/*	String bCategory = request.getParameter("bCategory");
-		String bTitle = request.getParameter("bTitle");
-		String bText = request.getParameter("bText");
+		String title = request.getParameter("title");
+		String text = request.getParameter("text");
+		String password = request.getParameter("password");
 		
 		String writer = String.valueOf((((Member)(request.getSession().getAttribute("loginUser"))).getMemberNo()));
 		
-		Board b = new Board();
-		b.setbCategory(bCategory);
-		b.setbTitle(bTitle);
-		b.setbText(bText);
-		b.setbWriter(writer);
+		System.out.println(title);
+		System.out.println(text);
+		System.out.println(writer);
+		System.out.println(password);
 		
-		int result = new BoardService().insertBoard(b);
+		Support s = new Support();
+		s.setbTitle(title);
+		s.setbText(text);
+		s.setbWriter(writer);
+		s.setbPassword(password);
 		
-		 String page="";
-		 if(result > 0){
-			 response.sendRedirect(request.getContextPath() + "/selectList.bo");
-		 } else{
-			 request.setAttribute("msg", "게시판 작성 실패!");
-			 request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		 }*/
+		int result = new SupportService().insertNotice(s);
+		
+		String page="";
+		if(result > 0){
+			response.sendRedirect(request.getContextPath() + "/select.sp");
+		} else{
+			request.setAttribute("msg", "게시판 작성 실패!");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -60,5 +65,4 @@ public class InsertBoardServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

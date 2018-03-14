@@ -50,7 +50,7 @@
 				<option value="content">내용</option>
 			</select> <input type="search" name="searchValue">
 			<button type="button">검색하기</button>
-			<button onclick="#">글쓰기</button>
+			<button onclick="location.href='qnaInsertForm.jsp'">글쓰기</button>
 		</div>
 	</div>
 	</div>

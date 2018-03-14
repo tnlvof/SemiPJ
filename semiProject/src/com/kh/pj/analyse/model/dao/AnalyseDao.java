@@ -52,12 +52,16 @@ public class AnalyseDao {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-
+				
+		System.out.println(areaCode);
+		
 		try {
 			for (int i = 0; i < tableName.length; i++) {
 				String query = prop.getProperty(tableName[i]);
+
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, areaCode);
+
 				rset = pstmt.executeQuery();
 				table = new ArrayList<HashMap>();
 				while(rset.next()){

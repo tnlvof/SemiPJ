@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.pj.member.model.service.MemberService;
 import com.kh.pj.member.model.vo.Member;
@@ -55,7 +56,10 @@ public class UpdateMemberServlet extends HttpServlet {
 		
 		String page = "";
 		if(result > 0){
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", m);
 			page = "views/common/successPage.jsp";
+			request.setAttribute("msg", "회원 수정 성공!");
 			//request.setAttribute("n", new NoticeService().selectOne(String.valueOf(nno)));
 		}else{
 			page = "views/common/errorPage.jsp";

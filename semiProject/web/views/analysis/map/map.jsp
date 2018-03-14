@@ -26,7 +26,7 @@
 #map {
 	width: 800px;
 	height: 600px;
-} 
+}
 
 #btn {
 	width: 100px;
@@ -37,44 +37,81 @@
 	<table class="table-active text-dark table-bordered" id=maptable>
 		<tr>
 			<td width=400px>
-				<li>주소선택 <input type="text" placeholder="주소입력"
-					class="form-control" id="address">
+				<li>주소선택 <input type="text"
+					placeholder="주소입력[행정동(ex:가락본동)만 입력하세요]" class="form-control"
+					id="address" name="address">
 					<button class="btn btn-secondary" width=100px onclick="trancode();">검색</button>
 					<br> <br>
 			<li>업종선택 <select class="form-control" id="sel1"
-					onchange="shoplist();" onload="bigselect();">
-				</select> <select class="form-control" id="sel2">
+					onchange="shoplist();">
+						<option>1차분류</option>
+						<option>외식업</option>
+						<option>서비스업</option>
+						<option>도소매업</option>
+				</select> <select class="form-control" id="sel2" onchange=changecheck();>
+						<option>2차분류</option>
 				</select>
 			</td>
-			<td rowspan="5"><div id="map"></div></td>
+			<td rowspan="2"><div id="map"></div></td>
 		</tr>
 		<tr>
-			<td><li><label>영역선택</label> <br>
-					<button class="btn btn-secondary" width=100px id=circle
-						onclick="btnswitch(1);toolchange();">원</button>
-					<button class="btn btn-secondary" width=100px id=square
-						onclick="btnswitch(2);toolchange();">사각형</button>
-					<button class="btn btn-secondary" width=100px id=select
-						onclick="btnswitch(3);toolchange();">상권선택</button>
-					<button class="btn btn-secondary" width=100px id=select
-						onclick="btnswitch(4);toolchange();">도형삭제</button></td>
-		</tr>
-		<tr>
-			<td id=tool>
-				<p>도구를 선택해주세요</p>
-			</td>
-		</tr>
-		<tr>
-			<td><button class="btn btn-secondary">검색</button> <input
-				type="reset" class="btn btn-secondary"></td>
+			<td><button class="btn btn-secondary" id=search>검색</button> <input
+				type="reset" class="btn btn-secondary"
+				onclick="location.href='http://localhost:8002/map/map.jsp'"></td>
 		</tr>
 	</table>
-
+	<br>
+	<hr>
 	<script type="text/javascript">
-	bigselect();
-	</script>
+		$("#search").click(function() {
+			var address = $("#address").val();
+			var alley_arr = [];
+			
+			$.ajax({
+				url : "select.al",
+				data : {
+					address : address
+				},
+				type : "get",
+				success : function(data) {
+					result = "";
+					for (var i = 0; i < data.length; i++) {
+						alley_arr[i] = data[i].alleytrdar_nm;
 
+					}
+					console.log(alley_arr);
+					addmarker(alley_arr);
+
+				},
+				error : function() {
+
+				}
+			});
+		});
+	//
+	function getCode(address,sel2){
+		var alley_arr = [];
+		$.ajax({
+			url : "select.cd",
+			data : {
+				address : address,
+				shopcode : sel2
+			},
+			type : "get",
+			success : function(data) {
+				console.log("success"+data);
+
+			},
+			error : function(data) {
+				console.log("fail"+data);
+			}
+		});
+	}
+	
+	</script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc5oXlzhf_bQjLoeKJKJ-n6-cOXhxQSF0&callback=initMap"></script>
+
+
 </body>
 </html>

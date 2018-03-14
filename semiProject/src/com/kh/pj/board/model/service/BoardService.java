@@ -1,13 +1,10 @@
 package com.kh.pj.board.model.service;
 
-
-import static com.kh.pj.common.JDBCTemplet.close;
-import static com.kh.pj.common.JDBCTemplet.commit;
-import static com.kh.pj.common.JDBCTemplet.getConnection;
-import static com.kh.pj.common.JDBCTemplet.rollback;
+import static com.kh.pj.common.JDBCTemplet.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.pj.board.model.dao.BoardDao;
 import com.kh.pj.board.model.vo.Attachment;
@@ -18,17 +15,19 @@ public class BoardService {
 
 	public int insertBoard(Board b, ArrayList<Attachment> fileList) {
 		Connection con = getConnection();
+
 		int result = 0;
 		
-		int result1 = new BoardDao().insertThumbnailContent(con, b);
+		int result1 = new BoardDao().insertBoard(con, b);
 		
 		if(result1 > 0) {
 			int bid = new BoardDao().selectCurrval(con);
 			
 			for(int i = 0; i < fileList.size(); i++) {
-				fileList.get(i).setBid(bid);
+				fileList.get(i).setbId(bid);
 			}
 		}
+		
 		int result2 = new BoardDao().insertAttachment(con,fileList);
 		
 		if(result1 >0 && result2 == fileList.size()) {
@@ -37,11 +36,24 @@ public class BoardService {
 		}else {
 			rollback(con);
 		}
+	
+		close(con);
+
+		return result;
+	}
+
+
+	public ArrayList<HashMap<String, Object>> selectList() {
+		Connection con = getConnection();
+
+		ArrayList<HashMap<String,Object>> list = new BoardDao().selectList(con);
 		
 		close(con);
 		
-		return result;
-}
+		return list;
+	}
+
+
 
   /*
 	public ArrayList<Board> selectAll(int currentPage, int limit) {
@@ -53,17 +65,17 @@ public class BoardService {
 
 		return list;
 	}
-	
-	public int getListCount() {
+	*/
+	public int getListCount(String boardCategory) {
 		Connection con = getConnection();
 
-		int listCount = new BoardDao().getListCount(con);
+		int listCount = new BoardDao().getListCount(con,boardCategory);
 
 		close(con);
 
 		return listCount;
 	}
-
+	/*
 	public Board selectOne(int num) {
 		Connection con = getConnection();
 		Board b = null;

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  import="java.util.*, com.kh.pj.analyse.controller.*"%>
 <% 
+
 	AnalyseMethod am = new AnalyseMethod();
+
 
 	String catagoryCode = (String)session.getAttribute("catagoryCode");
 	String[] catagoryName = am.getCatagoryName(catagoryCode);
@@ -46,6 +48,7 @@
 			backRecentRows.add(hm);
 		}
 	}
+
 %>
 <!DOCTYPE html>
 <html>

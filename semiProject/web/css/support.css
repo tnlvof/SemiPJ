@@ -1,9 +1,9 @@
 @charset "UTF-8";
 .supportContainer {
-	position: absolute;
 	display: inline-block;
-	width: 940px;
-	margin: 30px;
+    width: 800px;
+    margin-left: 30px;
+    float: left;
 }
 
 .supportHeader {
@@ -13,16 +13,22 @@
 }
 
 .tableArea {
-	width: 1000px;
-	height: 350px;
+	width: 800px;
+	height: 400px;
 	margin-left: auto;
 	margin-right: auto;
 	padding:30px;
+	overflow:hidden;
 }
 
-.tableArea table, th {
+.tableArea table, .tableArea th, .tableArea td{
 	border: 1px solid lightgray;
+	padding:5px;
 	text-align: center;
+}
+
+.tableArea th{
+	border-bottom:2px solid lightgray;
 }
 
 .formArea{
@@ -32,3 +38,7 @@
 	padding:30px;
 }
 
+.boardBtn{
+	background:white;
+	border:1px solid lightgray;
+}
