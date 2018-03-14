@@ -23,20 +23,19 @@ public class LoginServlet extends HttpServlet {
      */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setCharacterEncoding("UTF-8");
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		System.out.println("userId : " + userId);
-		System.out.println("userPwd : " + userPwd);
+
+		String memberId = request.getParameter("memberId");
+		String memberPwd = request.getParameter("memberPwd");
+		System.out.println("memberId : " + memberId);
+		System.out.println("memberPwd : " + memberPwd);
 		
-		Member loginUser = new MemberService().loginCheck(userId, userPwd);
+		Member loginUser = new MemberService().loginCheck(memberId, memberPwd);
 		System.out.println(loginUser);
 		if(loginUser!=null){
 			HttpSession session = request.getSession();
@@ -52,7 +51,6 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

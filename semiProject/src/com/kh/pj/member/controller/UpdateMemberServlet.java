@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.pj.member.model.service.MemberService;
 import com.kh.pj.member.model.vo.Member;
@@ -32,31 +33,37 @@ public class UpdateMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int uno = Integer.parseInt(request.getParameter("uno"));
-		String MemberId = request.getParameter("userId");
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		String MemberId = request.getParameter("memberId");
+		String MemberName = request.getParameter("memberName");
 		String NickName = request.getParameter("nickName");
 		String phone = request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3");
 		String email = request.getParameter("email");
-		String address = request.getParameter("zipCode")+", "+request.getParameter("address1")+", "+request.getParameter("address2");
+		String address = request.getParameter("address1")+", "+request.getParameter("address2");
 		
 		Member m = new Member();
-		m.setMemberId(request.getParameter("userId"));
-		m.setMemberPwd(request.getParameter("userPwd"));
+		m.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
+		m.setMemberId(request.getParameter("memberId"));
+		m.setMemberName(request.getParameter("memberName"));
 		m.setNickName(request.getParameter("nickName"));
+		m.setBirth(request.getParameter("birthday"));
 		m.setPhone(request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3"));
 		m.setEmail(request.getParameter("email"));
-		m.setAddress(request.getParameter("zipCode")+", "+request.getParameter("address1")+", "+request.getParameter("address2"));
-		System.out.println(m);
+		m.setAddress(request.getParameter("address1")+", "+request.getParameter("address2"));
+		System.out.println("Servlet : " + m);
 		
 		int result = new MemberService().changeInfo(m);
 		
 		String page = "";
 		if(result > 0){
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", m);
 			page = "views/common/successPage.jsp";
+			request.setAttribute("msg", "회원 수정 성공!");
 			//request.setAttribute("n", new NoticeService().selectOne(String.valueOf(nno)));
 		}else{
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 수정 실패!");
+			request.setAttribute("msg", "회원 수정 실패!");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);

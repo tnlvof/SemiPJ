@@ -3,115 +3,98 @@ package com.kh.pj.board.model.vo;
 import java.sql.Date;
 
 public class Board implements java.io.Serializable{
-	private int boardNo;
-	private String title;
-	private String password;
-	private String content;
-	private Date enrollDate;
-	private Date modifyDate;
-	private String writer;
-	private int count;
-	private String category;
+	private int bId;
+	private String bTitle;
+	private Date bDate;
+	private String bText;
+	private int mNo;
+	private String bCategory;
+	private int vCount;
 	private int pNo;
-	private char adopt;
+	private String adopt;
 	private String status;
+	private int bNo;
+	private int recCount;
+	private int refLevel;
+	private String bPassword;
+	private String bWriter;
 	
-	public Board() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Board() {}
 
-	
-
-	public Board(int boardNo, String title, String password, String content, Date enrollDate, Date modifyDate,
-			String writer, int count, String category, int pNo, char adopt, String status) {
+	public Board(int bId, String bTitle, Date bDate, String bText, int mNo, String bCategory, int vCount, int pNo,
+			String adopt, String status, int bNo, int recCount, int refLevel, String bPassword, String bWriter) {
 		super();
-		this.boardNo = boardNo;
-		this.title = title;
-		this.password = password;
-		this.content = content;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.writer = writer;
-		this.count = count;
-		this.category = category;
+		this.bId = bId;
+		this.bTitle = bTitle;
+		this.bDate = bDate;
+		this.bText = bText;
+		this.mNo = mNo;
+		this.bCategory = bCategory;
+		this.vCount = vCount;
 		this.pNo = pNo;
 		this.adopt = adopt;
 		this.status = status;
+		this.bNo = bNo;
+		this.recCount = recCount;
+		this.refLevel = refLevel;
+		this.bPassword = bPassword;
+		this.bWriter = bWriter;
 	}
 
-
-
-	public int getBoardNo() {
-		return boardNo;
+	public int getbId() {
+		return bId;
 	}
 
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
+	public void setbId(int bId) {
+		this.bId = bId;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getbTitle() {
+		return bTitle;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setbTitle(String bTitle) {
+		this.bTitle = bTitle;
 	}
 
-	public String getPassword() {
-		return password;
+	public Date getbDate() {
+		return bDate;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setbDate(Date bDate) {
+		this.bDate = bDate;
 	}
 
-	public String getContent() {
-		return content;
+	public String getbText() {
+		return bText;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setbText(String bText) {
+		this.bText = bText;
 	}
 
-	public Date getEnrollDate() {
-		return enrollDate;
+	public int getmNo() {
+		return mNo;
 	}
 
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 
-	public Date getModifyDate() {
-		return modifyDate;
+	public String getbCategory() {
+		return bCategory;
 	}
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
+	public void setbCategory(String bCategory) {
+		this.bCategory = bCategory;
 	}
 
-	public String getWriter() {
-		return writer;
+	public int getvCount() {
+		return vCount;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
+	public void setvCount(int vCount) {
+		this.vCount = vCount;
 	}
 
 	public int getpNo() {
@@ -122,37 +105,70 @@ public class Board implements java.io.Serializable{
 		this.pNo = pNo;
 	}
 
-	public char getAdopt() {
+	public String getAdopt() {
 		return adopt;
 	}
 
-	public void setAdopt(char adopt) {
+	public void setAdopt(String adopt) {
 		this.adopt = adopt;
 	}
-	
-	
 
 	public String getStatus() {
 		return status;
 	}
 
-
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
+	public int getbNo() {
+		return bNo;
+	}
 
+	public void setbNo(int bNo) {
+		this.bNo = bNo;
+	}
+
+	public int getRecCount() {
+		return recCount;
+	}
+
+	public void setRecCount(int recCount) {
+		this.recCount = recCount;
+	}
+
+	public int getRefLevel() {
+		return refLevel;
+	}
+
+	public void setRefLevel(int refLevel) {
+		this.refLevel = refLevel;
+	}
+
+	public String getbPassword() {
+		return bPassword;
+	}
+
+	public void setbPassword(String bPassword) {
+		this.bPassword = bPassword;
+	}
+
+	public String getbWriter() {
+		return bWriter;
+	}
+
+	public void setbWriter(String bWriter) {
+		this.bWriter = bWriter;
+	}
 
 	@Override
 	public String toString() {
-		return "Board [boardNo=" + boardNo + ", title=" + title + ", password=" + password + ", content=" + content
-				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", writer=" + writer + ", count="
-				+ count + ", category=" + category + ", pNo=" + pNo + ", adopt=" + adopt + ", status=" + status + "]";
+		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bDate=" + bDate + ", bText=" + bText + ", mNo=" + mNo
+				+ ", bCategory=" + bCategory + ", vCount=" + vCount + ", pNo=" + pNo + ", adopt=" + adopt + ", status="
+				+ status + ", bNo=" + bNo + ", recCount=" + recCount + ", refLevel=" + refLevel + ", bPassword="
+				+ bPassword + ", bWriter=" + bWriter + "]";
 	}
-
-
-
 	
 	
+		
 }

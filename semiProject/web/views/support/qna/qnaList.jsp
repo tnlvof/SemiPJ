@@ -18,8 +18,8 @@
 <body>
 	<%@ include file="/views/common/menubar.jsp"%>
 	<%@ include file="/views/common/supportSidebar.jsp"%>
-	<div class="sideContainer">
-		<div class="sideHeader">
+	<div class="supportContainer">
+		<div class="supportHeader">
 			<h2>Q&A</h2>
 		</div>
 		<div class="tableArea">
@@ -40,6 +40,17 @@
 				</tr>
 
 			</table>
+		</div>
+		<div class="searchArea" align="center">
+			<select id="searchCondition" name="searchCondition">
+				<option>-------</option>
+				<option value="category">분류</option>
+				<option value="title">제목</option>
+				<option value="writer">작성자</option>
+				<option value="content">내용</option>
+			</select> <input type="search" name="searchValue">
+			<button type="button">검색하기</button>
+			<button onclick="location.href='qnaInsertForm.jsp'">글쓰기</button>
 		</div>
 	</div>
 	</div>
