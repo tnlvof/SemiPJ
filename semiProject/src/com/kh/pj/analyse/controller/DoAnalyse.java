@@ -334,5 +334,5 @@ public class DoAnalyse {
 				"series: [{name: '"+pieText[2]+"',colorByPoint: true,"+
 						"data: ["+values2+"]}]});";
 		return pie;
-	}
+	}	
 }
