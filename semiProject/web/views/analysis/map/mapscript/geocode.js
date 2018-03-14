@@ -79,7 +79,6 @@ function markerset(address, lat, lng) {
 		title : address
 	});
 
-	console.log(randomcolor);
 	console.log("마커 호출완료");
 
 	addmarker.addListener('click', function() {
