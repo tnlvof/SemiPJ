@@ -52,8 +52,6 @@ public class AnalyseDao {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-				
-		System.out.println(areaCode);
 		
 		try {
 			for (int i = 0; i < tableName.length; i++) {

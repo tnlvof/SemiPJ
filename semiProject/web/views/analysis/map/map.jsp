@@ -106,7 +106,7 @@
 				console.log("fail"+data);
 			}
 		});
-	}
+	};
 	
 	</script>
 	<script

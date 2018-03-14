@@ -11,43 +11,43 @@
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	
 	ArrayList<HashMap> frontTable = null;
-	ArrayList<HashMap> backTable = null;
+	//ArrayList<HashMap> backTable = null;
 	if(allTable!=null){
 		frontTable = allTable.get("상권_추정매출");
-		backTable = allTable.get("상권배후지_추정매출");
+		//backTable = allTable.get("상권배후지_추정매출");
 	}	
-	
+	System.out.print(frontTable.size());
 	ArrayList<HashMap> frontRows = new ArrayList<HashMap>();
-	ArrayList<HashMap> backRows = new ArrayList<HashMap>();
+	//ArrayList<HashMap> backRows = new ArrayList<HashMap>();
 	for(HashMap<String, String> hm:frontTable){
 		if(hm.get("서비스_업종_코드").equals(catagoryCode)){				
 			frontRows.add(hm);
 		}
 	}
 	
-	for(HashMap<String, String> hm:backTable){
+	/* for(HashMap<String, String> hm:backTable){
 		if(hm.get("서비스_업종_코드").equals(catagoryCode)){				
 			backRows.add(hm);	
 		}
-	}
+	} */
 	
 	HashMap<String, String> frontRecentRow = frontRows.get(0);
-	HashMap<String, String> backRecentRow = backRows.get(0);
+	//HashMap<String, String> backRecentRow = backRows.get(0);
 	
 	String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
 	
 	ArrayList<HashMap> frontRecentRows = new ArrayList<HashMap>();
-	ArrayList<HashMap> backRecentRows = new ArrayList<HashMap>();
+	//ArrayList<HashMap> backRecentRows = new ArrayList<HashMap>();
 	for(HashMap<String, String> hm:frontTable){
 		if(hm.get("기준_년월_코드").equals(frontRecentRow.get("기준_년월_코드"))&&hm.get("서비스_업종_코드").contains(catagoryCode.substring(0, 3))){				
 			frontRecentRows.add(hm);
 		}
 	}
-	for(HashMap<String, String> hm:backTable){
+	/* for(HashMap<String, String> hm:backTable){
 		if(hm.get("기준_년월_코드").equals(frontRecentRow.get("기준_년월_코드"))&&hm.get("서비스_업종_코드").contains(catagoryCode.substring(0, 3))){				
 			backRecentRows.add(hm);
 		}
-	}
+	} */
 
 %>
 <!DOCTYPE html>

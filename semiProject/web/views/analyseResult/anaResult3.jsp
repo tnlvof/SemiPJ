@@ -4,31 +4,31 @@
 	AnalyseMethod am = new AnalyseMethod();
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> moveFront = null;
-	ArrayList<HashMap> moveBack = null;
+	//ArrayList<HashMap> moveBack = null;
 	ArrayList<HashMap> liveFront = null;
-	ArrayList<HashMap> liveBack = null;
+	//ArrayList<HashMap> liveBack = null;
 	ArrayList<HashMap> workFront = null;
-	ArrayList<HashMap> workBack = null;
+	//ArrayList<HashMap> workBack = null;
 	ArrayList<HashMap> aprtFront = null;
-	ArrayList<HashMap> aprtBack = null;
+	//ArrayList<HashMap> aprtBack = null;
 	if(allTable!=null){
 		moveFront = allTable.get("상권_추정유동인구");
-		moveBack = allTable.get("배후지_추정유동인구");
+		//moveBack = allTable.get("배후지_추정유동인구");
 		liveFront = allTable.get("상권_상주인구");
-		liveBack = allTable.get("상권배후지_상주인구");
+		//liveBack = allTable.get("상권배후지_상주인구");
 		workFront = allTable.get("상권_직장인구");
-		workBack = allTable.get("상권배후지_직장인구");
+		//workBack = allTable.get("상권배후지_직장인구");
 		aprtFront = allTable.get("상권_아파트");
-		aprtBack = allTable.get("상권배후지_아파트");		
+		//aprtBack = allTable.get("상권배후지_아파트");		
 	}
 	HashMap<String, String> moveFrontRecentRow = moveFront.get(0);
-	HashMap<String, String> moveBackRecentRow = moveBack.get(0);
+	//HashMap<String, String> moveBackRecentRow = moveBack.get(0);
 	HashMap<String, String> liveFrontRecentRow = liveFront.get(0);
-	HashMap<String, String> liveBackRecentRow = liveBack.get(0);
+	//HashMap<String, String> liveBackRecentRow = liveBack.get(0);
 	HashMap<String, String> workFrontRecentRow = workFront.get(0);
-	HashMap<String, String> workBackRecentRow = workBack.get(0);
+	//HashMap<String, String> workBackRecentRow = workBack.get(0);
 	HashMap<String, String> aprtFrontRecentRow = aprtFront.get(0);
-	HashMap<String, String> aprtBackRecentRow = aprtBack.get(0);
+	//HashMap<String, String> aprtBackRecentRow = aprtBack.get(0);
 	
 	String recentDate = String.valueOf(moveFrontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(moveFrontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
 %>
