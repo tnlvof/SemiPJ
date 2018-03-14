@@ -229,17 +229,24 @@ public class BoardDao {
 		return bid;
 	}
 	
-	public ArrayList<HashMap<String, Object>> selectList(Connection con) {
-		Statement stmt = null;
+	public ArrayList<HashMap<String, Object>> selectList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
 		ArrayList<HashMap<String,Object>> list = null;
 		HashMap<String,Object> hmap = null;
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("selectThumbnailMap");
 		
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit -1;
+
 		try {
-			stmt = con.createStatement();
-			rset =stmt.executeQuery(query);
+			pstmt  = con.prepareStatement(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset =pstmt.executeQuery(query);
+			
 		
 			list = new ArrayList<HashMap<String,Object>>();
 			
@@ -268,7 +275,7 @@ public class BoardDao {
 			e.printStackTrace();
 		}finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		return list;
 	}

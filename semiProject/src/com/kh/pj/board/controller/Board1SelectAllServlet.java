@@ -48,7 +48,7 @@ public class Board1SelectAllServlet extends HttpServlet {
 		}
 
 		//한 페이지에 보여질 목록 개수
-		limit = 10;
+		limit = 12;
 
 		//전체 목록 개수를 리턴받음
 		BoardService bs = new BoardService();
@@ -77,7 +77,7 @@ public class Board1SelectAllServlet extends HttpServlet {
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit,maxPage,startPage,endPage);
 
-		ArrayList<HashMap<String,Object>> list = new BoardService().selectList();
+		ArrayList<HashMap<String,Object>> list = new BoardService().selectList(currentPage,limit);
 		
 		System.out.println(list);
 		

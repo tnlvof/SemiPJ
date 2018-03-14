@@ -43,10 +43,10 @@ public class BoardService {
 	}
 
 
-	public ArrayList<HashMap<String, Object>> selectList() {
+	public ArrayList<HashMap<String, Object>> selectList(int currentPage, int limit) {
 		Connection con = getConnection();
 
-		ArrayList<HashMap<String,Object>> list = new BoardDao().selectList(con);
+		ArrayList<HashMap<String,Object>> list = new BoardDao().selectList(con,currentPage,limit);
 		
 		close(con);
 		
