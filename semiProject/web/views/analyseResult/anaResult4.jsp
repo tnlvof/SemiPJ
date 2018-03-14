@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="java.util.*, org.json.simple.JSONObject, com.kh.pj.analyse.controller.*"%>
+    pageEncoding="UTF-8"  import="java.util.*, com.kh.pj.analyse.controller.*"%>
 <% 
-	DoAnalyse da = new DoAnalyse();
+	AnalyseMethod am = new AnalyseMethod();
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> front = null;
 	ArrayList<HashMap> back = null;
@@ -9,6 +9,11 @@
 		front = allTable.get("상권_소득소비");
 		back = allTable.get("상권배후지_소득소비");
 	}	
+	
+	HashMap<String, String> frontRecentRow = front.get(0);
+	HashMap<String, String> backRecentRow = back.get(0);
+	
+	String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
 %>
 <!DOCTYPE html>
 <html>
@@ -31,24 +36,22 @@
 <script>
 	$(function(){
 		<%
-		HashMap<String, String> frontRecentRow = front.get(0);
-		HashMap<String, String> backRecentRow = back.get(0);
+		String[] inLineText = {"detailResult0", "월 평균 소득 추이 ("+recentDate+"기준)", "평균 소득", "만원", am.getCategories("기준_년월_코드", front)};
+		String[] inLinedataName = {"상권"};
+		String[] inLinedata = {am.getData("월_평균_소득_금액", 1, front)};
+		out.print(am.getLine(inLineText, inLinedataName, inLinedata));
 		
-		String[] inBarText = {"detailResult0", "월 평균 소득", "금액", "만원", "10000"};
-	    String[] inxName = {"월 평균 소득"};
-	    String[] inCode = {"월_평균_소득_금액"};
-	    out.print(da.getBar(inBarText, inxName, inCode, frontRecentRow, backRecentRow));
-	    
-	    String[] OutBarText = {"detailResult1", "총 지출", "금액", "만원", "10000"};
-	    String[] OutxName = {"총 지출"};
-	    String[] OutCode = {"지출_총금액"};
-	    out.print(da.getBar(OutBarText, OutxName, OutCode, frontRecentRow, backRecentRow));
-	    
-	    String[] OutDetailBarText = {"detailResult2", "지출상세", "금액", "만원", "10000"};
-	    String[] OutDetailxName = {"의류", "문화", "교육", "식료품", "여가", "생활용품", "의료비", "유흥", "교통"};
-	    String[] OutDetailCode = {"의류_신발_지출_총금액", "문화_지출_총금액", "교육_지출_총금액", "식료품_지출_총금액", "여가_지출_총금액", "생활용품_지출_총금액", "의료비_지출_총금액", "유흥_지출_총금액", "교통_지출_총금액"};
-	    out.print(da.getBar(OutDetailBarText, OutDetailxName, OutDetailCode, frontRecentRow, backRecentRow));
-	    %>
+		String[] outLineText = {"detailResult1", "총 지출 추이 ("+recentDate+"기준)", "총 지출", "만원", am.getCategories("기준_년월_코드", front)};
+		String[] outLinedataName = {"상권"};
+		String[] outLinedata = {am.getData("지출_총금액", 10000, front)};
+		out.print(am.getLine(outLineText, outLinedataName, outLinedata));
+		
+		String[] outBarText = {"detailResult2", "지출 상세 ("+recentDate+"기준)", "지출", "만원", new String("'의류','문화', '교육', '식료품', '여가', '생활용품', '의료비', '유흥', '교통'")};
+		String[] outBardataName = {"상권"};
+		String[] outdata = {frontRecentRow.get("의류_신발_지출_총금액"),frontRecentRow.get("문화_지출_총금액"),frontRecentRow.get("교육_지출_총금액"),frontRecentRow.get("식료품_지출_총금액"),frontRecentRow.get("여가_지출_총금액"),frontRecentRow.get("생활용품_지출_총금액"),frontRecentRow.get("의료비_지출_총금액"),frontRecentRow.get("유흥_지출_총금액"),frontRecentRow.get("교통_지출_총금액")};
+		String[] outBardata = {am.getData2(outdata, 10000)};
+		out.print(am.getBar(outBarText, outBardataName, outBardata));
+		%>
 	});
 </script>
 </html>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="java.util.*, org.json.simple.JSONObject, com.kh.pj.analyse.controller.*"%>
+    pageEncoding="UTF-8"  import="java.util.*, com.kh.pj.analyse.controller.*"%>
 <% 
 	DoAnalyse da = new DoAnalyse();
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");

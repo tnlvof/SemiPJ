@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="java.util.*, org.json.simple.JSONObject, com.kh.pj.analyse.controller.*"%>
+    pageEncoding="UTF-8"  import="java.util.*, com.kh.pj.analyse.controller.*"%>
 <% 
-	DoAnalyse da = new DoAnalyse();
+	AnalyseMethod am = new AnalyseMethod();
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> moveFront = null;
 	ArrayList<HashMap> moveBack = null;
@@ -20,7 +20,17 @@
 		workBack = allTable.get("상권배후지_직장인구");
 		aprtFront = allTable.get("상권_아파트");
 		aprtBack = allTable.get("상권배후지_아파트");		
-	}	
+	}
+	HashMap<String, String> moveFrontRecentRow = moveFront.get(0);
+	HashMap<String, String> moveBackRecentRow = moveBack.get(0);
+	HashMap<String, String> liveFrontRecentRow = liveFront.get(0);
+	HashMap<String, String> liveBackRecentRow = liveBack.get(0);
+	HashMap<String, String> workFrontRecentRow = workFront.get(0);
+	HashMap<String, String> workBackRecentRow = workBack.get(0);
+	HashMap<String, String> aprtFrontRecentRow = aprtFront.get(0);
+	HashMap<String, String> aprtBackRecentRow = aprtBack.get(0);
+	
+	String recentDate = String.valueOf(moveFrontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(moveFrontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
 %>
 <!DOCTYPE html>
 <html>
@@ -32,84 +42,76 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
 	<h1 align="center">인구분석</h1>
+	
 	<h3 align="center">1. 유동인구</h3>
 	<div class="anaResult detailResult0"></div>
-	<div class="anaResult detailResult1"></div>
-	<div class="anaResult detailResult2"></div>
-	<div class="anaResult detailResult3"></div>
-	<div class="anaResult detailResult4"></div>
+	<div class="anaResult detailResult1"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="anaResult detailResult2"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
 	<hr>
 	
 	<h3 align="center">2. 상주인구</h3>
-	<div class="anaResult detailResult5"></div>
-	<div class="anaResult detailResult6"></div>
+	<div class="anaResult detailResult3"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
 	<hr>
 	
 	<h3 align="center">3. 직장인구</h3>
-	<div class="anaResult detailResult7"></div>
-	<div class="anaResult detailResult8"></div>
+	<div class="anaResult detailResult4"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<hr>
 	
 	<h3 align="center">4. 주거형태</h3>
-	<div class="anaResult detailResult9"></div>
+	<div class="anaResult detailResult5"></div>
+	<hr>
 	<script>
 	$(function () {
 		    <%
-		    HashMap<String, String> moveFrontRecentRow = moveFront.get(0);
-		    HashMap<String, String> moveBackRecentRow = moveBack.get(0);
-		    String[] moveLineText = {"detailResult0", "유동인구 추이", "유동인구 수", "명", "총_수", "1"};
-		    out.print(da.get2Line(moveLineText, moveFront, moveBack));
-		    
-		    String[] genderMoveBarText = {"detailResult1", "성별별 유동인구", "유동인구 수", "명", "1"};
-		    String[] genderMovexName = {"남성", "여성"};
-		    String[] genderMoveCode = {"남성_수", "여성_수"};
-		    out.print(da.getBar(genderMoveBarText, genderMovexName, genderMoveCode, moveFrontRecentRow, moveBackRecentRow));
-		    
-		    String[] dayMoveBarText = {"detailResult2", "요일별 유동인구", "유동인구 수", "명", "1"};
-		    String[] dayMovexName = {"월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"};
-		    String[] dayMoveCode = {"월요일_수", "화요일_수", "수요일_수", "목요일_수", "금요일_수", "토요일_수", "일요일_수"};
-		    out.print(da.getBar(dayMoveBarText, dayMovexName, dayMoveCode, moveFrontRecentRow, moveBackRecentRow));
-		    
-		    String[] ageMoveBarText = {"detailResult3", "연령대별 유동인구", "유동인구 수", "명", "1"};
-		    String[] ageMovexName = {"10대", "20대", "30대", "40대", "50대", "60대 이상"};
-		    String[] ageMoveCode = {"연령대_10_수", "연령대_20_수", "연령대_30_수", "연령대_40_수", "연령대_50_수", "연령대_60_이상_수"};
-		    out.print(da.getBar(ageMoveBarText, ageMovexName, ageMoveCode, moveFrontRecentRow, moveBackRecentRow));
-		    
-		    String[] timeMoveBarText = {"detailResult4", "시간대별 유동인구", "유동인구 수", "명", "1"};
-		    String[] timeMovexName = {"00 ~ 06시", "06 ~ 12시", "12 ~ 15시", "15 ~ 18시", "18 ~ 21시", "21 ~ 24시"};
-		    String[] timeMoveCode = {"시간대_1_수","시간대_2_수","시간대_3_수","시간대_4_수","시간대_5_수","시간대_6_수"};
-		    out.print(da.getBar(timeMoveBarText, timeMovexName, timeMoveCode, moveFrontRecentRow, moveBackRecentRow));
-		    
-		    
-		    HashMap<String, String> liveFrontRecentRow = liveFront.get(0);
-		    HashMap<String, String> liveBackRecentRow = liveBack.get(0);
+		    String[] moveLineText = {"detailResult0", "유동인구 추이 ("+recentDate+"기준)", "유동인구", "명", am.getCategories("기준_년월_코드", moveFront)};
+			String[] moveLinedataName = {"상권"};
+			String[] moveLinedata = {am.getData("총_수", 1, moveFront)};
+			out.print(am.getLine(moveLineText, moveLinedataName, moveLinedata));
 			
-			String[] genderLiveBarText = {"detailResult5", "성별별 상주인구", "상주인구 수", "명", "1"};
-			String[] genderLivexName = {"남성", "여성"};
-			String[] genderLiveCode = {"남성_수", "여성_수"};
-			out.print(da.getBar(genderLiveBarText, genderLivexName, genderLiveCode, liveFrontRecentRow, liveBackRecentRow));
-			 
-			String[] ageLiveBarText = {"detailResult6", "연령대별 상주인구", "상주인구 수", "명", "1"};
-			String[] ageLivexName = {"10대", "20대", "30대", "40대", "50대", "60대 이상"};
-			String[] ageLiveCode = {"연령대_10_수", "연령대_20_수", "연령대_30_수", "연령대_40_수", "연령대_50_수", "연령대_60_이상_수"};
-			out.print(da.getBar(ageLiveBarText, ageLivexName, ageLiveCode, liveFrontRecentRow, liveBackRecentRow));
-			 
-			 
-			HashMap<String, String> workFrontRecentRow = workFront.get(0);
-			HashMap<String, String> workBackRecentRow = workBack.get(0);
-			//System.out.println(workFrontRecentRow);
-			//System.out.println(workBackRecentRow);
-			String[] genderWorkBarText = {"detailResult7", "성별별 직장인구", "직장인구 수", "명", "1"};
-			String[] genderWorkxName = {"남성", "여성"};
-			String[] genderWorkCode = {"남성_수", "여성_수"};
-			out.print(da.getBar(genderWorkBarText, genderWorkxName, genderWorkCode, workFrontRecentRow, workBackRecentRow));
-			 
-			String[] ageWorkBarText = {"detailResult8", "연령대별 직장인구", "직장인구 수", "명", "1"};
-			String[] ageWorkxName = {"10대", "20대", "30대", "40대", "50대", "60대 이상"};
-			String[] ageWorkCode = {"연령대_10_수", "연령대_20_수", "연령대_30_수", "연령대_40_수", "연령대_50_수", "연령대_60_이상_수"};
-			out.print(da.getBar(ageWorkBarText, ageWorkxName, ageWorkCode, workFrontRecentRow, workBackRecentRow));
+			String[] moveGenderBarText = {"detailResult1 .Pie1", "성별별 유동인구 ("+recentDate+"기준)", "유동인구", "명", new String("'남성', '여성'")};
+			String[] moveGenderBardataName = {"상권"};
+			String[] moveGenderBardata = {moveFrontRecentRow.get("남성_수")+","+moveFrontRecentRow.get("여성_수")};
+			out.print(am.getBar(moveGenderBarText, moveGenderBardataName, moveGenderBardata));
 			
-			String[] aptLineText = {"detailResult9", "아파트 세대 수 추이", "세대 수", "명", "아파트_가구_수", "1"};
-		    out.print(da.get2Line(aptLineText, liveFront, liveBack));
+			String[] moveAgeBarText = {"detailResult1 .Pie2", "연령별 유동인구 ("+recentDate+"기준)", "유동인구", "명", new String("'10대', '20대', '30대', '40대', '50대', '60대 이상'")};
+			String[] moveAgeBardataName = {"상권"};
+			String[] moveAgeBardata = {moveFrontRecentRow.get("연령대_10_수")+","+moveFrontRecentRow.get("연령대_20_수")+","+moveFrontRecentRow.get("연령대_30_수")+","+moveFrontRecentRow.get("연령대_40_수")+","+moveFrontRecentRow.get("연령대_50_수")+","+moveFrontRecentRow.get("연령대_60_이상_수")};
+			out.print(am.getBar(moveAgeBarText, moveAgeBardataName, moveAgeBardata));
+			
+			String[] moveTimeBarText = {"detailResult2 .Pie1", "시간대별 유동인구 ("+recentDate+"기준)", "유동인구", "명", new String("'00시~06시', '06시~11시', '11시~14시', '14시~17시', '17시~21시', '21시~24시'")};
+			String[] moveTimeBardataName = {"상권"};
+			String[] moveTimeBardata = {moveFrontRecentRow.get("시간대_1_수")+","+moveFrontRecentRow.get("시간대_2_수")+","+moveFrontRecentRow.get("시간대_3_수")+","+moveFrontRecentRow.get("시간대_4_수")+","+moveFrontRecentRow.get("시간대_5_수")+","+moveFrontRecentRow.get("시간대_6_수")};
+			out.print(am.getBar(moveTimeBarText, moveTimeBardataName, moveTimeBardata));
+			
+			String[] moveDayBarText = {"detailResult2 .Pie2", "요일별 유동인구 ("+recentDate+"기준)", "유동인구", "명", new String("'월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'")};
+			String[] moveDayBardataName = {"상권"};
+			String[] moveDayBardata = {moveFrontRecentRow.get("월요일_수")+","+moveFrontRecentRow.get("화요일_수")+","+moveFrontRecentRow.get("수요일_수")+","+moveFrontRecentRow.get("목요일_수")+","+moveFrontRecentRow.get("금요일_수")+","+moveFrontRecentRow.get("토요일_수")+","+moveFrontRecentRow.get("일요일_수")};
+			out.print(am.getBar(moveDayBarText, moveDayBardataName, moveDayBardata));
+			
+			String[] liveGenderBarText = {"detailResult3 .Pie1", "성별별 상주인구 ("+recentDate+"기준)", "상주인구", "명", new String("'남성', '여성'")};
+			String[] liveGenderBardataName = {"상권"};
+			String[] liveGenderBardata = {liveFrontRecentRow.get("남성_수")+","+liveFrontRecentRow.get("여성_수")};
+			out.print(am.getBar(liveGenderBarText, liveGenderBardataName, liveGenderBardata));
+			
+			String[] liveAgeBarText = {"detailResult3 .Pie2", "연령별 상주인구 ("+recentDate+"기준)", "상주인구", "명", new String("'10대', '20대', '30대', '40대', '50대', '60대 이상'")};
+			String[] liveAgeBardataName = {"상권"};
+			String[] liveAgeBardata = {liveFrontRecentRow.get("연령대_10_수")+","+liveFrontRecentRow.get("연령대_20_수")+","+liveFrontRecentRow.get("연령대_30_수")+","+liveFrontRecentRow.get("연령대_40_수")+","+liveFrontRecentRow.get("연령대_50_수")+","+liveFrontRecentRow.get("연령대_60_이상_수")};
+			out.print(am.getBar(liveAgeBarText, liveAgeBardataName, liveAgeBardata));
+			
+			String[] workGenderBarText = {"detailResult4 .Pie1", "성별별 직장인구 ("+recentDate+"기준)", "직장인구", "명", new String("'남성', '여성'")};
+			String[] workGenderBardataName = {"상권"};
+			String[] workGenderBardata = {liveFrontRecentRow.get("남성_수")+","+workFrontRecentRow.get("여성_수")};
+			out.print(am.getBar(workGenderBarText, workGenderBardataName, workGenderBardata));
+			
+			String[] workAgeBarText = {"detailResult4 .Pie2", "연령별 직장인구 ("+recentDate+"기준)", "직장인구", "명", new String("'10대', '20대', '30대', '40대', '50대', '60대 이상'")};
+			String[] workAgeBardataName = {"상권"};
+			String[] workAgeBardata = {workFrontRecentRow.get("연령대_10_수")+","+workFrontRecentRow.get("연령대_20_수")+","+workFrontRecentRow.get("연령대_30_수")+","+workFrontRecentRow.get("연령대_40_수")+","+workFrontRecentRow.get("연령대_50_수")+","+workFrontRecentRow.get("연령대_60_이상_수")};
+			out.print(am.getBar(workAgeBarText, workAgeBardataName, workAgeBardata));
+			
+			 String[] aprtLineText = {"detailResult5", "아파트 가구수 추이 ("+recentDate+"기준)", "세대수", "가구", am.getCategories("기준_년월_코드", liveFront)};
+			String[] aprtLinedataName = {"아파트 가구", "비 아파트 가구"};
+			String[] aprtLinedata = {am.getData("아파트_가구_수", 1, liveFront), am.getData("비_아파트_가구_수", 1, liveFront)};
+			out.print(am.getLine(aprtLineText, aprtLinedataName, aprtLinedata));
 		    %>
 	});	
 	</script>
