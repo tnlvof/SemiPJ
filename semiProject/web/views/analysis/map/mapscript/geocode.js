@@ -43,7 +43,7 @@ function addmarker(alley_arr) {
 	for (var i = 0; i < alley_arr.length; i++) {
 		var address = alley_arr[i];
 
-		console.log(alley_arr[i]+"for");
+		console.log(alley_arr[i] + "for");
 		geocoder.geocode({
 			'address' : address
 		}, function(results, status) {
@@ -53,8 +53,9 @@ function addmarker(alley_arr) {
 				// var latLng = results[0].geometry.location;
 				var lat = results[0].geometry.location.lat();// 위도
 				var lng = results[0].geometry.location.lng();// 경도
-				var alley_nm=results[0].address_components[0].long_name;
-				console.log("alley_nm: "+alley_nm+" lat : " + lat + " lng : " + lng);
+				var alley_nm = results[0].address_components[0].long_name;
+				console.log("alley_nm: " + alley_nm + " lat : " + lat
+						+ " lng : " + lng);
 
 				markerset(alley_nm, lat, lng);
 
@@ -66,7 +67,9 @@ function addmarker(alley_arr) {
 
 }
 function markerset(address, lat, lng) {
-	var sel2=document.getElementById("sel2").value;
+
+	var sel2 = document.getElementById("sel2").value;
+	
 	addmarker = new google.maps.Marker({
 		position : {
 			lat : lat,
@@ -76,12 +79,13 @@ function markerset(address, lat, lng) {
 		title : address
 	});
 
+	console.log(randomcolor);
 	console.log("마커 호출완료");
 
 	addmarker.addListener('click', function() {
 
-		console.log(address+sel2);
-		getCode(address,sel2)
+		console.log(address + sel2);
+		getCode(address, sel2)
 	});
 
 	addmarker.setMap(map);
