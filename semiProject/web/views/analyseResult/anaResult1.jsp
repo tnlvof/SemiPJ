@@ -5,7 +5,7 @@
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> front = null;
 	ArrayList<HashMap> back = null;
-	
+
 	if(allTable!=null){
 		front = allTable.get("상권_점포");
 		back = allTable.get("상권배후지_점포");

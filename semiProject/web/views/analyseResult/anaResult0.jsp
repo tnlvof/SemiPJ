@@ -3,7 +3,7 @@
 <% 
 	AnalyseMethod am = new AnalyseMethod();
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
-	
+
 	String catagoryCode = (String)session.getAttribute("catagoryCode");
 	String[] catagoryName = am.getCatagoryName(catagoryCode);
 	
