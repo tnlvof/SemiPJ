@@ -1,14 +1,30 @@
 package com.kh.pj.map.model.dao;
 
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import com.kh.pj.map.model.vo.Alley;
 import static com.kh.pj.common.JDBCTemplet.*;
 
 public class AlleyDao {
+	Properties prop = new Properties();
+
+	public AlleyDao() {
+		// TODO Auto-generated constructor stub
+
+		String fileName = AlleyDao.class.getResource("/sql/map/query-map.properties").getPath();
+
+		try {
+			prop.load(new FileReader(fileName));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Alley> selectAlley(Connection con, String address) {
 		// TODO Auto-generated method stub
@@ -17,7 +33,7 @@ public class AlleyDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		System.out.println(address+"dao");
-		String query = "select * from alley where ADSTRD_CD_NM=? and not REGEXP_LIKE(ALLEY_TRDAR_NM,'[A-Z]')" ;
+		String query = prop.getProperty("selectAlley");
 
 		try {
 			pstmt = con.prepareStatement(query);
@@ -50,23 +66,23 @@ public class AlleyDao {
 		return list;
 	}
 
-	public int SelectAlleyCode(Connection con, String address) {
+	public int selectAlleyCode(Connection con, String address) {
 		// TODO Auto-generated method stub
-		int code=0;
-		
+		int code = 0;
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		System.out.println(address+"dao");
-		
-		String query = "select ALLEY_TRDAR_NO from alley where ALLEY_TRDAR_NM=? and not REGEXP_LIKE(ALLEY_TRDAR_NM,'[A-Z]')" ;
-		
+		System.out.println(address + "dao");
+
+		String query = prop.getProperty("selectAlleyCode");
+
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, address);
+			pstmt.setString(1, address); 
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				code=rset.getInt(1);
+
+			if (rset.next()) {
+				code = rset.getInt(1);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -75,7 +91,7 @@ public class AlleyDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+
 		return code;
 	}
 

@@ -31,18 +31,29 @@
 #btn {
 	width: 100px;
 }
+#notice{
+	border: 1px solid black;
+}
 </style>
 </head>
 <body>
+<%@ include file="/views/common/menubar.jsp" %>
 	<table class="table-active text-dark table-bordered" id=maptable>
 		<tr>
 			<td width=400px>
 				<li>주소선택 <input type="text"
-					placeholder="주소입력[행정동(ex:가락본동)만 입력하세요]" class="form-control"
+					placeholder="[행정동(ex:가락본동 or 가락2동)만 입력하세요]" class="form-control"
 					id="address" name="address">
-					<button class="btn btn-secondary" width=100px onclick="trancode();">검색</button>
-					<br> <br>
-			<li>업종선택 <select class="form-control" id="sel1"
+					<br>
+					<div id = notice>
+					<label>동이름이 겹칠경우 이렇게 검색하세요!<br>관악구 삼성동=삼성동<br>강남구 삼성동=삼성(1,2,3,4)동</label>
+					</div>
+			</td>
+			<td rowspan="3"><div id="map"></div></td>
+		</tr>
+		<tr>
+			<td>
+				<li>업종선택 <select class="form-control" id="sel1"
 					onchange="shoplist();">
 						<option>1차분류</option>
 						<option>외식업</option>
@@ -52,10 +63,10 @@
 						<option>2차분류</option>
 				</select>
 			</td>
-			<td rowspan="2"><div id="map"></div></td>
+
 		</tr>
 		<tr>
-			<td><button class="btn btn-secondary" id=search>검색</button> <input
+			<td><button class="btn btn-secondary" id=search>지도검색</button> <input
 				type="reset" class="btn btn-secondary"
 				onclick="location.href='http://localhost:8002/map/map.jsp'"></td>
 		</tr>

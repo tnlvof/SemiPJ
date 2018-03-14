@@ -36,7 +36,7 @@ public class SelectCodeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String address = request.getParameter("address");
-		int code = new AlleyService().SelectAlleyCode(address);
+		int code = new AlleyService().selectAlleyCode(address);
 		String shopcode = request.getParameter("shopcode");
 
 		System.out.println("address:" + address + " code:" + code + " shopcode:" + shopcode);

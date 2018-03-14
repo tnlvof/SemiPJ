@@ -17,11 +17,11 @@ public class AlleyService {
 		return list;
 	}
 
-	public int SelectAlleyCode(String address) {
+	public int selectAlleyCode(String address) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		System.out.println(address);
-		int code = new AlleyDao().SelectAlleyCode(con,address);
+		int code = new AlleyDao().selectAlleyCode(con,address);
 		close(con);
 		
 		return code;
