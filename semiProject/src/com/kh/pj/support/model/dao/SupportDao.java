@@ -124,4 +124,70 @@ public class SupportDao {
 		return listCount;
 	}
 
+	public int updateCount(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateCount");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, num);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public Support selectOne(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Support s = null;
+
+		String query = prop.getProperty("selectOne");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()){
+				s = new Support();
+				
+				s.setbId(rset.getInt("b_id"));
+				s.setbTitle(rset.getString("b_title"));
+				s.setbDate(rset.getDate("b_date"));
+				s.setbText(rset.getString("b_text"));
+				s.setbWriter(rset.getString("nickname"));
+				s.setmNo(rset.getInt("member_no"));
+				s.setbCategory(rset.getString("board_category"));
+				s.setvCount(rset.getInt("view_count"));
+				s.setpNo(rset.getInt("p_no"));
+				s.setAdopt(rset.getString("adopt_yn"));
+				s.setbNo(rset.getInt("b_no"));
+				s.setRecCount(rset.getInt("rec_count"));
+				s.setRefLevel(rset.getInt("ref_level"));
+				s.setbPassword(rset.getString("b_password"));
+			}
+
+			System.out.println(s);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return s;
+	}
+
 }

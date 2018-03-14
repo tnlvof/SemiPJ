@@ -41,5 +41,23 @@ public class SupportService {
 
 		return listCount;
 	}
+	
+	public Support selectOne(int num) {
+		Connection con = getConnection();
+		Support s = null;
+
+		int result = new SupportDao().updateCount(con, num);
+
+		if(result > 0){
+			commit(con);
+			s = new SupportDao().selectOne(con, num);
+		} else{
+			rollback(con);
+		}
+
+		close(con);
+
+		return s;
+	}
 
 }

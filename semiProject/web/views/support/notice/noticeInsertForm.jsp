@@ -38,12 +38,12 @@
 					</tr> -->
 					<tr>
 						<td>제목</td>
-						<td colspan="3"><input type="text" size="100" name="title">
+						<td colspan="3"><input type="text" size="90" name="title">
 						</td>
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="3"><textarea rows="15" cols="120" name="text"
+						<td colspan="3"><textarea rows="15" cols="90" name="text"
 								style="resize: none;"></textarea></td>
 					</tr>
 					<tr>
@@ -53,7 +53,7 @@
 				</table>
 				<br>
 				<div align="center">
-					<button type="reset" onclick="location.href='/views/support/notice/noticeList.jsp'">취소하기</button>
+					<button type="reset" onclick="location.href='<%=request.getContextPath()%>/select.sp'">취소하기</button>
 					<button type="submit">등록하기</button>
 				</div>
 			</form>
