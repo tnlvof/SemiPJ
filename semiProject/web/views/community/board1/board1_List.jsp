@@ -19,6 +19,8 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/pj/css/board.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <style>
 .thumb-List{
@@ -99,7 +101,7 @@
 					var num = $(this).children().children().eq(0).val()
 					console.log(num);
 					
-					location.href="<%=request.getContextPath()%> /selectOne.tn?num=" + num;
+					location.href="<%=request.getContextPath()%>/selectOne.b1?num=" + num;
 					});
 				});
 			</script>
@@ -108,7 +110,7 @@
 		<div class="pagingArea" align="center">
 
 			<% if(currentPage <= 1){ %>
-
+			
 			<% }else{ %>
 			<a href="<%= request.getContextPath()%>/selectAllList.b1?currentPage=<%=currentPage -1 %>"> < </a>
 			<% } %>
