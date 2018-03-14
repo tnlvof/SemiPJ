@@ -84,10 +84,28 @@
 				<option value="content">내용</option>
 			</select> <input type="search" name="searchValue">
 			<button type="button" class="boardBtn">검색하기</button>
+			<%
+				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
+			%>
 			<button onclick="location.href='/pj/views/support/notice/noticeInsertForm.jsp'" class="boardBtn">글쓰기</button>
+			<% } %>
 		</div>
 	</div>
 	</div>	
+	<script>
+	$(function(){
+		$(".tableArea td").mouseenter(function(){
+			$(this).parent().css({"background":"lightgray", "cursor":"pointer"});
+		}).mouseout(function(){
+			$(this).parent().css("background","white");
+		}).click(function(){
+			var num = $(this).parent().children().eq(0).text();
+            console.log(num);
+            location.href="<%=request.getContextPath()%>/selectOne.sp?num=" + num;
+		});
+	});
+	</script>
+		
 	<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>
