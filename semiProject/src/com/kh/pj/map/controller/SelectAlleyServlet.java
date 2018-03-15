@@ -38,8 +38,9 @@ public class SelectAlleyServlet extends HttpServlet {
 		System.out.println("callservlet");
 		String address = request.getParameter("address");
 		System.out.println(address);
+		System.out.println(address+"serv");
 		ArrayList<Alley> list = new AlleyService().selectAlley(address);
-		
+		System.out.println(list);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		new Gson().toJson(list, response.getWriter());

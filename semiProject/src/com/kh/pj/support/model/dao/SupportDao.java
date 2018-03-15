@@ -190,4 +190,52 @@ public class SupportDao {
 		return s;
 	}
 
+	public int updateNotice(Connection con, Support s) {
+	   PreparedStatement pstmt = null;
+	   int result = 0;
+	   
+	   String query = prop.getProperty("updateNotice");
+	   
+	   try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setString(1, s.getbTitle());
+		pstmt.setString(2, s.getbText());
+		pstmt.setInt(3, s.getbNo());
+		
+		result = pstmt.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally{
+		close(pstmt);
+	}
+	   
+	   
+	   return result;
+   }
+
+
+
+public int deleteNotice(Connection con, int bno) {
+	PreparedStatement pstmt = null;
+	int result = 0;
+	
+	String query = prop.getProperty("deleteNotice");
+	
+	try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, bno);
+		
+		result = pstmt.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally{
+		close(pstmt);
+	}
+	
+	
+	return result;
+}
+
 }

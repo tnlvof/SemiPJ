@@ -2,15 +2,14 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--  -->
 <script src="mapscript/geocode.js"></script>
@@ -19,13 +18,14 @@
 <title>Insert title here</title>
 <style type="text/css">
 #maptable {
-	width: 1200px;
 	border-spacing: 5px;
 }
 
 #map {
 	width: 800px;
 	height: 600px;
+	margin-top: -250px;
+	margin-left: 450px;
 }
 
 #btn {
@@ -37,7 +37,7 @@
 </style>
 </head>
 <body>
-<%@ include file="/views/common/menubar.jsp" %>
+	<%@ include file="/views/common/menubar.jsp"%>
 	<table class="table-active text-dark table-bordered" id=maptable>
 		<tr>
 			<td width=400px>
@@ -49,7 +49,6 @@
 					<label>동이름이 겹칠경우 이렇게 검색하세요!<br>관악구 삼성동=삼성동<br>강남구 삼성동=삼성(1,2,3,4)동</label>
 					</div>
 			</td>
-			<td rowspan="3"><div id="map"></div></td>
 		</tr>
 		<tr>
 			<td>
@@ -68,24 +67,26 @@
 		<tr>
 			<td><button class="btn btn-secondary" id=search>지도검색</button> <input
 				type="reset" class="btn btn-secondary"
-				onclick="location.href='http://localhost:8002/map/map.jsp'"></td>
+				onclick="location.reload()"></td>
 		</tr>
 	</table>
 	<br>
+	<div id="map"></div>
 	<hr>
 	<script type="text/javascript">
 		$("#search").click(function() {
 			var address = $("#address").val();
 			var alley_arr = [];
-			
+			console.log(address);
 			$.ajax({
-				url : "select.al",
+				url : "<%= request.getContextPath() %>/select.al",
 				data : {
 					address : address
 				},
-				type : "get",
+				type : "post",
 				success : function(data) {
 					result = "";
+					console.log(data)
 					for (var i = 0; i < data.length; i++) {
 						alley_arr[i] = data[i].alleytrdar_nm;
 
@@ -103,7 +104,7 @@
 	function getCode(address,sel2){
 		var alley_arr = [];
 		$.ajax({
-			url : "select.cd",
+			url : "<%= request.getContextPath() %>/select.cd",
 			data : {
 				address : address,
 				shopcode : sel2
@@ -112,17 +113,24 @@
 			success : function(data) {
 				console.log("success"+data);
 
+				transeArr(data);
+
 			},
 			error : function(data) {
 				console.log("fail"+data);
 			}
 		});
 	}
-	
+	function transeArr(data){
+		console.log(data+"asdaf");
+		console.log(data[1]);
+		location.href='<%=request.getContextPath()%>/runAnalyse.an?areaCode='+data[1]+'&catagoryCode='+data[2];
+		
+	}
 	</script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc5oXlzhf_bQjLoeKJKJ-n6-cOXhxQSF0&callback=initMap"></script>
 
-
+<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>
