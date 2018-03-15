@@ -112,7 +112,7 @@
 	function getCode(address,sel2){
 		var alley_arr = [];
 		$.ajax({
-			url : "select.cd",
+			url : "<%= request.getContextPath() %>/select.cd",
 			data : {
 				address : address,
 				shopcode : sel2
@@ -126,7 +126,7 @@
 				console.log("fail"+data);
 			}
 		});
-	};
+	}
 	
 	</script>
 	<script
