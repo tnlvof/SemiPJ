@@ -77,7 +77,8 @@
 				</tr>
 			</table>
 			<div class="btnArea" align="center">
-					<button type="button" class="submitBtn">수정</button>
+					<button type="button" class="submitBtn" 
+						onclick="location.href='<%= request.getContextPath() %>/update.b1'">수정</button>
 					<button type="button" class="submitBtn">삭제</button>
 					<button type="button" class="submitBtn"
 						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b1'">목록</button>
