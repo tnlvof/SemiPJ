@@ -29,11 +29,15 @@
 }
 
 #container {
-	width: 80%;
+	width: 70%;
 	height: 100%;
 	border: 1px solid black;
-	display: inline;
+	margin-top: -380px;
+	margin-left: 300px;
 	
+}
+body{
+background: darkgray;
 }
 </style>
 </head>
@@ -58,6 +62,6 @@
 			<li>신고게시판 관리</li>
 		</ul>
 	</div>
-	<div id=container class="well-lg">asdf</div>
+	<div id=container class="well-lg"><label>ADMIN PAGE</label></div>
 </body>
 </html>
