@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/pj/css/sidebar.css">
 <link rel="stylesheet" href="/pj/css/board.css">
 <link rel="shortcut icon" href="/pj/images/slogo.png">
+
 <title>앞날이 창창</title>
 </head>
 <body>

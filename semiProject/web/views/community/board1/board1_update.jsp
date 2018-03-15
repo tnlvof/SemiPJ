@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.pj.board.model.vo.*, java.util.*"%>
+<%
+	Board b = (Board) request.getAttribute("b");
+	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
+	Attachment titleImg = fileList.get(0);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +39,9 @@
 
 .insertArea {
 	float: left;
-    width: 800px;
-    margin-right: auto;
+	width: 980px;
+	height: 800px;
+	margin-right: auto;
 }
 
 .btnArea {
@@ -86,19 +92,20 @@
 			<%
 				if (loginUser != null) {
 			%>
-			<form action="<%=request.getContextPath()%>/insert.b1" method="post" encType="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/update.b1" method="post" encType="multipart/form-data">
 				<div class="insertArea">
 					<table align="center">
 						<tr>
 							<td width="100px">제목</td>
 							<td colspan="3"><input type="text" class="boardInput"
-								size="45" name="title"></td>
+								size="45" name="title" value="<%=b.getbTitle()%>"></td>
 						</tr>
 						<tr>
 							<td>대표 이미지</td>
 							<td colspan="3">
 								<div id="titleImgArea">
-									<img id="titleImg" width="390" height="200">
+									<img id="titleImg" width="390" height="200"
+									src="<%=request.getContextPath()%>/thumbnail_uploadFiles/<%=titleImg.getChangeName()%>">
 								</div>
 							</td>
 						</tr>
@@ -106,7 +113,8 @@
 							<td colspan="4">
 								<div class="contentDiv">
 									<textarea id="summernote" name="content">
-								</textarea>
+										<%=b.getbText()%>
+									</textarea>
 								</div> <script>
 									$(function() {
 										$('#summernote').summernote();
@@ -154,7 +162,6 @@
 				request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 			}
 		%>
-	
 
 </body>
 </html>
