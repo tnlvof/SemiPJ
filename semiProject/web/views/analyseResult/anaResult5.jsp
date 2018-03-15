@@ -106,6 +106,7 @@
 			</tr>
 		</table>
 	</div>
+	<%@ include file="../common/footer.jsp"%>
 </body>
 <script>
 	$(function(){
