@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.kh.pj.support.model.vo.*"%>
+	pageEncoding="UTF-8" import="com.kh.pj.support.model.vo.*, com.kh.pj.board.model.vo.*"%>
 <%
 	Support s = (Support) request.getAttribute("s");
-%>
+%> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,7 @@
 			<%
 				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
 			%>
-			<button>수정하기</button>
+			<button onclick="location.href='<%= request.getContextPath() %>/selectNotice.sp?num=<%= s.getbNo() %>'">수정하기</button>
 			<%
 				}
 			%>

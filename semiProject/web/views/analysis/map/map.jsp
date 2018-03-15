@@ -113,13 +113,20 @@
 			success : function(data) {
 				console.log("success"+data);
 
+				transeArr(data);
+
 			},
 			error : function(data) {
 				console.log("fail"+data);
 			}
 		});
 	}
-	
+	function transeArr(data){
+		console.log(data+"asdaf");
+		console.log(data[1]);
+		location.href='<%=request.getContextPath()%>/runAnalyse.an?areaCode='+data[1]+'&catagoryCode='+data[2];
+		
+	}
 	</script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc5oXlzhf_bQjLoeKJKJ-n6-cOXhxQSF0&callback=initMap"></script>
