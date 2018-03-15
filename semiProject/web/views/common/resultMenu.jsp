@@ -16,6 +16,25 @@
 	.anaResult{width:1000px; height:500px; border:1px solid black; margin-left:auto; margin-right:auto; margin-bottom:50px;}
 	.twoPie{width:49%; height:99%; display:inline-block; border:1px solid black; margin-left:auto; margin-right:auto;}
 	.thePie{width:33%; height:99%; display:inline-block; border:1px solid black; margin-left:auto; margin-right:auto;}
+	.tableArea{
+		margin-left:auto; 
+		margin-right:auto;
+		width:1000px;
+	}
+	.tableArea td{
+		border:1px solid black;
+		vertical-align:middle;
+		text-align:right;
+		padding:5px;
+	}
+	.tableArea th{
+		border:1px solid black;
+		vertical-align:middle;
+		padding:5px;
+	}
+	.tableArea table {
+		width:1000px;
+	}	
 </style>
 </head>
 <body>

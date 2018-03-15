@@ -14,11 +14,10 @@
 
 .tableArea {
 	width: 800px;
-	height: 400px;
+	height: 420px;
 	margin-left: auto;
 	margin-right: auto;
 	padding:30px;
-	overflow:hidden;
 }
 
 .tableArea table, .tableArea th, .tableArea td{
@@ -29,6 +28,7 @@
 
 .tableArea th{
 	border-bottom:2px solid lightgray;
+	font-weight:bold;
 }
 
 .formArea{
@@ -38,7 +38,19 @@
 	padding:30px;
 }
 
-.boardBtn{
+.boardBtn, .pagingArea button, .searchArea input{
 	background:white;
 	border:1px solid lightgray;
+}
+
+.tableArea p{
+	display:inline-block;
+}
+
+.searchArea{
+	padding:30px;
+}
+
+.pagingArea button{
+	border:none;
 }

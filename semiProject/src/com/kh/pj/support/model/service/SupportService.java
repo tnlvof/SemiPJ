@@ -59,5 +59,32 @@ public class SupportService {
 
 		return s;
 	}
+	
+	public int updateNotice(Support s) {
+		Connection con = getConnection();
+		
+		int result = new SupportDao().updateNotice(con, s);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+
+	public ArrayList<Support> deleteNotice(int bno, int currentPage, int limit) {
+		Connection con = getConnection();
+		ArrayList<Support> list = null;
+		
+		int result = new SupportDao().deleteNotice(con, bno);
+		
+		if(result > 0){
+			commit(con);
+			list = new SupportDao().selectList(con, currentPage, limit);
+		} else{
+			rollback(con);
+		}		
+		
+		return list;
+	}
 
 }

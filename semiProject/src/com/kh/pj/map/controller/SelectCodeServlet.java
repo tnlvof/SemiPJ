@@ -35,6 +35,7 @@ public class SelectCodeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		String address = request.getParameter("address");
 		int code = new AlleyService().selectAlleyCode(address);
 		String shopcode = request.getParameter("shopcode");

@@ -32,7 +32,8 @@ public class ChangePassword extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		String MemberPwd = request.getParameter("memberPwd");
+		String memberPwd = request.getParameter("memberPwd");
+		System.out.println(memberPwd);
 		
 		Member m = new Member();
 		m.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
@@ -48,6 +49,7 @@ public class ChangePassword extends HttpServlet {
 			int result2 = new MemberService().changePassword(m);
 			if(result2 > 0){
 				page = "views/common/successPage.jsp";
+				request.setAttribute("msg", "비밀번호 수정 성공!");
 			}else{
 				page = "views/common/errorPage.jsp";
 				request.setAttribute("msg", "비밀번호 수정 실패!");

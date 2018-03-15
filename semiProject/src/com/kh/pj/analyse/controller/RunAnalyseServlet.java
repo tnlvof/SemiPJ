@@ -38,7 +38,8 @@ public class RunAnalyseServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String areaCode = request.getParameter("areaCode");
 		String catagoryCode = request.getParameter("catagoryCode");
-		
+		System.out.println(areaCode);
+		System.out.println(catagoryCode);
 		//ArrayList<ArrayList> allList = new DoAnalyse().doAnalyse(code);
 		
 		HashMap<String, ArrayList<HashMap>> allTable = new AnalyseService().doAnalyse(areaCode);
