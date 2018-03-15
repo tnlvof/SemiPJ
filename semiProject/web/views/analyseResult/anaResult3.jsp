@@ -21,6 +21,7 @@
 	String[] dates = am.getCategories("기준_년월_코드", moveFront).split(",");
 	
 	String recentDate = String.valueOf(moveFrontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(moveFrontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
+	System.out.println("인구분석에 사용자 접속");
 %>
 <!DOCTYPE html>
 <html>

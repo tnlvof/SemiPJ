@@ -20,6 +20,7 @@
 	}
 	HashMap<String, String> frontRecentRow =rows.get(0);
 	String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
+	System.out.println("상권평가에 사용자 접속");
 %>
 <!DOCTYPE html>
 <html>
