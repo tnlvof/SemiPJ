@@ -66,9 +66,6 @@
 	width: 18px;
 }
 
-.item {
-	opacity: 0.6;
-}
 </style>
 </head>
 <body>

@@ -123,7 +123,7 @@
 				</div>
 				<div class="btnArea" align="center">
 					<button type="button" class="submitBtn"
-						onclick="location.href='/pj/views/community/board1/board1_List.jsp'">뒤로가기</button>
+						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b1'">뒤로가기</button>
 					<button type="submit" class="submitBtn">작성완료</button>
 				</div>
 			</form>

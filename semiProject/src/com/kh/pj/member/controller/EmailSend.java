@@ -38,7 +38,7 @@ public class EmailSend {
 			
 			//StringBuffer buffer = new StringBuffer();
 			
-			Address fromAddr = new InternetAddress("관리자<wlsdus1103@naver.com>");
+			Address fromAddr = new InternetAddress("admin<wlsdus1103@naver.com>");
 			msg.setFrom(fromAddr); 
 			
 			Address toAddr = new InternetAddress(email);

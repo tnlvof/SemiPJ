@@ -4,15 +4,15 @@
 	AnalyseMethod am = new AnalyseMethod();
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> front = null;
-	ArrayList<HashMap> back = null;
+	//ArrayList<HashMap> back = null;
 
 	if(allTable!=null){
 		front = allTable.get("상권_집객시설");
-		back = allTable.get("상권배후지_집객시설");
+		//back = allTable.get("상권배후지_집객시설");
 	}
 	
 	HashMap<String, String> frontRecentRow = front.get(0);
-	HashMap<String, String> backRecentRow = back.get(0);
+	//HashMap<String, String> backRecentRow = back.get(0);
 	
 	String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
 %>

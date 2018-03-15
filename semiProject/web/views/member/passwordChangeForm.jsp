@@ -42,7 +42,7 @@
 				<tr>
 					<input type="hidden" value="<%= loginUser.getMemberNo() %>" name="memberNo">
 					<td><label class="text">현재 패스워드 : </label></td>
-					<td><input type="text" name="memberPwd" id="currentPassword"></td>
+					<td><input type="password" name="memberPwd" id="currentPassword"></td>
 				</tr>
 				<tr>
 					<td><label class="text">변경할 패스워드 : </label></td>

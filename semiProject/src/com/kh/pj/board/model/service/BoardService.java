@@ -1,6 +1,9 @@
 package com.kh.pj.board.model.service;
 
-import static com.kh.pj.common.JDBCTemplet.*;
+import static com.kh.pj.common.JDBCTemplet.close;
+import static com.kh.pj.common.JDBCTemplet.commit;
+import static com.kh.pj.common.JDBCTemplet.getConnection;
+import static com.kh.pj.common.JDBCTemplet.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -43,10 +46,10 @@ public class BoardService {
 	}
 
 
-	public ArrayList<HashMap<String, Object>> selectList() {
+	public ArrayList<HashMap<String, Object>> selectList(int currentPage, int limit) {
 		Connection con = getConnection();
 
-		ArrayList<HashMap<String,Object>> list = new BoardDao().selectList(con);
+		ArrayList<HashMap<String,Object>> list = new BoardDao().selectList(con,currentPage,limit);
 		
 		close(con);
 		
@@ -93,5 +96,27 @@ public class BoardService {
 
 		return b;
   */
+
+
+	public HashMap<String, Object> selectOneBoard1(int num) {
+		Connection con = getConnection();
+		
+		HashMap<String,Object> hmap = null; 
+		
+		int result = new BoardDao().updateCount(con, num);
+		
+		if(result > 0) {
+			commit(con);
+			hmap = new BoardDao().selectOneBoard1(con,num);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		//new BoardDao().selectThumbnailMap; 
+		
+		return hmap;
+	}
 
 }

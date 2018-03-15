@@ -29,7 +29,10 @@
 		<div class="supportHeader">
 			<h2>공지사항</h2>
 		</div>
+		<div>
+		</div>
 		<div class="tableArea">
+		<p><%= currentPage %> / <%= maxPage %></p>
 			<table align="center">
 				<tr>
 					<th width="100px">번호</th>
@@ -61,7 +64,7 @@
 		
 		<% for(int p = startPage; p <= endPage; p++){ 
 		        if(p == currentPage){ %>
-		        <button disabled><%= p %></button>
+		        <button disabled style="font-weight:bold"><%= p %></button>
 		     <% } else{ %>
 		     <button onclick="location.href='<%= request.getContextPath() %>/select.sp?currentPage=<%= p %>'"><%= p %></button>
 		     <% } %>
@@ -76,18 +79,14 @@
 		</div>
 		
 		<div class="searchArea" align="center">
-			<select id="searchCondition" name="searchCondition">
-				<option>-------</option>
-				<option value="category">분류</option>
-				<option value="title">제목</option>
-				<option value="writer">작성자</option>
-				<option value="content">내용</option>
-			</select> <input type="search" name="searchValue">
-			<button type="button" class="boardBtn">검색하기</button>
+			<input type="search" name="searchValue">
+			<button type="button" class="boardBtn"><span class="glyphicon glyphicon-search"></span></button>
 			<%
 				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
 			%>
-			<button onclick="location.href='/pj/views/support/notice/noticeInsertForm.jsp'" class="boardBtn">글쓰기</button>
+			<button
+				onclick="location.href='/pj/views/support/notice/noticeInsertForm.jsp'"
+				class="boardBtn writeBtn">글쓰기</button>
 			<% } %>
 		</div>
 	</div>
