@@ -21,12 +21,33 @@
 	String[] dates = am.getCategories("기준_년월_코드", moveFront).split(",");
 	
 	String recentDate = String.valueOf(moveFrontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(moveFrontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
+	
+	String catagoryCode = (String)session.getAttribute("catagoryCode");
+	String[] catagoryName = am.getCatagoryName(catagoryCode);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>인구분석</title>
+<style type="text/css">
+	.tableArea td{
+		border:1px solid black;
+		vertical-align:middle;
+		width:50px;
+		height:30px;
+	}
+	.tableArea th{
+		border:1px solid black;
+		vertical-align:middle;
+		width:50px;
+		height:30px;
+		background:lightgray;
+	}
+	.tableArea table {
+		width:1000px;
+	}
+</style>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp"%>
@@ -35,26 +56,201 @@
 	
 	<h3 align="center">1. 유동인구</h3>
 	<div class="anaResult detailResult0"></div>
-	<div class="anaResult detailResult1"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
-	
-	<div class="anaResult detailResult2"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
-	<hr>
-	
+	<div align="center" class="tableArea">
+		<table>
+			<tr align="center">
+				<th>지역</th>
+				<th>2017.08</th>
+				<th>2017.09</th>
+				<th>2017.10</th>
+				<th>2017.11</th>
+			</tr>
+			<tr align="center">
+				<th>선택상권</th>
+				<td><%= moveFront.get(0).get("총_수") %>명</td>
+				<td><%= moveFront.get(1).get("총_수") %>명</td>
+				<td><%= moveFront.get(2).get("총_수") %>명</td>
+				<td><%= moveFront.get(3).get("총_수") %>명</td>
+			</tr>
+		</table>
+	</div>
+	<br><br>
+	<div class="anaResult1 detailResult1"><div class="twoPie Pie1"></div>
+	<div class="twoPie Pie2"></div></div>
+	<div align="center" class="tableArea">
+	<table border="1">
+		<tr align="center">
+			<th rowspan="2">지역</th>
+			<th rowspan="2">구분</th>
+			<th colspan="2">성별</th>
+			<th colspan="6">연령별</th>
+		</tr>
+		<tr align="center">
+			<th>남성</th>
+			<th>여성</th>
+			<th>10대</th>
+			<th>20대</th>
+			<th>30대</th>
+			<th>40대</th>
+			<th>50대</th>
+			<th>60대이상</th>
+		</tr>
+		<tr align="center">
+			<th rowspan="2">선택영역</th>
+			<th>명</th>
+			<td><%= moveFront.get(0).get("남성_수") %>명</td>
+			<td><%= moveFront.get(0).get("여성_수") %>명</td>
+			<td><%= moveFront.get(0).get("연령대_10_수") %>명</td>
+			<td><%= moveFront.get(0).get("연령대_20_수") %>명</td>
+			<td><%= moveFront.get(0).get("연령대_30_수") %>명</td>
+			<td><%= moveFront.get(0).get("연령대_40_수") %>명</td>
+			<td><%= moveFront.get(0).get("연령대_50_수") %>명</td>
+			<td><%= moveFront.get(0).get("연령대_60_이상_수") %>명</td>
+		</tr>
+	</table>
+	</div>
+	<br><br>
+	<div class="anaResult1 detailResult2"><div class="twoPie Pie1"></div>
+	<div class="twoPie Pie2"></div></div>
+	<div align="center" class="tableArea">
+	<table border="1">
+		<tr align="center">
+			<th>지역</th>
+			<th>구분</th>
+			<th>00 ~ 06시</th>
+			<th>06 ~ 12시</th>
+			<th>12 ~ 15시</th>
+			<th>15 ~ 18시</th>
+			<th>18 ~ 21시</th>
+			<th>21 ~ 24시</th>
+		</tr>
+		<tr align="center">
+			<th rowspan="2">선택영역</th>
+			<th>명</th>
+			<td><%= moveFront.get(0).get("시간대_1_수") %>명</td>
+			<td><%= moveFront.get(0).get("시간대_2_수") %>명</td>
+			<td><%= moveFront.get(0).get("시간대_3_수") %>명</td>
+			<td><%= moveFront.get(0).get("시간대_4_수") %>명</td>
+			<td><%= moveFront.get(0).get("시간대_5_수") %>명</td>
+			<td><%= moveFront.get(0).get("시간대_6_수") %>명</td>
+		</tr>
+	</table>
+	</div>
+	<br><br>
 	<h3 align="center">2. 상주인구</h3>
-	<div class="anaResult detailResult3"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
-	<hr>
-	
+	<div class="anaResult1 detailResult3"><div class="twoPie Pie1"></div>
+	<div class="twoPie Pie2"></div></div>
+	<div align="center" class="tableArea">
+	<table border="1">
+		<tr align="center">
+			<th rowspan="2">지역</th>
+			<th rowspan="2">구분</th>
+			<th colspan="2">성별</th>
+			<th colspan="6">연령별</th>
+		</tr>
+		<tr align="center">
+			<th>남성</th>
+			<th>여성</th>
+			<th>10대</th>
+			<th>20대</th>
+			<th>30대</th>
+			<th>40대</th>
+			<th>50대</th>
+			<th>60대이상</th>
+		</tr>
+		<tr align="center">
+			<th rowspan="2">선택영역</th>
+			<th>명</th>
+			<td><%= liveFront.get(0).get("남성_수") %>명</td>
+			<td><%= liveFront.get(0).get("여성_수") %>명</td>
+			<td><%= liveFront.get(0).get("연령대_10_수") %>명</td>
+			<td><%= liveFront.get(0).get("연령대_20_수") %>명</td>
+			<td><%= liveFront.get(0).get("연령대_30_수") %>명</td>
+			<td><%= liveFront.get(0).get("연령대_40_수") %>명</td>
+			<td><%= liveFront.get(0).get("연령대_50_수") %>명</td>
+			<td><%= liveFront.get(0).get("연령대_60_이상_수") %>명</td>
+		</tr>
+	</table>
+	</div>
+	<br><br>
 	<h3 align="center">3. 직장인구</h3>
-	<div class="anaResult detailResult4"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
-	<hr>
-	
+	<div class="anaResult1 detailResult4"><div class="twoPie Pie1"></div>
+	<div class="twoPie Pie2"></div></div>
+	<div align="center" class="tableArea">
+	<table border="1">
+		<tr align="center">
+			<th rowspan="2">지역</th>
+			<th rowspan="2">구분</th>
+			<th colspan="2">성별</th>
+			<th colspan="6">연령별</th>
+		</tr>
+		<tr align="center">
+			<th>남성</th>
+			<th>여성</th>
+			<th>10대</th>
+			<th>20대</th>
+			<th>30대</th>
+			<th>40대</th>
+			<th>50대</th>
+			<th>60대이상</th>
+		</tr>
+		<tr align="center">
+			<th rowspan="2">선택영역</th>
+			<th>명</th>
+			<td><%= workFront.get(0).get("남성_수") %>명</td>
+			<td><%= workFront.get(0).get("여성_수") %>명</td>
+			<td><%= workFront.get(0).get("연령대_10_수") %>명</td>
+			<td><%= workFront.get(0).get("연령대_20_수") %>명</td>
+			<td><%= workFront.get(0).get("연령대_30_수") %>명</td>
+			<td><%= workFront.get(0).get("연령대_40_수") %>명</td>
+			<td><%= workFront.get(0).get("연령대_50_수") %>명</td>
+			<td><%= workFront.get(0).get("연령대_60_이상_수") %>명</td>
+		</tr>
+	</table>
+	</div>
+	<br><br>
 	<h3 align="center">4. 주거형태</h3>
 	<div class="anaResult detailResult5"></div>
-	<hr>
+	<div align="center" class="tableArea">
+	<table border="1">
+		<tr align="center">
+			<th rowspan="2">지역</th>
+			<th rowspan="2">구분</th>
+			<th colspan="2">2017.05</th>
+			<th colspan="2">2017.06</th>
+			<th colspan="2">2017.07</th>
+			<th colspan="2">2017.08</th>
+		</tr>
+		<tr align="center">
+			<th>아파트 가구 수</th>
+			<th>비 아파트 가구 수</th>
+			<th>아파트 가구 수</th>
+			<th>비 아파트 가구 수</th>
+			<th>아파트 가구 수</th>
+			<th>비 아파트 가구 수</th>
+			<th>아파트 가구 수</th>
+			<th>비 아파트 가구 수</th>
+			
+		</tr>
+		<tr align="center">
+			<th rowspan="2">선택영역</th>
+			<th>가구</th>
+			<td><%= liveFront.get(0).get("아파트_가구_수") %></td>
+			<td><%= liveFront.get(0).get("비_아파트_가구_수") %></td>
+			<td><%= liveFront.get(1).get("아파트_가구_수") %></td>
+			<td><%= liveFront.get(1).get("비_아파트_가구_수") %></td>
+			<td><%= liveFront.get(2).get("아파트_가구_수") %></td>
+			<td><%= liveFront.get(2).get("비_아파트_가구_수") %></td>
+			<td><%= liveFront.get(3).get("아파트_가구_수") %></td>
+			<td><%= liveFront.get(3).get("비_아파트_가구_수") %></td>
+		</tr>
+	</table>
+	</div>
+	<br><br>
 	<script>
 	$(function () {
 		    <%
-		    String[] moveLineText = {"detailResult0", "유동인구 추이 ("+recentDate+"기준)", "유동인구", "명", am.getCategories("기준_년월_코드", moveFront)};
+		    String[] moveLineText = {"detailResult0", "월별 유동인구 ("+recentDate+"기준)", "유동인구", "명", am.getCategories("기준_년월_코드", moveFront)};
 			String[] moveLinedataName = {"상권"};
 			String[] moveLinedata = {am.getData("총_수", 1, moveFront)};
 			out.print(am.getLine(moveLineText, moveLinedataName, moveLinedata));
