@@ -35,24 +35,178 @@
 	
 	<h3 align="center">1. 유동인구</h3>
 	<div class="anaResult detailResult0"></div>
+	<div class="tableArea">
+		<table>
+			<tr>
+				<th>지역</th>
+				<th><%=dates[0] %></th>
+				<th><%=dates[1] %></th>
+				<th><%=dates[2] %></th>
+			</tr>
+			<tr>
+				<th><%=moveFrontRecentRow.get("상권_코드_명") %></th>
+				<th><%=moveFront.get(2).get("총_수") %></th>
+				<th><%=moveFront.get(1).get("총_수") %></th>
+				<th><%=moveFront.get(0).get("총_수") %></th>
+			</tr>		
+		</table>
+	</div>
 	<div class="anaResult detailResult1"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="tableArea">
+		<table>
+			<tr>
+				<th rowspan="2">지역</th>
+				<th colspan="2">성별</th>
+				<th colspan="6">연령</th>
+			</tr>
+				<th>남성</th>
+				<th>여성</th>
+				<th>10대</th>
+				<th>20대</th>
+				<th>30대</th>
+				<th>40대</th>
+				<th>50대</th>
+				<th>60대이상</th>
+			<tr>
+				<th><%=moveFrontRecentRow.get("상권_코드_명") %></th>
+				<td><%=moveFrontRecentRow.get("남성_수") %></td>
+				<td><%=moveFrontRecentRow.get("여성_수") %></td>
+				<td><%=moveFrontRecentRow.get("연령대_10_수") %></td>
+				<td><%=moveFrontRecentRow.get("연령대_20_수") %></td>
+				<td><%=moveFrontRecentRow.get("연령대_30_수") %></td>
+				<td><%=moveFrontRecentRow.get("연령대_40_수") %></td>
+				<td><%=moveFrontRecentRow.get("연령대_50_수") %></td>
+				<td><%=moveFrontRecentRow.get("연령대_60_이상_수") %></td>
+			</tr>		
+		</table>
+	</div>
 	
 	<div class="anaResult detailResult2"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="tableArea">
+		<table>
+			<tr>
+				<th rowspan="2">지역</th>
+				<th colspan="6">시간대</th>
+				<th colspan="7">요일</th>
+			</tr>
+				<th>00~06</th>
+				<th>06~11</th>
+				<th>11~14</th>
+				<th>14~17</th>
+				<th>17~21</th>
+				<th>21~24</th>
+				<th>월</th>
+				<th>화</th>
+				<th>수</th>
+				<th>목</th>
+				<th>금</th>
+				<th>토</th>
+				<th>일</th>
+			<tr>
+				<th><%=moveFrontRecentRow.get("상권_코드_명") %></th>
+				<td><%=moveFrontRecentRow.get("시간대_1_수") %></td>
+				<td><%=moveFrontRecentRow.get("시간대_2_수") %></td>
+				<td><%=moveFrontRecentRow.get("시간대_3_수") %></td>
+				<td><%=moveFrontRecentRow.get("시간대_4_수") %></td>
+				<td><%=moveFrontRecentRow.get("시간대_5_수") %></td>
+				<td><%=moveFrontRecentRow.get("시간대_6_수") %></td>
+				<td><%=moveFrontRecentRow.get("월요일_수") %></td>
+				<td><%=moveFrontRecentRow.get("화요일_수") %></td>
+				<td><%=moveFrontRecentRow.get("수요일_수") %></td>
+				<td><%=moveFrontRecentRow.get("목요일_수") %></td>
+				<td><%=moveFrontRecentRow.get("금요일_수") %></td>
+				<td><%=moveFrontRecentRow.get("토요일_수") %></td>
+				<td><%=moveFrontRecentRow.get("일요일_수") %></td>
+			</tr>		
+		</table>
+	</div>
 	<hr>
 	
 	<h3 align="center">2. 상주인구</h3>
 	<div class="anaResult detailResult3"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="tableArea">
+		<table>
+			<tr>
+				<th rowspan="2">지역</th>
+				<th colspan="2">성별</th>
+				<th colspan="6">연령</th>
+			</tr>
+				<th>남성</th>
+				<th>여성</th>
+				<th>10대</th>
+				<th>20대</th>
+				<th>30대</th>
+				<th>40대</th>
+				<th>50대</th>
+				<th>60대이상</th>
+			<tr>
+				<td><%=liveFrontRecentRow.get("상권_코드_명") %></td>
+				<td><%=liveFrontRecentRow.get("남성_수") %></td>
+				<td><%=liveFrontRecentRow.get("여성_수") %></td>
+				<td><%=liveFrontRecentRow.get("연령대_10_수") %></td>
+				<td><%=liveFrontRecentRow.get("연령대_20_수") %></td>
+				<td><%=liveFrontRecentRow.get("연령대_30_수") %></td>
+				<td><%=liveFrontRecentRow.get("연령대_40_수") %></td>
+				<td><%=liveFrontRecentRow.get("연령대_50_수") %></td>
+				<td><%=liveFrontRecentRow.get("연령대_60_이상_수") %></td>
+			</tr>		
+		</table>
+	</div>
 	<hr>
 	
 	<h3 align="center">3. 직장인구</h3>
 	<div class="anaResult detailResult4"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="tableArea">
+		<table>
+			<tr>
+				<th rowspan="2">지역</th>
+				<th colspan="2">성별</th>
+				<th colspan="6">연령</th>
+			</tr>
+				<th>남성</th>
+				<th>여성</th>
+				<th>10대</th>
+				<th>20대</th>
+				<th>30대</th>
+				<th>40대</th>
+				<th>50대</th>
+				<th>60대이상</th>
+			<tr>
+				<th><%=workFrontRecentRow.get("상권_코드_명") %></th>
+				<td><%=workFrontRecentRow.get("남성_수") %></td>
+				<td><%=workFrontRecentRow.get("여성_수") %></td>
+				<td><%=workFrontRecentRow.get("연령대_10_수") %></td>
+				<td><%=workFrontRecentRow.get("연령대_20_수") %></td>
+				<td><%=workFrontRecentRow.get("연령대_30_수") %></td>
+				<td><%=workFrontRecentRow.get("연령대_40_수") %></td>
+				<td><%=workFrontRecentRow.get("연령대_50_수") %></td>
+				<td><%=workFrontRecentRow.get("연령대_60_이상_수") %></td>
+			</tr>		
+		</table>
+	</div>
 	<hr>
 	
 	<h3 align="center">4. 주거형태</h3>
 	<div class="anaResult detailResult5"></div>
+	<div class="tableArea">
+		<table>
+			<tr>
+				<th>지역</th>
+				<th>총 가구 수</th>
+				<th>아파트 가구 수</th>
+				<th>비 아파트 가구 수</th>
+			</tr>
+			<tr>
+				<th><%=liveFrontRecentRow.get("상권_코드_명") %></th>
+				<td><%=liveFrontRecentRow.get("총_가구_수") %></td>
+				<td><%=liveFrontRecentRow.get("아파트_가구_수") %></td>
+				<td><%=liveFrontRecentRow.get("비_아파트_가구_수") %></td>
+			</tr>
+		</table>
+	</div>
 	<hr>
 	<script>
-	$(function () {
+	$(function () {	
 		    <%
 		    String[] moveLineText = {"detailResult0", "유동인구 추이 ("+recentDate+"기준)", "유동인구", "명", am.getCategories("기준_년월_코드", moveFront)};
 			String[] moveLinedataName = {"상권"};
@@ -91,7 +245,7 @@
 			
 			String[] workGenderBarText = {"detailResult4 .Pie1", "성별별 직장인구 ("+recentDate+"기준)", "직장인구", "명", new String("'남성', '여성'")};
 			String[] workGenderBardataName = {"상권"};
-			String[] workGenderBardata = {liveFrontRecentRow.get("남성_수")+","+workFrontRecentRow.get("여성_수")};
+			String[] workGenderBardata = {workFrontRecentRow.get("남성_수")+","+workFrontRecentRow.get("여성_수")};
 			out.print(am.getBar(workGenderBarText, workGenderBardataName, workGenderBardata));
 			
 			String[] workAgeBarText = {"detailResult4 .Pie2", "연령별 직장인구 ("+recentDate+"기준)", "직장인구", "명", new String("'10대', '20대', '30대', '40대', '50대', '60대 이상'")};
