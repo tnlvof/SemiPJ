@@ -78,9 +78,18 @@
 		vertical-align:middle;
 		width:50px;
 		height:30px;
+		background:lightgray;
 	}
 	.tableArea table {
 		width:1000px;
+	}
+	.tableArea1 table {
+		width:1000px;
+		width:1000px;
+	}
+	.tableArea1 td{
+		width:1000px;
+		height:30px;
 	}
 </style>
 </head>
@@ -146,18 +155,28 @@
 			
 		</tr>
 	</table>
-	<div>
-		<p>최근 6개월간 매출액 통계 추이를 통해 업종의 계절적 변동성, 성장성 등을 판단할 수 있으며, 업소수 변화추이와 비교하여
-		 경쟁관계의 변화 등을 가늠해볼 수 있습니다. 이용건수는 매출액에 대한 결제건수를 의미하므로, 
-		 특정업종(예, 음식업)의 경우에는 이용고객수를 의미하지는 않습니다만, 이용횟수의 변화를 확인할 수 있습니다.</p>
+	</div>
+	<div align="center">
+    	<em>TIP</em>
+    	<table class="tableArea1" align="center">
+    	<tr>
+    		<td>
+    			<ul>
+       		 		<li>최근 6개월간 매출액 통계 추이를 통해 업종의 계절적 변동성, 성장성 등을 판단할 수 있으며, 업소수 변화추이와 비교하여 경쟁관계의 변화 등을 가늠해볼 수 있습니다. 
+       	 			<strong>이용건수</strong>는 매출액에 대한 결제건수를 의미하므로, 특정업종(예, 음식업)의 경우에는 이용고객수를 의미하지는 않습니다만, 
+       	 			<strong>이용횟수의 변화</strong>를 확인할 수 있습니다. </li>
+    			</ul>	
+    		</td>
+    	
+    	</tr>
+    	</table>
 	</div>
 	<div>
 		<p>매출액 통계는 카드사 가맹점 매출통계를 기반으로 추정된 정보로서, 세부적인 조건(점포면적, 점포 위치의 입지조건, 서비스 품질 등)에 따라 달라질 수 있으니 참고 정보로만 활용하시기 바랍니다.
 해당지역의 선택업종이 없는 경우 표출 되지 않습니다.</p>
 	</div>
-	</div>
 	
-	<hr>
+	<br><br>
 	
 	<h2 align="center">2. 시기별 매출특성</h2>
 	<div class="anaResult detailResult2"><div class="thePie Pie1"></div><div class="thePie Pie2"></div><div class="thePie Pie3"></div></div>
@@ -250,7 +269,7 @@
 				<td><%= frontRecentRow.get("시간대_06_11_비율") %></td>
 				<td><%= frontRecentRow.get("시간대_11_14_비율") %></td>
 				<td><%= frontRecentRow.get("시간대_14_17_비율") %></td>
-				<td><%= frontRecentRow.get("시간대_17_21_비울") %></td>
+				<td><%= frontRecentRow.get("시간대_17_21_비율") %></td>
 				<td><%= frontRecentRow.get("시간대_21_24_비율") %></td>
 			</tr>
 		</table>
@@ -307,6 +326,7 @@
 		</table>
 	</div>
 </body>
+<%@ include file="../common/footer.jsp"%>
 <script>
 	$(function(){
 		<%	
