@@ -11,43 +11,26 @@
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	
 	ArrayList<HashMap> frontTable = null;
-	//ArrayList<HashMap> backTable = null;
 	if(allTable!=null){
 		frontTable = allTable.get("상권_추정매출");
-		//backTable = allTable.get("상권배후지_추정매출");
 	}	
 	System.out.print(frontTable.size());
 	ArrayList<HashMap> frontRows = new ArrayList<HashMap>();
-	//ArrayList<HashMap> backRows = new ArrayList<HashMap>();
 	for(HashMap<String, String> hm:frontTable){
 		if(hm.get("서비스_업종_코드").equals(catagoryCode)){				
 			frontRows.add(hm);
 		}
-	}
-	
-	/* for(HashMap<String, String> hm:backTable){
-		if(hm.get("서비스_업종_코드").equals(catagoryCode)){				
-			backRows.add(hm);	
-		}
-	} */
-	
+	}	
 	HashMap<String, String> frontRecentRow = frontRows.get(0);
-	//HashMap<String, String> backRecentRow = backRows.get(0);
 	
 	String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
 	
 	ArrayList<HashMap> frontRecentRows = new ArrayList<HashMap>();
-	//ArrayList<HashMap> backRecentRows = new ArrayList<HashMap>();
 	for(HashMap<String, String> hm:frontTable){
 		if(hm.get("기준_년월_코드").equals(frontRecentRow.get("기준_년월_코드"))&&hm.get("서비스_업종_코드").contains(catagoryCode.substring(0, 3))){				
 			frontRecentRows.add(hm);
 		}
 	}
-	/* for(HashMap<String, String> hm:backTable){
-		if(hm.get("기준_년월_코드").equals(frontRecentRow.get("기준_년월_코드"))&&hm.get("서비스_업종_코드").contains(catagoryCode.substring(0, 3))){				
-			backRecentRows.add(hm);
-		}
-	} */
 	String[] date= {"201708", "201709", "201710","201711"};
 	long[] much = new long[4];
 	long[] count = new long[4];
@@ -121,16 +104,16 @@
 			<th>액/건</th>
 		</tr>
 		<tr align="center">
-			<td rowspan="2">소분류</td>
-			<td rowspan="2"><%= catagoryName[1] %></td>
-			<td>매출액</td>
+			<th rowspan="2">소분류</th>
+			<th rowspan="2"><%= catagoryName[1] %></th>
+			<th>매출액</th>
 			<td><%= frontRows.get(0).get("당월_금액") %></td>
 			<td><%= frontRows.get(1).get("당월_금액") %></td>
 			<td><%= frontRows.get(2).get("당월_금액") %></td>
 			<td><%= frontRows.get(3).get("당월_금액") %></td>
 		</tr>
 		<tr align="center">
-			<td>건수</td>
+			<th>건수</th>
 			<td><%= frontRows.get(0).get("당월_건수") %></td>
 			<td><%= frontRows.get(1).get("당월_건수") %></td>
 			<td><%= frontRows.get(2).get("당월_건수") %></td>
@@ -138,16 +121,16 @@
 			
 		</tr>
 		<tr align="center">
-			<td rowspan="2">대분류</td>
-			<td rowspan="2"><%= catagoryName[0] %></td>
-			<td>매출액</td>
+			<th rowspan="2">대분류</th>
+			<th rowspan="2"><%= catagoryName[0] %></th>
+			<th>매출액</th>
 			<td><%= much[0] %></td>
 			<td><%= much[1] %></td>
 			<td><%= much[2] %></td>
 			<td><%= much[3] %></td>
 		</tr>
 		<tr align="center">
-			<td>건수</td>
+			<th>건수</th>
 			<td><%= count[0] %></td>
 			<td><%= count[1] %></td>
 			<td><%= count[2] %></td>
@@ -206,8 +189,8 @@
 				<th>토</th>
 			</tr>
 			<tr>
-				<td rowspan="2">선택상권</td>
-				<td>매출액</td>
+				<th rowspan="2"><%=frontRecentRow.get("상권_코드_명") %></th>
+				<th>매출액</td>
 				<td><%= frontRecentRow.get("주말_금액") %></td>
 				<td><%= frontRecentRow.get("주중_금액") %></td>
 				<td><%= frontRecentRow.get("일요일_금액") %></td>
@@ -219,7 +202,7 @@
 				<td><%= frontRecentRow.get("토요일_금액") %></td>
 			</tr>
 			<tr>
-				<td>비율</td>
+				<th>비율</th>
 				<td><%= frontRecentRow.get("주말_비율") %></td>
 				<td><%= frontRecentRow.get("주중_비율") %></td>
 				<td><%= frontRecentRow.get("일요일_비율") %></td>
@@ -254,8 +237,8 @@
 				<th>지역</th>
 			</tr>
 			<tr>
-				<td rowspan="2">선택상권</td>
-				<td>매출액</td>
+				<th rowspan="2"><%=frontRecentRow.get("상권_코드_명") %></th>
+				<th>매출액</th>
 				<td><%= frontRecentRow.get("시간대_00_06_금액") %></td>
 				<td><%= frontRecentRow.get("시간대_06_11_금액") %></td>
 				<td><%= frontRecentRow.get("시간대_11_14_금액") %></td>
@@ -264,7 +247,7 @@
 				<td><%= frontRecentRow.get("시간대_21_24_금액") %></td>
 			</tr>
 			<tr>
-				<td>비율</td>
+				<th>비율</th>
 				<td><%= frontRecentRow.get("시간대_00_06_비율") %></td>
 				<td><%= frontRecentRow.get("시간대_06_11_비율") %></td>
 				<td><%= frontRecentRow.get("시간대_11_14_비율") %></td>
@@ -301,8 +284,8 @@
 				<th>60대 이상</th>
 			</tr>
 			<tr>
-				<td rowspan="2">선택상권</td>
-				<td>매출액</td>
+				<th rowspan="2"><%=frontRecentRow.get("상권_코드_명") %></th>
+				<th>매출액</th>
 				<td><%= frontRecentRow.get("남성_금액") %></td>
 				<td><%= frontRecentRow.get("여성_금액") %></td>
 				<td><%= frontRecentRow.get("연령대_10_금액") %></td>
@@ -313,7 +296,7 @@
 				<td><%= frontRecentRow.get("연령대_60_이상_금액") %></td>
 			</tr>
 			<tr>
-				<td>비율</td>
+				<th>비율</th>
 				<td><%= frontRecentRow.get("남성_비율") %></td>
 				<td><%= frontRecentRow.get("여성_비율") %></td>
 				<td><%= frontRecentRow.get("연령대_10_비율") %></td>

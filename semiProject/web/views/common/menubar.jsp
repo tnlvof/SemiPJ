@@ -54,7 +54,8 @@
 			<ul class="nav" align="center">
 				<li class="bar">|</li>
 
-				<li class="menu" onclick="location.href='<%= request.getContextPath() %>/views/analyseResult/searchTest.jsp'">상권분석</li>
+
+				<li class="menu" onclick="location.href='/pj/views/analysis/map/map.jsp'">상권분석</li>
 				<li class="bar">|</li>
 				<li class="menu">정부시책</li>
 				<li class="bar">|</li>
