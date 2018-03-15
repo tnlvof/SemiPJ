@@ -4,14 +4,11 @@
 	AnalyseMethod am = new AnalyseMethod();
 	HashMap<String, ArrayList<HashMap>> allTable = (HashMap<String, ArrayList<HashMap>>)session.getAttribute("allTable");
 	ArrayList<HashMap> front = null;
-	//ArrayList<HashMap> back = null;
 	if(allTable!=null){
 		front = allTable.get("상권_소득소비");
-		//back = allTable.get("상권배후지_소득소비");
 	}	
 	
 	HashMap<String, String> frontRecentRow = front.get(0);
-	//HashMap<String, String> backRecentRow = back.get(0);
 	
 	String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
 %>
@@ -32,6 +29,38 @@
 	<h3 align="center">2. 소비</h3>
 	<div class="anaResult detailResult1"></div>
 	<div class="anaResult detailResult2"></div>
+	<div class="tableArea">
+		<table border="1">
+			<tr>
+				<th>지역</th>
+				<th>평균 소득</th>
+				<th>총 지출</th>
+				<th>의류</th>
+				<th>문화</th>
+				<th>교육</th>
+				<th>식료품</th>
+				<th>여가</th>
+				<th>생활용품</th>
+				<th>의료비</th>
+				<th>유흥</th>			
+				<th>교통</th>
+			</tr>
+			<tr>
+				<th><%=frontRecentRow.get("상권_코드_명") %></th>
+				<td><%=frontRecentRow.get("월_평균_소득_금액") %></td>
+				<td><%=frontRecentRow.get("지출_총금액") %></td>
+				<td><%=frontRecentRow.get("의류_신발_지출_총금액") %></td>
+				<td><%=frontRecentRow.get("문화_지출_총금액") %></td>
+				<td><%=frontRecentRow.get("교육_지출_총금액") %></td>
+				<td><%=frontRecentRow.get("식료품_지출_총금액") %></td>
+				<td><%=frontRecentRow.get("여가_지출_총금액") %></td>
+				<td><%=frontRecentRow.get("생활용품_지출_총금액") %></td>
+				<td><%=frontRecentRow.get("의료비_지출_총금액") %></td>
+				<td><%=frontRecentRow.get("유흥_지출_총금액") %></td>
+				<td><%=frontRecentRow.get("교통_지출_총금액") %></td>
+			</tr>
+		</table>
+	</div>
 </body>
 <script>
 	$(function(){
