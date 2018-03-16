@@ -147,7 +147,7 @@ public class SupportDao {
 		return listCount;
 	}
 
-	public int updateCount(Connection con, int num) {
+	public int updateCount(Connection con, int num, String boardCategory) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
@@ -155,8 +155,10 @@ public class SupportDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, boardCategory);
 			pstmt.setInt(2, num);
+			pstmt.setString(3, boardCategory);
+			pstmt.setInt(4, num);
 
 			result = pstmt.executeUpdate();
 

@@ -46,7 +46,7 @@ public class SupportService {
 		Connection con = getConnection();
 		Support s = null;
 
-		int result = new SupportDao().updateCount(con, num);
+		int result = new SupportDao().updateCount(con, num, boardCategory);
 
 		if(result > 0){
 			commit(con);
