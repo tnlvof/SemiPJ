@@ -143,32 +143,36 @@
 					var biRegExp=/^[0-9]{6}$/g
 					var telRegExp=/^\d{2,3}-\d{3,4}-\d{4}$/
 					var emRegExp=/^[a-z][a-z0-9_-]{3,11}@([a-z\d\.-]+)\.([a-z\.]{2,6})$/
-
-					if(!(idRegExp.test(id.val()))||!(idRegExp2.test(id.val()))){
-						alert("아이디가 잘못 입력되었습니다\n영문소문자+숫자 4~12자리, 영문소문자로 시작, 숫자 하나이상 포함");
-						id.select();
-						console.log(idRegExp.test(id.val()));
-					}else if(!paRegExp.test(pa.val())||!(paRegExp2.test(pa.val()))){
-						alert("비밀번호가 잘못 입력되었습니다\n영문대소문자+숫자 6~18자리, 숫자 하나이상 포함");
-						pa.select();
-					}else if(pa.val()!=paco.val()){
-						alert("비밀번호가 일치하지 않습니다");
-						pa.select();
-					}else if(!naRegExp.test(na.val())){
-						alert("이름이 잘못 입력되었습니다\n2글자이상, 한글만");
-						na.select();
-					}else if(!biRegExp.test(bi.val())){
-						alert("생년월일이 잘못 입력되었습니다\n숫자6자리");
-						bi.select();
-					}else if(!(telRegExp.test(tel.eq(0).val()+'-'+tel.eq(1).val()+'-'+tel.eq(2).val()))){
-						alert("전화번호가 잘못 입력되었습니다\n앞자리 2~3자리 숫자, 두번째 자리는 3~4자리 숫자, 세번째자리는 4자리 숫자");
-						tel[0].select();
-					}else if(!emRegExp.test(em.val())){
-						alert("이메일이 잘못 입력되었습니다\n영어 소문자 시작, 4글자이상 @ 1글자이상 주소.글자1~3개");
-						em.select();
-					}else{						
+					if(id.val()!='admin'){
+						if(!(idRegExp.test(id.val()))||!(idRegExp2.test(id.val()))){
+							alert("아이디가 잘못 입력되었습니다\n영문소문자+숫자 4~12자리, 영문소문자로 시작, 숫자 하나이상 포함");
+							id.select();
+							console.log(idRegExp.test(id.val()));
+						}else if(!paRegExp.test(pa.val())||!(paRegExp2.test(pa.val()))){
+							alert("비밀번호가 잘못 입력되었습니다\n영문대소문자+숫자 6~18자리, 숫자 하나이상 포함");
+							pa.select();
+						}else if(pa.val()!=paco.val()){
+							alert("비밀번호가 일치하지 않습니다");
+							pa.select();
+						}else if(!naRegExp.test(na.val())){
+							alert("이름이 잘못 입력되었습니다\n2글자이상, 한글만");
+							na.select();
+						}else if(!biRegExp.test(bi.val())){
+							alert("생년월일이 잘못 입력되었습니다\n숫자6자리");
+							bi.select();
+						}else if(!(telRegExp.test(tel.eq(0).val()+'-'+tel.eq(1).val()+'-'+tel.eq(2).val()))){
+							alert("전화번호가 잘못 입력되었습니다\n앞자리 2~3자리 숫자, 두번째 자리는 3~4자리 숫자, 세번째자리는 4자리 숫자");
+							tel[0].select();
+						}else if(!emRegExp.test(em.val())){
+							alert("이메일이 잘못 입력되었습니다\n영어 소문자 시작, 4글자이상 @ 1글자이상 주소.글자1~3개");
+							em.select();
+						}else{						
+							$("#joinForm").submit();
+						}
+					}else{
 						$("#joinForm").submit();
 					}
+					
 				}
 				function goMain(){
 					location.href="<%= request.getContextPath() %>/index.jsp";				
