@@ -42,7 +42,7 @@
          }
       }
    }
-
+   System.out.println("매출분석에 사용자 접속");
 %>
 <!DOCTYPE html>
 <html>
