@@ -24,6 +24,9 @@
 	
 	String catagoryCode = (String)session.getAttribute("catagoryCode");
 	String[] catagoryName = am.getCatagoryName(catagoryCode);
+
+	System.out.println("인구분석에 사용자 접속");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -56,6 +59,7 @@
 	
 	<h3 align="center">1. 유동인구</h3>
 	<div class="anaResult detailResult0"></div>
+
 	<div align="center" class="tableArea">
 		<table>
 			<tr align="center">
@@ -247,8 +251,9 @@
 	</table>
 	</div>
 	<br><br>
+
 	<script>
-	$(function () {
+	$(function () {	
 		    <%
 		    String[] moveLineText = {"detailResult0", "월별 유동인구 ("+recentDate+"기준)", "유동인구", "명", am.getCategories("기준_년월_코드", moveFront)};
 			String[] moveLinedataName = {"상권"};
@@ -287,7 +292,7 @@
 			
 			String[] workGenderBarText = {"detailResult4 .Pie1", "성별별 직장인구 ("+recentDate+"기준)", "직장인구", "명", new String("'남성', '여성'")};
 			String[] workGenderBardataName = {"상권"};
-			String[] workGenderBardata = {liveFrontRecentRow.get("남성_수")+","+workFrontRecentRow.get("여성_수")};
+			String[] workGenderBardata = {workFrontRecentRow.get("남성_수")+","+workFrontRecentRow.get("여성_수")};
 			out.print(am.getBar(workGenderBarText, workGenderBardataName, workGenderBardata));
 			
 			String[] workAgeBarText = {"detailResult4 .Pie2", "연령별 직장인구 ("+recentDate+"기준)", "직장인구", "명", new String("'10대', '20대', '30대', '40대', '50대', '60대 이상'")};
