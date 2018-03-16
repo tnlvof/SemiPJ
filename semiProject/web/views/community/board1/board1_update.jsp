@@ -92,7 +92,7 @@
 			<%
 				if (loginUser != null) {
 			%>
-			<form action="<%=request.getContextPath()%>/update.b1" method="post" encType="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/update.b1?num=<%= b.getbNo()%>" method="post" encType="multipart/form-data">
 				<div class="insertArea">
 					<table align="center">
 						<tr>
