@@ -77,13 +77,18 @@
 				<tr>
 					<th><span class="glyphicon glyphicon-asterisk"></span> 이메일</th>
 					<td><input type="email" name="email" id="email"></td>
-					<td></td>
+					<td><div id="emailCheck">인증번호</div></td>
 				</tr>
-				<!-- <tr>
+				<tr>
+					<th><span class="glyphicon glyphicon-asterisk"></span> 인증번호입력</th>
+					<td><input type="text" name="ecode" id="ecode"></td>
+					<td><div id="chemail">확인</div></td>
+				</tr>
+				<tr>
 					<td>우편번호</td>
 					<td><input type="text" name="zipCode"></td>
 					<td><div id="ckZip">검색</div></td>
-				</tr> -->
+				</tr>
 				<tr>
 					<th class="table-indent">주소</th>
 					<td><input type="text" name="address1" id="address1"></td>
@@ -113,7 +118,7 @@
 							<span class="ico_join"></span>◀ 이전으로
 						</button>
 						<button type="button" id="nextBtn"
-							class="btn_comm btn_type1 disabled" onclick="insertMember();">다음단계</button>
+							class="btn_comm btn_type1 disabled" onclick="insertMember();" disabled="true">다음단계</button>
 			</div>
 		</form>
 		</div>
@@ -198,6 +203,61 @@
 						});
 					});
 				});
+				$(function(){
+						<% String Rpw[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+								"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
+								"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+				
+							String code = "";
+				
+							System.out.println(Rpw.length);
+				
+							for (int i = 0; i < 6; i++) {
+								code += Rpw[(int)(Math.random() * 36)];
+								System.out.println(code);
+							}
+							
+						%>
+				 	$("#emailCheck").click(function(){
+						var email = $("#email").val();
+						var code = '<%= code %>';
+						$.ajax({
+							url:"/pj/emailServlet.me",
+							type:"post",
+							data:{"email":email, "code":code},
+							
+							success:function(data){
+								alert("입력하신 이메일로 인증번호가 발송되었습니다.");
+							},
+							
+							error:function(msg){
+								alert(msg);
+							}
+						});
+					});
+				});
+				
+				$(function(){
+					$("#chemail").click(function(){
+						if($("#ecode").val() == '<%= code %>'){
+							alert("인증의 성공하였습니다.");
+							$("#nextBtn").attr('disabled', false);
+						}else{
+							alert("인증번호를 다시 입력해주시기 바랍니다.");
+							$("#nextBtn").attr('disabled', true);
+						}
+					});
+				}); <%-- chemail(){
+					if($("#ecode").val() == '<%= code %>'){
+						alert("인증의 성공하였습니다.");
+						$("#nextBtn").attr('disabled', false);
+					}else{
+						alert("인증번호를 다시 입력해주시기 바랍니다.");
+						$("#nextBtn").attr('disabled', true);
+					}
+					
+				} --%>
+
 			</script>	
 </body>
 </html>
