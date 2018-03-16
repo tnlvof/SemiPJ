@@ -25,17 +25,19 @@
 	.tableArea td{
 		border:1px solid black;
 		vertical-align:middle;
-		text-align:right;
-		padding:5px;
+		width:50px;
+		height:30px;
 	}
 	.tableArea th{
 		border:1px solid black;
 		vertical-align:middle;
-		padding:5px;
+		width:50px;
+		height:30px;
+		background:lightgray;
 	}
 	.tableArea table {
 		width:1000px;
-	}	
+	}
 </style>
 </head>
 <body>
