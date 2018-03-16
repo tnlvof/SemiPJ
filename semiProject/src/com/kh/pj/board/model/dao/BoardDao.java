@@ -186,7 +186,7 @@ public class BoardDao {
 		return list;
 	}
 
-	public int updateCount(Connection con, int num) {
+	public int updateCount(Connection con, int num, String boardCategory) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -195,7 +195,9 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, num);
+			pstmt.setString(2, boardCategory);
+			pstmt.setInt(3, num);
+			pstmt.setString(4, boardCategory);
 		
 			result = pstmt.executeUpdate();
 			
