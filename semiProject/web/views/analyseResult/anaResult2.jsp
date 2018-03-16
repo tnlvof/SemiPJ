@@ -86,7 +86,7 @@
 	
 	<h2 align="center">1. 상권별 매출비교</h2>
 	<div class="anaResult detailResult0"></div>
-	<div class="anaResult detailResult1"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="anaResult1 detailResult1"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
 	<div align="center" class="tableArea">
 	<table border="1">
 		<tr align="center">
@@ -143,7 +143,7 @@
 	<br><br>
 	
 	<h2 align="center">2. 시기별 매출특성</h2>
-	<div class="anaResult detailResult2"><div class="thePie Pie1"></div><div class="thePie Pie2"></div><div class="thePie Pie3"></div></div>
+	<div class="anaResult1 detailResult2"><div class="thePie Pie1"></div><div class="thePie Pie2"></div><div class="thePie Pie3"></div></div>
 	<h3 align="center">주중/주말, 요일별 비율</h3>
 	<br>
 	<div class="tableArea" align="center">
@@ -241,7 +241,7 @@
 	<br><br><br>
 	<h2 align="center">3. 고객별 매출특성</h2>
 	<br><br>
-	<div class="anaResult detailResult3"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="anaResult1 detailResult3"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
 	<div class="tableArea" align="center">
 		<table>
 			<tr>

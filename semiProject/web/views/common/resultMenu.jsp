@@ -14,6 +14,7 @@
 	.resultMenu ul li a{display: block; padding: 5px 25px;}
 	.resultMenu ul li a:hover{background:black; color:white;}
 	.anaResult{width:1000px; height:500px; border:1px solid black; margin-left:auto; margin-right:auto; margin-bottom:50px;}
+	.anaResult1{width:1000px; height:500px; margin-left:auto; margin-right:auto; margin-bottom:50px;}
 	.twoPie{width:49%; height:99%; display:inline-block; border:1px solid black; margin-left:auto; margin-right:auto;}
 	.thePie{width:33%; height:99%; display:inline-block; border:1px solid black; margin-left:auto; margin-right:auto;}
 	.tableArea{
@@ -24,17 +25,19 @@
 	.tableArea td{
 		border:1px solid black;
 		vertical-align:middle;
-		text-align:right;
-		padding:5px;
+		width:50px;
+		height:30px;
 	}
 	.tableArea th{
 		border:1px solid black;
 		vertical-align:middle;
-		padding:5px;
+		width:50px;
+		height:30px;
+		background:lightgray;
 	}
 	.tableArea table {
 		width:1000px;
-	}	
+	}
 </style>
 </head>
 <body>
