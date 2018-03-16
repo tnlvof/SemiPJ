@@ -36,17 +36,13 @@
 			<table align="center">
 				<tr>
 					<th width="100px">번호</th>
-					<th width="300px">제목</th>
-					<th width="100px">작성자</th>
-					<th width="150px">등록일</th>
+					<th width="550px">제목</th>
 					<th width="100px">조회수</th>
 				</tr>
 				<% for(Support s : list){ %>
             <tr>
                <td><%= s.getbNo() %></td>
                <td><%= s.getbTitle() %></td>
-               <td><%= s.getbWriter() %></td>
-               <td><%= s.getbDate() %></td>
                <td><%= s.getvCount() %></td>
             </tr>
             <% } %>

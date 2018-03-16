@@ -62,12 +62,21 @@
 				if (loginUser != null) {
 			%>
 			<button onclick="location.href='<%= request.getContextPath() %>/selectUpdateQna.sp?num=<%= s.getbNo() %>'">수정하기</button>
+			<button onclick="deleteQna();">삭제하기</button>
 			<%
 				}
 			%>
 		</div>
 		</div>
 	</div>
+	<script>
+	function deleteQna(){
+		var result = confirm('정말 삭제하시겠습니까?'); 
+		if(result) { 
+			location.href="<%= request.getContextPath() %>/deleteQna.sp?bno=<%= s.getbNo()%>";
+		}
+	}
+	</script>
 	<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>

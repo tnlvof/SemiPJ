@@ -56,16 +56,11 @@
 			<br>
 			<div align="center">
 			<button onclick="complet();">작성완료</button>	
-			<button onclick="deleteNotice();">삭제하기</button>
 			</div>
 			</form>
 			<script>
 			    function complet(){
 			    	$("#updateForm").attr("action", "<%= request.getContextPath() %>/update.sp");
-			    }
-			    
-			    function deleteNotice(){
-			    	$("#updateForm").attr("action", "<%= request.getContextPath() %>/deleteNotice.sp");
 			    }
 			</script>
 		</div>

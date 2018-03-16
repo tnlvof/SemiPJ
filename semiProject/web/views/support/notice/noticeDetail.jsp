@@ -62,12 +62,21 @@
 				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
 			%>
 			<button onclick="location.href='<%= request.getContextPath() %>/selectNotice.sp?num=<%= s.getbNo() %>'">수정하기</button>
+			<button onclick="deleteNotice();">삭제하기</button>
 			<%
 				}
 			%>
 		</div>
 		</div>
 	</div>
+	<script>
+	function deleteNotice(){
+		var result = confirm('정말 삭제하시겠습니까?'); 
+		if(result) { 
+			location.href="<%= request.getContextPath() %>/deleteNotice.sp?bno=<%= s.getbNo()%>";
+		}
+	}
+	</script>
 	<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>

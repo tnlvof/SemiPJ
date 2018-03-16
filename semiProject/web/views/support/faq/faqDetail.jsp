@@ -34,15 +34,9 @@
 			<table align="center" width="728px">
 				<tr>
 					<td colspan="1">제목</td>
-					<td colspan="5"><span><%=s.getbTitle()%></span></td>
-				</tr>
-				<tr>
-					<td>작성자</td> 
-					<td><span><%=s.getbWriter()%></span></td>
-					<td>조회수</td>
+					<td colspan="3"><span><%=s.getbTitle()%></span></td>
+					<td colspan="1">조회수</td>
 					<td><span><%=s.getvCount()%></span></td>
-					<td>작성일</td>
-					<td><span><%=s.getbDate()%></span></td>
 				</tr>
 				<!-- <tr>
 					<td colspan="6">내용</td>
@@ -62,12 +56,21 @@
 				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
 			%>
 			<button onclick="location.href='<%= request.getContextPath() %>/selectUpdateFaq.sp?num=<%= s.getbNo() %>'">수정하기</button>
+			<button onclick="deleteFaq();">삭제하기</button>
 			<%
 				}
 			%>
 		</div>
 		</div>
 	</div>
+	<script>
+	function deleteFaq(){
+		var result = confirm('정말 삭제하시겠습니까?'); 
+		if(result) { 
+			location.href="<%= request.getContextPath() %>/deleteFaq.sp?bno=<%= s.getbNo()%>";
+		}
+	}
+	</script>
 	<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>
