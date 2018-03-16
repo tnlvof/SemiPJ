@@ -18,13 +18,13 @@ import com.kh.pj.support.model.vo.Support;
  * Servlet implementation class SelectSupportList
  */
 @WebServlet("/select.sp")
-public class SelectSupportList extends HttpServlet {
+public class SelectNoticeList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectSupportList() {
+    public SelectNoticeList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -65,7 +65,7 @@ public class SelectSupportList extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		ArrayList<Support> list = new SupportService().selectList(currentPage,limit);
+		ArrayList<Support> list = new SupportService().selectList(currentPage,limit,boardCategory);
 		
 		System.out.println("list : " + list);
 

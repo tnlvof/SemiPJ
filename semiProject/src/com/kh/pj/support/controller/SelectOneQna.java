@@ -1,6 +1,8 @@
 package com.kh.pj.support.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,19 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.pj.support.model.service.SupportService;
 import com.kh.pj.support.model.vo.Support;
-import com.kh.pj.member.model.vo.Member;
 
 /**
- * Servlet implementation class insertSupportServlet
+ * Servlet implementation class SelectOneQna
  */
-@WebServlet("/insertNotice.sp")
-public class InsertNoticeServlet extends HttpServlet {
+@WebServlet("/selectOneQna.sp")
+public class SelectOneQna extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertNoticeServlet() {
+    public SelectOneQna() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,33 +31,26 @@ public class InsertNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("title");
-		String text = request.getParameter("text");
-		String password = request.getParameter("password");
+        int num = Integer.parseInt(request.getParameter("num"));
+        String boardCategory = "7";
 		
-		String writer = String.valueOf((((Member)(request.getSession().getAttribute("loginUser"))).getMemberNo()));
-		String boardCategory = "6";
+		System.out.println("num : " + num);
 		
-		System.out.println(title);
-		System.out.println(text);
-		System.out.println(writer);
-		System.out.println(password);
+		Support s = new SupportService().selectOne(num, boardCategory);
 		
-		Support s = new Support();
-		s.setbTitle(title);
-		s.setbText(text);
-		s.setbWriter(writer);
-		s.setbPassword(password);
+		System.out.println("s : " + s);
 		
-		int result = new SupportService().insertNotice(s, boardCategory);
-		
-		String page="";
-		if(result > 0){
-			response.sendRedirect(request.getContextPath() + "/select.sp");
+		String page = null;
+		if(s != null){
+			page = "views/support/qna/qnaDetail.jsp";
+			request.setAttribute("s", s);
 		} else{
-			request.setAttribute("msg", "게시판 작성 실패!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시판 상세 조회 실패!");
 		}
+		
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 	}
 
 	/**
@@ -66,4 +60,5 @@ public class InsertNoticeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }
