@@ -14,16 +14,16 @@ import com.kh.pj.support.model.service.SupportService;
 import com.kh.pj.support.model.vo.Support;
 
 /**
- * Servlet implementation class SelectOneServlet
+ * Servlet implementation class SelectNoticeServlet
  */
-@WebServlet("/selectOne.sp")
-public class SelectOneServlet extends HttpServlet {
+@WebServlet("/selectNotice.sp")
+public class SelectUpdateNotice extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneServlet() {
+    public SelectUpdateNotice() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,17 +35,16 @@ public class SelectOneServlet extends HttpServlet {
 		int num = Integer.parseInt(request.getParameter("num"));
 		String boardCategory = "6";
 		
-		System.out.println("num : " + num);
-		
 		Support s = new SupportService().selectOne(num, boardCategory);
 		
-		String page = null;
+		String page = "";
 		if(s != null){
-			page = "views/support/notice/noticeDetail.jsp";
+			page = "views/support/notice/noticeUpdate.jsp";
 			request.setAttribute("s", s);
+		
 		} else{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시판 상세 조회 실패!");
+			page="views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글 수정용 상세보기 실패!");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);

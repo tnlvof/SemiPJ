@@ -1,7 +1,6 @@
 package com.kh.pj.support.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +14,16 @@ import com.kh.pj.support.model.service.SupportService;
 import com.kh.pj.support.model.vo.Support;
 
 /**
- * Servlet implementation class DeleteSupportServlet
+ * Servlet implementation class UpdateQnaServlet
  */
-@WebServlet("/deleteNotice.sp")
-public class DeleteNoticeServlet extends HttpServlet {
+@WebServlet("/updateQna.sp")
+public class UpdateQnaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteNoticeServlet() {
+    public UpdateQnaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +47,7 @@ public class DeleteNoticeServlet extends HttpServlet {
 		limit = 10;
 		
 		SupportService ss = new SupportService();
-		String boardCategory = "6";
+		String boardCategory = "7";
 		int listCount = ss.getListCount(boardCategory);
 		
 		System.out.println("listCount : " + listCount);
@@ -65,20 +64,29 @@ public class DeleteNoticeServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
+		String title = request.getParameter("title");
+		String text = request.getParameter("text");
 		int bno = Integer.parseInt(request.getParameter("bno"));
-        
-		System.out.println("bno" + bno);
 		
-		ArrayList<Support> list = new SupportService().deleteNotice(bno, currentPage, limit, boardCategory);
+		System.out.println(title);
+		System.out.println(text);
+		System.out.println(bno);
 		
-		String page="";
-		if(list != null){
-			page="views/support/notice/noticeList.jsp";
-			request.setAttribute("list", list);
+		Support s = new Support();
+		s.setbTitle(title);
+		s.setbText(text);
+		s.setbNo(bno);
+		
+		int result = new SupportService().updateNotice(s, boardCategory);
+		
+		String page = "";
+		if(result > 0){
+			page = "views/support/qna/qnaDetail.jsp";
+			request.setAttribute("s", new SupportService().selectOne(bno, boardCategory));
 			request.setAttribute("pi", pi);
 		} else{
-			page="views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 삭제 실패!");
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "공지사항 수정 실패!");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);

@@ -15,16 +15,16 @@ import com.kh.pj.support.model.service.SupportService;
 import com.kh.pj.support.model.vo.Support;
 
 /**
- * Servlet implementation class DeleteSupportServlet
+ * Servlet implementation class DeleteQnaServlet
  */
-@WebServlet("/deleteNotice.sp")
-public class DeleteNoticeServlet extends HttpServlet {
+@WebServlet("/deleteQna.sp")
+public class DeleteQnaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteNoticeServlet() {
+    public DeleteQnaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +48,7 @@ public class DeleteNoticeServlet extends HttpServlet {
 		limit = 10;
 		
 		SupportService ss = new SupportService();
-		String boardCategory = "6";
+		String boardCategory = "7";
 		int listCount = ss.getListCount(boardCategory);
 		
 		System.out.println("listCount : " + listCount);
@@ -73,7 +73,7 @@ public class DeleteNoticeServlet extends HttpServlet {
 		
 		String page="";
 		if(list != null){
-			page="views/support/notice/noticeList.jsp";
+			page="views/support/qna/qnaList.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
 		} else{

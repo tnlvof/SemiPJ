@@ -14,16 +14,16 @@ import com.kh.pj.support.model.service.SupportService;
 import com.kh.pj.support.model.vo.Support;
 
 /**
- * Servlet implementation class UpdateSupportServlet
+ * Servlet implementation class UpdateFaqServlet
  */
-@WebServlet("/update.sp")
-public class UpdateSupportServlet extends HttpServlet {
+@WebServlet("/updateFaq.sp")
+public class UpdateFaqServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateSupportServlet() {
+    public UpdateFaqServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,7 +47,7 @@ public class UpdateSupportServlet extends HttpServlet {
 		limit = 10;
 		
 		SupportService ss = new SupportService();
-		String boardCategory = "6";
+		String boardCategory = "8";
 		int listCount = ss.getListCount(boardCategory);
 		
 		System.out.println("listCount : " + listCount);
@@ -77,12 +77,12 @@ public class UpdateSupportServlet extends HttpServlet {
 		s.setbText(text);
 		s.setbNo(bno);
 		
-		int result = new SupportService().updateNotice(s);
+		int result = new SupportService().updateNotice(s, boardCategory);
 		
 		String page = "";
 		if(result > 0){
-			page = "views/support/notice/noticeDetail.jsp";
-			request.setAttribute("s", new SupportService().selectOne(bno));
+			page = "views/support/faq/faqDetail.jsp";
+			request.setAttribute("s", new SupportService().selectOne(bno, boardCategory));
 			request.setAttribute("pi", pi);
 		} else{
 			page = "views/common/errorPage.jsp";

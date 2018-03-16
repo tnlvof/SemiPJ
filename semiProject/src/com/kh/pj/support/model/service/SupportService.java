@@ -9,20 +9,20 @@ import com.kh.pj.support.model.dao.SupportDao;
 import com.kh.pj.support.model.vo.Support;
 
 public class SupportService {
-	public ArrayList<Support> selectList(int currentPage, int limit) {
+	public ArrayList<Support> selectList(int currentPage, int limit, String boardCategory) {
 		Connection con = getConnection();
 
-		ArrayList<Support> list = new SupportDao().selectList(con, currentPage, limit);
+		ArrayList<Support> list = new SupportDao().selectList(con, currentPage, limit, boardCategory);
 
 		close(con);
 
 		return list;
 	}
 	
-	public int insertNotice(Support s) {
+	public int insertNotice(Support s, String boardCategory) {
 		Connection con = getConnection();
 
-		int result = new SupportDao().insertNotice(con, s);
+		int result = new SupportDao().insertNotice(con, s, boardCategory);
 
 		if(result > 0) commit(con);
 		else rollback(con);
@@ -42,7 +42,7 @@ public class SupportService {
 		return listCount;
 	}
 	
-	public Support selectOne(int num) {
+	public Support selectOne(int num, String boardCategory) {
 		Connection con = getConnection();
 		Support s = null;
 
@@ -50,7 +50,7 @@ public class SupportService {
 
 		if(result > 0){
 			commit(con);
-			s = new SupportDao().selectOne(con, num);
+			s = new SupportDao().selectOne(con, num, boardCategory);
 		} else{
 			rollback(con);
 		}
@@ -60,10 +60,10 @@ public class SupportService {
 		return s;
 	}
 	
-	public int updateNotice(Support s) {
+	public int updateNotice(Support s, String boardCategory) {
 		Connection con = getConnection();
 		
-		int result = new SupportDao().updateNotice(con, s);
+		int result = new SupportDao().updateNotice(con, s, boardCategory);
 		
 		if(result > 0) commit(con);
 		else rollback(con);
@@ -71,15 +71,15 @@ public class SupportService {
 		return result;
 	}
 
-	public ArrayList<Support> deleteNotice(int bno, int currentPage, int limit) {
+	public ArrayList<Support> deleteNotice(int bno, int currentPage, int limit, String boardCategory) {
 		Connection con = getConnection();
 		ArrayList<Support> list = null;
 		
-		int result = new SupportDao().deleteNotice(con, bno);
+		int result = new SupportDao().deleteNotice(con, bno, boardCategory);
 		
 		if(result > 0){
 			commit(con);
-			list = new SupportDao().selectList(con, currentPage, limit);
+			list = new SupportDao().selectList(con, currentPage, limit, boardCategory);
 		} else{
 			rollback(con);
 		}		
