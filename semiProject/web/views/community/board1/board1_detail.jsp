@@ -9,6 +9,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>Insert title here</title>
 
 <style>
@@ -51,7 +53,6 @@
 
 	<div class="div1">
 
-
 		<%@ include file="/views/common/communitySidebar.jsp"%>
 		<div class="outer">
 			<table class="detail" align="center">
@@ -77,7 +78,8 @@
 				</tr>
 			</table>
 			<div class="btnArea" align="center">
-					<button type="button" class="submitBtn">수정</button>
+					<button type="button" class="submitBtn" 
+						onclick="location.href='<%= request.getContextPath() %>/selectUpdate.b1?num=<%= b.getbNo()%>'">수정</button>
 					<button type="button" class="submitBtn">삭제</button>
 					<button type="button" class="submitBtn"
 						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b1'">목록</button>
