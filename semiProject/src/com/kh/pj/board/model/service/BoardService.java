@@ -68,12 +68,12 @@ public class BoardService {
 
 
 
-	public HashMap<String, Object> selectOneBoard1(int num) {
+	public HashMap<String, Object> selectOneBoard1(int num, String boardCategory) {
 		Connection con = getConnection();
 		
 		HashMap<String,Object> hmap = null; 
 		
-		int result = new BoardDao().updateCount(con, num);
+		int result = new BoardDao().updateCount(con, num, boardCategory);
 		
 		if(result > 0) {
 			commit(con);

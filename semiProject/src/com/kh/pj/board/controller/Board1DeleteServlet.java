@@ -34,6 +34,7 @@ public class Board1DeleteServlet extends HttpServlet {
 		
 		System.out.println(bno);
 		
+		
 		int result = new BoardService().deleteBoard(bno);
 		
 		String page="";
