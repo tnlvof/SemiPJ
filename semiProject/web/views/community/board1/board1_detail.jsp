@@ -11,6 +11,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Insert title here</title>
 
 <style>
@@ -80,12 +82,25 @@
 			<div class="btnArea" align="center">
 					<button type="button" class="submitBtn" 
 						onclick="location.href='<%= request.getContextPath() %>/selectUpdate.b1?num=<%= b.getbNo()%>'">수정</button>
-					<button type="button" class="submitBtn">삭제</button>
+					<button type="button" class="submitBtn"
+						onclick="deleteBoard();">삭제</button>
+						<script>
+							function deleteBoard(){
+								var result = confirm('정말 삭제하시겠습니까?'); 
+								if(result) { 
+									location.href="<%= request.getContextPath() %>/delete.b1?num=<%= b.getbNo()%>";
+								} else { 
+
+								}
+
+							}
+						</script>
 					<button type="button" class="submitBtn"
 						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b1'">목록</button>
 			</div>
 		</div>
 	</div>
+
 
 	<%@ include file="/views/common/footer.jsp"%>
 
