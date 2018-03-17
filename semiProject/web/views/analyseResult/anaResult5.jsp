@@ -23,6 +23,11 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
+	<div>
+		<div class="printBtn" id="printBtn">
+			집객시설 다운로드
+		</div>
+	</div>
 	<h1 align="center">지역분석</h1>
 	
 	<h3 align="center">1. 주요시설</h3>
@@ -110,6 +115,10 @@
 </body>
 <script>
 	$(function(){
+		$("#printBtn").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_집객시설&areaCode=<%=frontRecentRow.get("상권_코드")%>';
+		});	
+	
 		<% 
 		String[] ferLineText = {"detailResult0", "집객시설 수 추이 ("+recentDate+"기준)", "집객시설 수", "개", am.getCategories("기준_년월_코드", front)};
 		String[] ferLinedataName = {"상권"};

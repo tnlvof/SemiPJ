@@ -31,6 +31,11 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
+	<div>
+		<div class="printBtn" id="printBtn">
+			지수지표 다운로드
+		</div>
+	</div>
 	<h1 align="center">종합결과</h1>
 	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
 	<div class="anaResult detailResult0"></div>
@@ -73,6 +78,10 @@
 </body>
 <script>
 	$(function(){
+		$("#printBtn").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_지수지표&areaCode=<%=frontRecentRow.get("상권_코드")%>';
+		});
+	
 	<%
 		
 	String[] lineText = {"detailResult0", "지표 추이 ("+recentDate+"기준)", "지표", "점", am.getCategories("기준_년월_코드", rows)};
