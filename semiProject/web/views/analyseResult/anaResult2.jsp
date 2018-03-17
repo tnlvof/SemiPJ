@@ -79,6 +79,11 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
+	<div>
+		<div class="printBtn" id="printBtn">
+			추정매출 다운로드
+		</div>
+	</div>
 	<h1 align="center">매출분석</h1>
 	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
 	<!-- <h2 align="center">1. 업종별 추이</h2>
@@ -293,6 +298,10 @@
 <%@ include file="../common/footer.jsp"%>
 <script>
 	$(function(){
+		$("#printBtn").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_추정매출&areaCode=<%=frontRecentRow.get("상권_코드")%>';
+		});
+	
 		<%	
 		
 		String[] inLineText = {"detailResult0", "매출 추이 ("+recentDate+"기준)", "매출", "만원", am.getCategories("기준_년월_코드", frontRows)};

@@ -22,6 +22,11 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
+	<div>
+		<div class="printBtn" id="printBtn">
+			소득소비 다운로드
+		</div>
+	</div>
 	<h1 align="center">소득소비</h1>
 	<h3 align="center">1. 소득</h3>
 	<div class="anaResult detailResult0"></div>
@@ -65,6 +70,11 @@
 </body>
 <script>
 	$(function(){
+		$("#printBtn").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_소득소비&areaCode=<%=frontRecentRow.get("상권_코드")%>';
+			
+		});
+	
 		<%
 		String[] inLineText = {"detailResult0", "월 평균 소득 추이 ("+recentDate+"기준)", "평균 소득", "만원", am.getCategories("기준_년월_코드", front)};
 		String[] inLinedataName = {"상권"};

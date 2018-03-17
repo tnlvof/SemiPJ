@@ -55,6 +55,24 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
+		<div class="printBtn" id="printBtn1">
+			유동인구 다운로드
+		</div>
+		<br>
+		<br>
+		<div class="printBtn" id="printBtn2">
+			상주인구 다운로드
+		</div>
+		<br>
+		<br>
+		<div class="printBtn" id="printBtn3">
+			직장인구 다운로드
+		</div>
+		<br>
+		<br>
+		<div class="printBtn" id="printBtn4">
+			아파트 다운로드
+	</div>
 	<h1 align="center">인구분석</h1>
 	
 	<h3 align="center">1. 유동인구</h3>
@@ -254,6 +272,20 @@
 
 	<script>
 	$(function () {	
+		$("#printBtn1").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_추정유동인구&areaCode=<%=moveFrontRecentRow.get("상권_코드")%>';
+		});	
+		$("#printBtn2").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_상주인구&areaCode=<%=moveFrontRecentRow.get("상권_코드")%>';
+		});	
+		$("#printBtn3").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_직장인구&areaCode=<%=moveFrontRecentRow.get("상권_코드")%>';			
+		});	
+		$("#printBtn4").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_아파트&areaCode=<%=moveFrontRecentRow.get("상권_코드")%>';
+		});	
+		
+	
 		    <%
 		    String[] moveLineText = {"detailResult0", "월별 유동인구 ("+recentDate+"기준)", "유동인구", "명", am.getCategories("기준_년월_코드", moveFront)};
 			String[] moveLinedataName = {"상권"};
