@@ -18,50 +18,49 @@
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="stylesheet" href="/pj/css/support.css">
 <title>앞날이 창창</title>
-<style>
-.formArea td {
-	vertical-align: middle;
-}
-</style>
 </head>
 <body>
 	<%@ include file="/views/common/menubar.jsp"%>
 	<%@ include file="/views/common/supportSidebar.jsp"%>
 	<div class="supportContainer">
 		<br>
-		<h2 align="center">게시판 상세보기</h2>
-		<div class="tableArea">
-			<table align="center" width="728px">
+		<div class="tableArea-detail">
+			<table align="center">
+				<%-- <tr>
+					<th scope="row">작성일</th>
+					<td colspan="3"><span><%=s.getbDate()%></span></td>
+				</tr> --%>
 				<tr>
-					<td colspan="1">제목</td>
+					<th scope="row">제목</th>
 					<td colspan="3"><span><%=s.getbTitle()%></span></td>
-					<td colspan="1">조회수</td>
-					<td><span><%=s.getvCount()%></span></td>
 				</tr>
-				<!-- <tr>
-					<td colspan="6">내용</td>
-				</tr> -->
 				<tr>
-					<td colspan="6">
+					<th scope="row">작성자</th>
+					<td colspan="3"><span><%=s.getbWriter()%></span></td>
+				</tr>
+				<tr>
+					<td colspan="4" class="textBox">
+					<div class="textDiv">
 						<p id="content"><%=s.getbText()%>
 						</p>
+						</div>
 					</td>
 				</tr>
 			</table>
-			<div align="center">
+		</div>
+		<div align="center" class="support-btn">
 			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectFaq.sp'">메뉴로
-				돌아가기</button>
+				onclick="location.href='<%=request.getContextPath()%>/selectFaq.sp'">목록보기</button>
 			<%
 				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
 			%>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectUpdateFaq.sp?num=<%= s.getbNo() %>'">수정하기</button>
-			<button onclick="deleteFaq();">삭제하기</button>
+			<button onclick="location.href='<%= request.getContextPath() %>/selectUpdateFaq.sp?num=<%= s.getbNo() %>'">수정</button>
+			<button onclick="deleteFaq();">삭제</button>
 			<%
 				}
 			%>
 		</div>
-		</div>
+	</div>
 	</div>
 	<script>
 	function deleteFaq(){

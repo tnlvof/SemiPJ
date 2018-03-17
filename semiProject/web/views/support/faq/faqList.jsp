@@ -31,19 +31,23 @@
 		</div>
 		<div>
 		</div>
-		<div class="tableArea">
+		<div class="tableListArea">
+		<div class="paging-top">
 		<p><%= currentPage %> / <%= maxPage %></p>
+		</div>
 			<table align="center">
 				<tr>
-					<th width="100px">번호</th>
-					<th width="550px">제목</th>
-					<th width="100px">조회수</th>
+					<th width="100px" class="tableLeft-none">번호</th>
+					<th width="400px">제목</th>
+					<th width="100px">작성자</th>
+					<th width="150px">등록일</th>
 				</tr>
 				<% for(Support s : list){ %>
             <tr>
-               <td><%= s.getbNo() %></td>
+               <td class="tableLeft-none"><%= s.getbNo() %></td>
                <td><%= s.getbTitle() %></td>
-               <td><%= s.getvCount() %></td>
+               <td><%= s.getbWriter() %></td>
+               <td><%= s.getbDate() %></td>
             </tr>
             <% } %>
 			</table>
@@ -89,10 +93,10 @@
 	</div>	
 	<script>
 	$(function(){
-		$(".tableArea td").mouseenter(function(){
-			$(this).parent().css({"background":"lightgray", "cursor":"pointer"});
+		$(".tableListArea td").mouseenter(function(){
+			$(this).parent().css({"font-weight":"bold", "cursor":"pointer"});
 		}).mouseout(function(){
-			$(this).parent().css("background","white");
+			$(this).parent().css({"font-weight":"normal", "background":"white"});
 		}).click(function(){
 			var num = $(this).parent().children().eq(0).text();
             console.log(num);
