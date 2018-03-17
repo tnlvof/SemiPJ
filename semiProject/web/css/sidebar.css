@@ -36,10 +36,11 @@
 
 .sidenav-header {
 	height: 140px;
-	background: midnightblue;
+	background: #758bb7;
 	color: white;
 	text-align: center;
 	font-size: 20px;
 	font-weight: bold;
-	padding-top: 60px;
+	line-height:7;
+
 }

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.pj.analyse.controller.AnalyseMethod;
+
 import static com.kh.pj.common.JDBCTemplet.*;
 
 public class AnalyseDao {
@@ -80,6 +82,59 @@ public class AnalyseDao {
 			close(rset);
 		}
 		return allTable;
+	}
+	public int insertCode(Connection con, String address, String areaCode, String catagoryCode, int memberNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertCode");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+			pstmt.setString(2, areaCode);
+			pstmt.setString(3, catagoryCode);
+			pstmt.setString(4, address);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+	public ArrayList<HashMap<String, String>> selectReport(Connection con, String memberNo) {
+		PreparedStatement pstmt = null;
+		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		HashMap<String, String> hmap= null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectReport");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(memberNo));
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				hmap = new HashMap<String, String>();
+				hmap.put("analysisNo", rset.getString("analysis_no"));
+				hmap.put("memberNo", rset.getString("member_no"));
+				hmap.put("areaCode", rset.getString("areacode"));
+				hmap.put("categoryCode", rset.getString("CATEGORYCODE"));
+				hmap.put("address", rset.getString("address"));
+				hmap.put("analyDate", rset.getString("analydate"));
+				hmap.put("BigCategory", new AnalyseMethod().getCatagoryName(rset.getString("CATEGORYCODE"))[0]);
+				hmap.put("smallCategory", new AnalyseMethod().getCatagoryName(rset.getString("CATEGORYCODE"))[1]);
+				list.add(hmap);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		return list;
 	}
 	
 }

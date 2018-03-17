@@ -35,6 +35,7 @@ public class InsertNoticeServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		String writer = String.valueOf((((Member)(request.getSession().getAttribute("loginUser"))).getMemberNo()));
+		String boardCategory = "6";
 		
 		System.out.println(title);
 		System.out.println(text);
@@ -47,7 +48,7 @@ public class InsertNoticeServlet extends HttpServlet {
 		s.setbWriter(writer);
 		s.setbPassword(password);
 		
-		int result = new SupportService().insertNotice(s);
+		int result = new SupportService().insertNotice(s, boardCategory);
 		
 		String page="";
 		if(result > 0){

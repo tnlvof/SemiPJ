@@ -30,48 +30,7 @@ public class BoardDao {
 			e.printStackTrace();
 		}
 	}
-/*
-	public ArrayList<Board> selectAll(Connection con, int currentPage, int limit) {
-		PreparedStatement pstmt = null;
 
-		ResultSet rset = null;
-		ArrayList<Board> list = null;
-
-		String query = prop.getProperty("selecAll");
-
-		try {
-			pstmt = con.prepareStatement(query);
-
-			//조회 시작할 할 번호와 마지막 행 번호 계산
-			int startRow = (currentPage - 1) * limit + 1;
-			int endRow = startRow + limit - 1;
-
-			//pstmt.setString(1, rset.getString("bCategory"));
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-
-			rset = pstmt.executeQuery();
-
-			list = new ArrayList<Board>();
-
-			while(rset.next()){
-				Board b = new Board();
-				
-				b.setbId(rset.getInt("bId"));
-				
-				
-				list.add(b);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			close(rset);
-			close(pstmt);
-		}
-
-		return list;
-	}
-*/
 	
 	public int getListCount(Connection con, String boardCategory) {
 		PreparedStatement pstmt = null;
@@ -98,60 +57,7 @@ public class BoardDao {
 		}
 		return listCount;
 	}
-/*
-	public Board selectOne(Connection con, int num) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		Board b = null;
 
-		String query = prop.getProperty("selectOne");
-
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, num);
-
-			rset = pstmt.executeQuery();
-
-			if(rset.next()){
-				b = new Board();
-
-				b.setbId(rset.getInt("bId"));
-			}
-
-			System.out.println(b);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			close(pstmt);
-			close(rset);
-		}
-
-		return b;
-	}
-
-	public int updateCount(Connection con, int num) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-
-		String query = prop.getProperty("updateCount");
-
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, num);
-			pstmt.setInt(2, num);
-
-			result = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			close(pstmt);
-		}
-
-		return result;
-	}
-*/
 	public int insertBoard(Connection con, Board b) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -280,7 +186,7 @@ public class BoardDao {
 		return list;
 	}
 
-	public int updateCount(Connection con, int num) {
+	public int updateCount(Connection con, int num, String boardCategory) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -289,7 +195,9 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, num);
+			pstmt.setString(2, boardCategory);
+			pstmt.setInt(3, num);
+			pstmt.setString(4, boardCategory);
 		
 			result = pstmt.executeUpdate();
 			
@@ -359,5 +267,75 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return hmap;
+	}
+
+	public int updateBoard(Connection con, Board b) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBoard");
+		
+		try {
+			pstmt= con.prepareStatement(query);
+			pstmt.setString(1, b.getbTitle());
+			pstmt.setString(2, b.getbText());
+			pstmt.setInt(3, b.getbNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	public int updateAttachment(Connection con, Board b, ArrayList<Attachment> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateAttachment");
+		
+		try {
+			for(int i = 0; i< fileList.size(); i++) {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, fileList.get(i).getOriginName());
+				pstmt.setString(2, fileList.get(i).getChangeName());
+				pstmt.setString(3, fileList.get(i).getFilePath());
+				pstmt.setInt(4, b.getbNo());
+				
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	public int deleteBoard(Connection con, int bno) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteBoard");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }

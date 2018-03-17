@@ -34,9 +34,8 @@
 
 .insertArea {
 	float: left;
-	width: 980px;
-	height: 800px;
-	margin-right: auto;
+    width: 800px;
+    margin-right: auto;
 }
 
 .btnArea {

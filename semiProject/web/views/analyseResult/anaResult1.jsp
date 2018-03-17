@@ -33,6 +33,7 @@
 	<div class="anaResult detailResult4"></div>
 	<div class="anaResult detailResult5"></div>
 </body>
+<%@ include file="../common/footer.jsp"%>
 <script>
 	$(function(){
 		

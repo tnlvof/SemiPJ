@@ -26,7 +26,16 @@ public class EmailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("시작이다.");
+		String email = request.getParameter("email");
+		String code =  request.getParameter("code");
+		System.out.println(email + " " + code);
+		
+		new EmailCheck().emailCheck(email, code);
+		
+		
+		
+		
+		
 	}
 
 	/**

@@ -30,7 +30,6 @@
 	<h1 align="center">소득소비</h1>
 	<h3 align="center">1. 소득</h3>
 	<div class="anaResult detailResult0"></div>
-	<hr>
 	
 	<h3 align="center">2. 소비</h3>
 	<div class="anaResult detailResult1"></div>
@@ -67,6 +66,7 @@
 			</tr>
 		</table>
 	</div>
+	<%@ include file="../common/footer.jsp"%>
 </body>
 <script>
 	$(function(){

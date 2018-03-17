@@ -8,28 +8,70 @@
 
 .supportHeader {
 	padding: 30px;
-	font-size: 30px;
-	border-bottom: 1px solid lightgray;
+	font-size: 25px;
+	border-bottom: 2px solid lightgray;
 }
 
-.tableArea {
+table{
+	table-layout: fixed;
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: separate;
+    }
+    
+.paging-top{
+	padding: 10px;
+}
+    
+.tableListArea{
 	width: 800px;
-	height: 420px;
 	margin-left: auto;
 	margin-right: auto;
 	padding:30px;
-	overflow:hidden;
+	min-height: 300px;
 }
 
-.tableArea table, .tableArea th, .tableArea td{
-	border: 1px solid lightgray;
-	padding:5px;
+.tableListArea table{
+	border-top: 2px solid #99a8c7;
+}
+
+.tableListArea td{
 	text-align: center;
 }
 
-.tableArea th{
-	border-bottom:2px solid lightgray;
+.tableListArea table, .tableArea-detail {
+	border-top: 2px solid #99a8c7;
+	border-bottom: 2px solid #dedede;
+}
+
+.tableListArea th, .tableArea-detail th{
 	font-weight:bold;
+	text-align: center;
+	background: #fcfcfd;
+	
+}
+
+.tableListArea td, .tableListArea th, .tableArea-detail th, .tableArea-detail td{
+	padding: 12px 15px;
+	border-bottom: 1px solid lightgray;
+}
+
+.tableListArea td, .tableListArea th, .tableArea-detail td{
+	border-left: 1px solid lightgray;
+}
+
+.tableLeft-none, .textBox{
+	border-left: none !important;
+}
+
+.textDiv{
+	min-height: 300px;
+    padding: 20px;
+}
+
+.support-btn{
+	padding:20px;
 }
 
 .formArea{
@@ -39,13 +81,15 @@
 	padding:30px;
 }
 
-.boardBtn, .pagingArea button, .searchArea input{
+.boardBtn, .pagingArea button, .searchArea input, .supportContainer button{
 	background:white;
 	border:1px solid lightgray;
+	padding: 5px 10px;
 }
 
-.tableArea p{
-	display:inline-block;
+.tableArea-detail p{
+	display:block;
+	min-height:300px;
 }
 
 .searchArea{

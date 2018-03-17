@@ -76,6 +76,7 @@
 	</div>
 	
 </body>
+<%@ include file="../common/footer.jsp"%>
 <script>
 	$(function(){
 		$("#printBtn").click(function(){

@@ -64,7 +64,6 @@
 			</tr>
 		</table>
 	</div>
-	<hr>
 	
 	<h3 align="center">2. 학교시설</h3>
 	<div class="anaResult detailResult2"></div>
@@ -88,7 +87,6 @@
 			</tr>
 		</table>
 	</div>
-	<hr>
 	
 	<h3 align="center">3. 교통시설</h3>
 	<div class="anaResult detailResult3"></div>
@@ -112,6 +110,7 @@
 			</tr>
 		</table>
 	</div>
+	<%@ include file="../common/footer.jsp"%>
 </body>
 <script>
 	$(function(){

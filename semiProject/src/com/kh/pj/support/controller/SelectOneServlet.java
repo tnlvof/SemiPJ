@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.pj.board.model.vo.PageInfo;
 import com.kh.pj.support.model.service.SupportService;
 import com.kh.pj.support.model.vo.Support;
 
@@ -30,12 +31,13 @@ public class SelectOneServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int num = Integer.parseInt(request.getParameter("num"));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		int num = Integer.parseInt(request.getParameter("num"));
+		String boardCategory = "6";
 		
 		System.out.println("num : " + num);
 		
-		Support s = new SupportService().selectOne(num);
+		Support s = new SupportService().selectOne(num, boardCategory);
 		
 		String page = null;
 		if(s != null){
