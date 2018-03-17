@@ -22,7 +22,7 @@
 <body>
 	<%@ include file="/views/common/menubar.jsp"%>
 	<%@ include file="/views/common/supportSidebar.jsp"%>
-<% if(loginUser != null && loginUser.getMemberId().equals("admin")){ %>
+<% if(loginUser != null){ %>
 	<div class="supportContainer">
 		<br>
 		<h2 align="center">Qna 수정</h2>
