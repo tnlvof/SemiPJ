@@ -40,7 +40,7 @@
 						<span class="glyphicon glyphicon-user floatLeft"></span>
 						<label><%= loginUser.getMemberName() %>님의 방문을 환영합니다.</label>
 							<div class="loginOkbtns" style="text-indent:10px;">
-								<div id="changeInfo" onclick="changeInfo();">정보수정</div>
+								<div id="changeInfo" onclick="myPage();">마이페이지</div>
 								<div id="logoutBtn" onclick="logout();">로그아웃</div>
 							</div>
 						</div>
@@ -73,8 +73,12 @@
 		function logout(){
 			location.href="<%= request.getContextPath() %>/logout.me";
 		}
-		function changeInfo(){
-			location.href="/pj/views/member/memberUpdateForm.jsp";
+		function myPage(){
+		<% if(loginUser != null){ %>
+			location.href="<%=request.getContextPath()%>/selectReport.an?memberNo=<%=loginUser.getMemberNo()%>";
+		<% }else{ %>
+			alert("로그인 후 이용이 가능합니다.");
+		<% } %>
 		}
 		function goSupport(){
 			  location.href="<%= request.getContextPath() %>/select.sp";
