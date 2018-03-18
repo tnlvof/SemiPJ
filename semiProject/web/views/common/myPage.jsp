@@ -24,7 +24,7 @@
 	#chageInfo, #report {
 		cursor:pointer;
 		
-	}
+ 	}
 	#reportHeader h2 {
     letter-spacing: -2px;
     font-weight: 700;
@@ -49,42 +49,28 @@
     font-weight: bold;
     }
     #reportTable {
-    	display:inline-block;
-    }
-    #reportTable tr, td{
-    	border:1px solid black;
-    	
+    	display:inline;
     }
 </style>
 <title>앞날이 창창</title>
 </head>
 <body>
 	<%@ include file="/../views/common/menubar.jsp"%>
-	<div class="div1">
-		<div class="sidenav">
-			<div class="sidenav-header">
-				<h2>마이페이지</h2>
-			</div>
-			<div id="sidenav-menu">
-			<a id="report" onclick="selectReport();">분석이력</a>
-			<a id="chageInfo" onclick="chageInfo();">회원정보수정</a>
-			</div>
+	<%@ include file="/../views/common/myPageSidebar.jsp"%>
+	<div class="supportContainer">
+		<div class="supportHeader">
+			<h2>분석이력</h2>
 		</div>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<div id="reportHeader">
-			&nbsp;<h2>분석이력</h2>
-		</div>
-		<br><br>
-		<div id="reportHeader1">
-			&nbsp;&nbsp;&nbsp;&nbsp;<h5>전체 <span class="point ng-binding"><%= list.size() %></span>건
+		<div class="reportHeader1">
+			<h5>전체 <span class="point ng-binding"><%= list.size() %></span>건
 				 <span class="grey ng-binding">
 				 [<span class="black ng-binding">1</span>/1 페이지]
 				 </span>
 			</h5>
 		</div>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<div>
-			&nbsp;&nbsp;&nbsp;&nbsp;<table id="reportTable">
+		<br><br>
+		<div class="tableListArea">
+			<table id="reportTable">
 				<tr>
 					<th>번호</th>
 					<th>구분</th>
@@ -106,6 +92,7 @@
 				<%} }%>
 			</table>
 		</div>
+	</div>
 	</div>
 		<script>
 		function selectReport(){
