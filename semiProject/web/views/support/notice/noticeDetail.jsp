@@ -23,7 +23,9 @@
 	<%@ include file="/views/common/menubar.jsp"%>
 	<%@ include file="/views/common/supportSidebar.jsp"%>
 	<div class="supportContainer">
-		<br>
+	<div class="supportHeader">
+			<h2>공지사항</h2>
+		</div>
 		<div class="tableArea-detail">
 			<table align="center">
 				<tr>
@@ -41,7 +43,7 @@
 					<td colspan="4"><span><%=s.getbWriter()%></span></td>
 				</tr>
 				<tr>
-					<td colspan="4" class="textBox">
+					<td colspan="5" class="textBox">
 					<div class="textDiv">
 						<p id="content"><%=s.getbText()%>
 						</p>

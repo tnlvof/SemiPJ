@@ -107,7 +107,6 @@ public class SupportDao {
 			pstmt.setString(2, s.getbText());
 			pstmt.setInt(3, Integer.parseInt(s.getbWriter()));
 			pstmt.setString(4, boardCategory);
-			pstmt.setString(5, s.getbPassword());
 
 			result = pstmt.executeUpdate();
 

@@ -23,13 +23,11 @@
 	<%@ include file="/views/common/menubar.jsp"%>
 	<%@ include file="/views/common/supportSidebar.jsp"%>
 	<div class="supportContainer">
-		<br>
+		<div class="supportHeader">
+			<h2>FAQ</h2>
+		</div>
 		<div class="tableArea-detail">
 			<table align="center">
-				<%-- <tr>
-					<th scope="row">작성일</th>
-					<td colspan="3"><span><%=s.getbDate()%></span></td>
-				</tr> --%>
 				<tr>
 					<th scope="row">제목</th>
 					<td colspan="3"><span><%=s.getbTitle()%></span></td>

@@ -12,7 +12,7 @@
 	border-bottom: 2px solid lightgray;
 }
 
-table{
+table {
 	table-layout: fixed;
     width: 100%;
     border: 0;
@@ -24,7 +24,7 @@ table{
 	padding: 10px;
 }
     
-.tableListArea{
+.tableListArea, .tableArea-detail, .formArea, .tableArea-update{
 	width: 800px;
 	margin-left: auto;
 	margin-right: auto;
@@ -40,34 +40,42 @@ table{
 	text-align: center;
 }
 
-.tableListArea table, .tableArea-detail {
+.tableListArea table, .tableArea-detail table, .formArea table, .tableArea-update table {
 	border-top: 2px solid #99a8c7;
 	border-bottom: 2px solid #dedede;
 }
 
-.tableListArea th, .tableArea-detail th{
+.tableListArea th, .tableArea-detail th, .formArea th, .tableArea-update th {
 	font-weight:bold;
 	text-align: center;
 	background: #fcfcfd;
 	
 }
 
-.tableListArea td, .tableListArea th, .tableArea-detail th, .tableArea-detail td{
+.tableListArea td, .tableListArea th, .tableArea-detail th, .tableArea-detail td, .formArea th, .tableArea-update th,.tableArea-update td{
 	padding: 12px 15px;
 	border-bottom: 1px solid lightgray;
 }
 
-.tableListArea td, .tableListArea th, .tableArea-detail td{
+.tableListArea td, .tableListArea th, .tableArea-detail td, .tableArea-update td{
 	border-left: 1px solid lightgray;
 }
 
-.tableLeft-none, .textBox{
+.tableLeft-none, .textBox, .updateTextBox{
 	border-left: none !important;
+}
+
+.updateTextBox{
+	padding:0px !important;
 }
 
 .textDiv{
 	min-height: 300px;
     padding: 20px;
+}
+
+.summerDiv{
+	resize: none;
 }
 
 .support-btn{
@@ -98,4 +106,32 @@ table{
 
 .pagingArea button{
 	border:none;
+}
+
+/* summerNote */
+.note-editor {
+	min-height: 400px;
+}
+
+.note-editor.note-frame .note-statusbar .note-resizebar {
+	display: none;
+}
+
+.note-editor.note-frame {
+	border: none;
+}
+
+.panel {
+	margin-bottom: 0px;
+}
+
+.panel-default>.panel-heading {
+	color: #333;
+	background-color: #fcfcfd;
+	border-color: #ddd;
+}
+
+.formArea input, .tableArea-update input {
+	width: 100%;
+	border: none;
 }

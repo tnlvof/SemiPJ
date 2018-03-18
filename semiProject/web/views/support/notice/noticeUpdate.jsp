@@ -9,10 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <link rel="shortcut icon" href="/pj/images/slogo.png">
 <link rel="stylesheet" href="/pj/css/common.css">
 <link rel="stylesheet" href="/pj/css/reset.css">
@@ -24,35 +32,42 @@
 	<%@ include file="/views/common/supportSidebar.jsp"%>
 <% if(loginUser != null && loginUser.getMemberId().equals("admin")){ %>
 	<div class="supportContainer">
-		<br>
-		<h2 align="center">공지 사항 수정</h2>
-		<div class="tableArea">
+		<div class="supportHeader">
+			<h2>공지사항</h2>
+		</div>
+		<div class="tableArea-update">
 		<form id="updateForm" method="post">
-			<table>
+			<table align="center">
 				<tr>
-					<td>제목</td>
-					<td colspan="3"><input type="text" size="50" name="title"
+					<th scope="row">작성일</th>
+					<td colspan="2"><span><%=s.getbDate()%></span></td>
+					
+					<th scope="row">조회수</th>
+					<td colspan="1"><span><%=s.getvCount()%></span></td>
+				</tr>
+				<tr>
+					<th scope="row">제목</th>
+					<td colspan="4"><input type="text" size="50" name="title"
 						value="<%=s.getbTitle()%>"></td>
 						<input type="hidden" name="bno" value="<%= s.getbNo()%>">
 				</tr>
 				<tr>
-					<td>작성자</td>
-					<td><input type="text" value="<%=s.getbWriter()%>" readonly>
-					</td>
-					<td>작성일</td>
-					<td><input type="date" value="<%=s.getbDate()%>"></td>
+					<th scope="row">작성자</th>
+					<td colspan="4"><span><%=s.getbWriter()%></span></td>
 				</tr>
-				<tr>
-					<td>내용</td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td colspan="4"><textarea name="text" rows="15" cols="60"><%=s.getbText()%></textarea>
-					</td>
-				</tr>
-			</table>
+					<tr>
+						<td colspan="5" class="updateTextBox">
+							<div class="summerDiv">
+								<textarea id="summernote" name="text"><%=s.getbText()%>
+								</textarea>
+							</div> <script>
+								$(function() {
+									$('#summernote').summernote();
+								});
+							</script>
+						</td>
+					</tr>
+				</table>
 			<br>
 			<div align="center">
 			<button onclick="complet();">작성완료</button>	
@@ -64,6 +79,7 @@
 			    }
 			</script>
 		</div>
+	</div>
 	</div>
 	<% } else{
 		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");

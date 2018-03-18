@@ -29,8 +29,6 @@
 		<div class="supportHeader">
 			<h2>공지사항</h2>
 		</div>
-		<div>
-		</div>
 		<div class="tableListArea">
 		<div class="paging-top">
 		<p><%= currentPage %> / <%= maxPage %></p>
