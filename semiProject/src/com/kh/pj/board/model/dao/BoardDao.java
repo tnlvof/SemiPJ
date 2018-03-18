@@ -312,6 +312,9 @@ public class BoardDao {
 		} finally {
 			close(rset);
 			close(stmt);
+		}
+		return list;
+	}
 
 	public int updateBoard(Connection con, Board b) {
 		
@@ -370,8 +373,8 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, boardCategory);
-			pstmt.setInt(2, bno);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, boardCategory);
 			
 			result = pstmt.executeUpdate();
 		
