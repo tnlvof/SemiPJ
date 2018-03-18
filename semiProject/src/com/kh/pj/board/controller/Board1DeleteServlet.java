@@ -2,7 +2,6 @@ package com.kh.pj.board.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,8 +33,8 @@ public class Board1DeleteServlet extends HttpServlet {
 		
 		System.out.println(bno);
 		
-		
-		int result = new BoardService().deleteBoard(bno);
+		String boardCategory = "1";
+		int result = new BoardService().deleteBoard(bno,boardCategory);
 		
 		String page="";
 		if(result > 0){
