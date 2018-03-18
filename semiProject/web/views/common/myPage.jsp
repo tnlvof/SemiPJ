@@ -21,11 +21,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
-	div	{
-		border:1px solid black;
-		background:red;
-	}
-	
 	#chageInfo, #report {
 		cursor:pointer;
 		
@@ -81,7 +76,7 @@
 		</div>
 		<br><br>
 		<div id="reportHeader1">
-			&nbsp;&nbsp;&nbsp;&nbsp;<h5>전체 <span class="point ng-binding">1</span>건
+			&nbsp;&nbsp;&nbsp;&nbsp;<h5>전체 <span class="point ng-binding"><%= list.size() %></span>건
 				 <span class="grey ng-binding">
 				 [<span class="black ng-binding">1</span>/1 페이지]
 				 </span>
