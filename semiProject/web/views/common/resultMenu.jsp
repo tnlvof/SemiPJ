@@ -9,7 +9,7 @@
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <style>
 	.printBtn{float:right;width:150px; height:20px; border:1px solid black; text-align:center;}
-	.titleDiv{width:1000px; margin-left:auto; margin-right:auto;}
+	.titleDiv{width:1000px; margin-left:auto; margin-right:auto; margin-bottom:10px;}
 	.resultMenu{margin-left:auto; margin-right:auto; margin-top:20px; width:800px;}
 	.resultMenu ul{list-style-type:none; height:40px;}
 	.resultMenu ul li{float: left; border:1px solid black;width:19%;}
