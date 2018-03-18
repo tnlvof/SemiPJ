@@ -12,6 +12,7 @@ import java.util.HashMap;
 import com.kh.pj.board.model.dao.BoardDao;
 import com.kh.pj.board.model.vo.Attachment;
 import com.kh.pj.board.model.vo.Board;
+import com.kh.pj.member.model.vo.Member;
 
 public class BoardService {
 
@@ -117,6 +118,16 @@ public class BoardService {
 		//new BoardDao().selectThumbnailMap; 
 		
 		return hmap;
+	}
+
+
+	public ArrayList<Board> boardSelctAll() {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		ArrayList<Board>list = new BoardDao().boardSelctAll(con);
+		System.out.println(list+"service");
+		close(con);
+		return list;
 	}
 
 }

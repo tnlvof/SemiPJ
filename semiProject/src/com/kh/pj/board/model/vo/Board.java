@@ -19,8 +19,10 @@ public class Board implements java.io.Serializable{
 	private String bPassword;
 	private String bWriter;
 	
-	public Board() {}
-
+	public Board() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Board(int bId, String bTitle, Date bDate, String bText, int mNo, String bCategory, int vCount, int pNo,
 			String adopt, String status, int bNo, int recCount, int refLevel, String bPassword, String bWriter) {
 		super();
@@ -39,6 +41,14 @@ public class Board implements java.io.Serializable{
 		this.refLevel = refLevel;
 		this.bPassword = bPassword;
 		this.bWriter = bWriter;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bDate=" + bDate + ", bText=" + bText + ", mNo=" + mNo
+				+ ", bCategory=" + bCategory + ", vCount=" + vCount + ", pNo=" + pNo + ", adopt=" + adopt + ", status="
+				+ status + ", bNo=" + bNo + ", recCount=" + recCount + ", refLevel=" + refLevel + ", bPassword="
+				+ bPassword + ", bWriter=" + bWriter + "]";
 	}
 
 	public int getbId() {
@@ -160,14 +170,8 @@ public class Board implements java.io.Serializable{
 	public void setbWriter(String bWriter) {
 		this.bWriter = bWriter;
 	}
+	
 
-	@Override
-	public String toString() {
-		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bDate=" + bDate + ", bText=" + bText + ", mNo=" + mNo
-				+ ", bCategory=" + bCategory + ", vCount=" + vCount + ", pNo=" + pNo + ", adopt=" + adopt + ", status="
-				+ status + ", bNo=" + bNo + ", recCount=" + recCount + ", refLevel=" + refLevel + ", bPassword="
-				+ bPassword + ", bWriter=" + bWriter + "]";
-	}
 	
 	
 		
