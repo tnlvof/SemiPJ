@@ -22,13 +22,14 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
-	<div>
-		<div class="printBtn" id="printBtn">
+	
+	<h1 align="center">소득소비</h1>
+	<h3 align="center">1. 소득</h3>
+	<div class="titleDiv">
+	.	<div class="printBtn" id="printBtn">
 			소득소비 다운로드
 		</div>
 	</div>
-	<h1 align="center">소득소비</h1>
-	<h3 align="center">1. 소득</h3>
 	<div class="anaResult detailResult0"></div>
 	
 	<h3 align="center">2. 소비</h3>

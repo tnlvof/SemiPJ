@@ -31,13 +31,11 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
-	<div>
-		<div class="printBtn" id="printBtn">
-			지수지표 다운로드
-		</div>
-	</div>
 	<h1 align="center">종합결과</h1>
-	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+	<div class="titleDiv">
+선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+		<div class="printBtn" id="printBtn">지수지표 다운로드</div>
+	</div>
 	<div class="anaResult detailResult0"></div>
 	<!-- <div class="anaResult detailResult1"></div> -->
 	<div class="tableArea">
