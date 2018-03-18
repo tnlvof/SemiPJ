@@ -29,8 +29,6 @@
 		<div class="supportHeader">
 			<h2>FAQ</h2>
 		</div>
-		<div>
-		</div>
 		<div class="tableListArea">
 		<div class="paging-top">
 		<p><%= currentPage %> / <%= maxPage %></p>

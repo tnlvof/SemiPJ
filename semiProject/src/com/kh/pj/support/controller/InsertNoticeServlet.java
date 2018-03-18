@@ -32,7 +32,6 @@ public class InsertNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String text = request.getParameter("text");
-		String password = request.getParameter("password");
 		
 		String writer = String.valueOf((((Member)(request.getSession().getAttribute("loginUser"))).getMemberNo()));
 		String boardCategory = "6";
@@ -40,13 +39,11 @@ public class InsertNoticeServlet extends HttpServlet {
 		System.out.println(title);
 		System.out.println(text);
 		System.out.println(writer);
-		System.out.println(password);
 		
 		Support s = new Support();
 		s.setbTitle(title);
 		s.setbText(text);
 		s.setbWriter(writer);
-		s.setbPassword(password);
 		
 		int result = new SupportService().insertNotice(s, boardCategory);
 		
