@@ -78,7 +78,6 @@
 				<td><%= moveFront.get(0).get("총_수") %>명</td>
 				<td><%= moveFront.get(1).get("총_수") %>명</td>
 				<td><%= moveFront.get(2).get("총_수") %>명</td>
-				<td><%= moveFront.get(3).get("총_수") %>명</td>
 			</tr>
 		</table>
 	</div>
