@@ -89,6 +89,7 @@ public class SupportService {
 		return list;
 	}
 
+
 	public int insertReply(Support s, String boardCategory) {
 		Connection con = getConnection();
 

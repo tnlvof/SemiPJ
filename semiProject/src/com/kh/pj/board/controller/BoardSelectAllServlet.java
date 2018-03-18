@@ -1,4 +1,4 @@
-package com.kh.pj.support.controller;
+package com.kh.pj.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.pj.member.model.vo.Member;
-import com.kh.pj.support.model.service.SupportService;
-import com.kh.pj.support.model.vo.Support;
+import com.kh.pj.board.model.service.BoardService;
+import com.kh.pj.board.model.vo.Board;
 
 /**
- * Servlet implementation class InsertQnaReply
+ * Servlet implementation class BoardSelectAllServlet
  */
-@WebServlet("/insertReply.sp")
-public class InsertReply extends HttpServlet {
+@WebServlet("/bselect.al")
+public class BoardSelectAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertReply() {
+    public BoardSelectAllServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,27 +32,14 @@ public class InsertReply extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String text = request.getParameter("text");
+		// TODO Auto-generated method stub
+		System.out.println("servlet init");
+		ArrayList<Board>list = new BoardService().boardSelctAll();
+		System.out.println(list+"servlet");
 		
-		String writer = String.valueOf((((Member)(request.getSession().getAttribute("loginUser"))).getMemberNo()));
-		String boardCategory = "7";
-		
-		System.out.println(text);
-		System.out.println(writer);
-		
-		Support s = new Support();
-		s.setbText(text);
-		s.setbWriter(writer);
-		
-		int result = new SupportService().insertReply(s, boardCategory);
-		
-		String page="";
-		if(result > 0){
-			response.sendRedirect(request.getContextPath() + "/selectQna.sp");
-		} else{
-			request.setAttribute("msg", "게시판 작성 실패!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

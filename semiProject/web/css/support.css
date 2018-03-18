@@ -24,19 +24,12 @@ table {
 	padding: 5px 10px;
 }
     
-.tableListArea, .tableArea-detail, .formArea, .tableArea-update {
+.tableListArea, .tableArea-detail, .formArea, .tableArea-update{
 	width: 800px;
 	margin-left: auto;
 	margin-right: auto;
 	padding:30px;
 	min-height: 300px;
-}
-
-.replyArea {
-	width: 800px;
-	margin-left: auto;
-	margin-right: auto;
-	padding:30px;
 }
 
 .tableListArea table{
@@ -59,18 +52,13 @@ table {
 	
 }
 
-.tableListArea td, .tableListArea th, .tableArea-detail th, .tableArea-detail td, .formArea th,
-.tableArea-update th,.tableArea-update td{
+.tableListArea td, .tableListArea th, .tableArea-detail th, .tableArea-detail td, .formArea th, .tableArea-update th,.tableArea-update td{
 	padding: 12px 15px;
 	border-bottom: 1px solid lightgray;
 }
 
-.tableListArea td, .tableListArea th, .tableArea-detail td, .tableArea-update td {
+.tableListArea td, .tableListArea th, .tableArea-detail td, .tableArea-update td{
 	border-left: 1px solid lightgray;
-}
-
-.formArea th{
-	border-right: 1px solid lightgray;
 }
 
 .tableLeft-none, .textBox, .updateTextBox{
