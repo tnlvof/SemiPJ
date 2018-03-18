@@ -79,17 +79,16 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
-	<div>
-		<div class="printBtn" id="printBtn">
-			추정매출 다운로드
-		</div>
-	</div>
 	<h1 align="center">매출분석</h1>
-	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+	
 	<!-- <h2 align="center">1. 업종별 추이</h2>
 	<hr> -->
 	
 	<h2 align="center">1. 상권별 매출비교</h2>
+	<div class="titleDiv">
+선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+		<div class="printBtn" id="printBtn">추정매출 다운로드</div>
+	</div>
 	<div class="anaResult detailResult0"></div>
 	<div class="anaResult1 detailResult1"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
 	<div align="center" class="tableArea">
