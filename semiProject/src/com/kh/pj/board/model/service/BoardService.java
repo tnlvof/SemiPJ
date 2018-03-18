@@ -12,7 +12,6 @@ import java.util.HashMap;
 import com.kh.pj.board.model.dao.BoardDao;
 import com.kh.pj.board.model.vo.Attachment;
 import com.kh.pj.board.model.vo.Board;
-import com.kh.pj.member.model.vo.Member;
 
 public class BoardService {
 
@@ -145,5 +144,34 @@ public class BoardService {
 		close(con);
 		
 		return list;
+	}
+
+
+	public ArrayList<Board> insertReply(Board b) {
+		Connection con = getConnection();
+		ArrayList<Board> replyList = null;
+		
+		int result = new BoardDao().insertReply(con,b);
+		
+		if(result > 0) {
+			commit(con);
+			replyList = new BoardDao().selectReplyList(con,b.getpNo());
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return replyList;
+		}
+
+
+	public ArrayList<Board> selectReplyList(Board b) {
+		Connection con = getConnection();
+		ArrayList<Board> replyList = new BoardDao().selectReplyList(con,b.getbId());
+		
+		close(con);
+		
+		return replyList;
 	}
 }

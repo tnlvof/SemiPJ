@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.kh.pj.board.model.dao.BoardDao;
 import com.kh.pj.board.model.service.BoardService;
 import com.kh.pj.board.model.vo.Attachment;
 import com.kh.pj.board.model.vo.Board;
@@ -47,11 +49,14 @@ public class Board1SelectOneServlet extends HttpServlet {
 		Board b= (Board)hmap.get("board");
 		ArrayList<Attachment> fileList = (ArrayList<Attachment>)hmap.get("attachment");
 		
+		ArrayList<Board> replyList = new BoardService().selectReplyList(b);
+		
 		String page = "";
 		if(hmap != null) {
 			page = "views/community/board1/board1_detail.jsp";
 			request.setAttribute("b", b);
 			request.setAttribute("fileList", fileList);
+			request.setAttribute("replyList", replyList);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "사진 게시판 상세조회 실패!");
