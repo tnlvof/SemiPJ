@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.kh.pj.support.model.vo.*, com.kh.pj.board.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.pj.support.model.vo.*, com.kh.pj.board.model.vo.*"%>
 <%
 	Support s = (Support) request.getAttribute("s");
+    ArrayList<Support> list = (ArrayList<Support>)request.getAttribute("list");
 %> 
 
 <!DOCTYPE html>
@@ -18,6 +19,15 @@
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="stylesheet" href="/pj/css/support.css">
 <title>앞날이 창창</title>
+<style>
+.replyArea th, .replyArea td{
+vertical-align:middle;
+text-align:center;
+}
+.replyArea textarea{
+resize:none;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/views/common/menubar.jsp"%>
@@ -64,6 +74,39 @@
 				}
 			%>
 		</div>
+		<div class="replyArea" align="center">
+		<%
+				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
+			%>
+		<div class="replyWriteArea">
+		<form action="<%=request.getContextPath()%>/insertReply.sp"
+				method="post">
+			<table align="center">
+				<tr>
+					<td colspan="4">
+					<textarea rows="3" cols="85" id="replyContent" name="text"></textarea>
+					</td>
+					<td colspan="1"><button type="submit">등록</button></td>
+				</tr>
+			</table>
+			</form>
+		</div>
+		<% } %>
+		<div id="replySelectArea">
+				<table id="replySelectTable" border="1" align="center">
+					<tr>
+						<th width="100px">작성자</th>
+						<th width="300px">내용</th>
+						<th width="150px">작성일</th>
+					</tr>
+					<tr>
+						<td><%= s.getbWriter() %></td>
+						<td><%= s.getbText() %></td>
+						<td><%= s.getbDate() %></td>
+					</tr>
+				</table>
+			</div>
+	</div>
 	</div>
 	</div>
 	<script>

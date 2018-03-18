@@ -153,12 +153,13 @@ button {
 	-webkit-appearance: none;
 }
 	
-#idCheck {
+#idCheck, #emailCheck, #chemail {
 	font-size:12px;
 	padding:5px;
 	border:1px solid lightgray;
 	margin: 0 auto;
 	font-weight:bold;
+	text-align:center;
 }
 
 .checkImg{
