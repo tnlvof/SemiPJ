@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.pj.support.model.vo.*, com.kh.pj.board.model.vo.*"%>
 <%
 	Support s = (Support) request.getAttribute("s");
-    ArrayList<Support> list = (ArrayList<Support>)request.getAttribute("list");
 %> 
 
 <!DOCTYPE html>

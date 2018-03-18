@@ -79,8 +79,15 @@
 		</div>
 		
 		<div class="searchArea" align="center">
-			<input type="search" name="searchValue">
-			<button type="button" class="boardBtn"><span class="glyphicon glyphicon-search"></span></button>
+			<form action="<%=request.getContextPath()%>/searchNotice.sp">
+				<select class="searchCategory" name="selectCategory">
+					<option>제목</option>
+					<option>작성자</option>
+					<option>내용</option>
+				</select>
+					<input type="text" class="form_text" name="searchValue">
+				<button type="submit" class="searchBtn "><span class="glyphicon glyphicon-search"></span></button>
+			</form>
 			<%
 				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
 			%>
