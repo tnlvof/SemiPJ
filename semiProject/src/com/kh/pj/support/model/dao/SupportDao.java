@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.pj.member.model.dao.MemberDao;
@@ -201,6 +202,8 @@ public class SupportDao {
 				s.setRecCount(rset.getInt("rec_count"));
 				s.setRefLevel(rset.getInt("ref_level"));
 				s.setbPassword(rset.getString("b_password"));
+				
+				
 			}
 
 			System.out.println("dao s : " + s);
@@ -263,6 +266,101 @@ public int deleteNotice(Connection con, int bno, String boardCategory) {
 	
 	
 	return result;
+}
+
+public int insertReply(Connection con, Support s, String boardCategory) {
+	PreparedStatement pstmt = null;
+	int result = 0;
+	
+	String query = prop.getProperty("insertReply");
+	
+	System.out.println("query : " + query);
+	
+	try {
+		pstmt = con.prepareStatement(query);
+
+		pstmt.setString(1, s.getbText());
+		pstmt.setInt(2, Integer.parseInt(s.getbWriter()));
+		pstmt.setString(3, boardCategory);
+
+		result = pstmt.executeUpdate();
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally{
+		close(pstmt);
+	}
+
+	return result;
+}
+
+public ArrayList<Support> search(Connection con, int currentPage, int limit, String searchValue,
+		String searchCategory, String boardCategory) {
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	ArrayList<Support> list = null;
+	String query = null; 
+    		
+	if(searchCategory.equals("제목")) {
+		query = prop.getProperty("searchTitle");
+	}else if(searchCategory.equals("작성자")){
+		query = prop.getProperty("searchWriter");
+	}else if(searchCategory.equals("내용")){
+		query = prop.getProperty("searchContent");
+	}
+
+	System.out.println(query);
+	System.out.println(boardCategory);
+	System.out.println(searchValue);
+	
+	int startRow = (currentPage -1) * limit + 1;
+	int endRow = startRow + limit -1;
+	
+	System.out.println("s : " + startRow);
+	System.out.println("e : " + endRow);
+	
+	
+	try {
+		pstmt  = con.prepareStatement(query);
+		pstmt.setString(1, boardCategory);
+		pstmt.setString(2, searchValue);
+		pstmt.setInt(3, startRow);
+		pstmt.setInt(4, endRow);
+		
+		rset = pstmt.executeQuery();
+		
+	
+		list = new ArrayList<Support>();
+		
+		while(rset.next()) {
+			Support s = new Support();
+			
+			s.setbId(rset.getInt("b_id"));
+			s.setbTitle(rset.getString("b_title"));
+			s.setbDate(rset.getDate("b_date"));
+			s.setbText(rset.getString("b_text"));
+			s.setbWriter(rset.getString("nickname"));
+			s.setmNo(rset.getInt("member_no"));
+			s.setbCategory(rset.getString("board_category"));
+			s.setvCount(rset.getInt("view_count"));
+			s.setpNo(rset.getInt("p_no"));
+			s.setAdopt(rset.getString("adopt_yn"));
+			s.setbNo(rset.getInt("b_no"));
+			s.setRecCount(rset.getInt("rec_count"));
+			s.setRefLevel(rset.getInt("ref_level"));
+			s.setbPassword(rset.getString("b_password"));
+			
+			list.add(s);
+		}
+		System.out.println("dao list : " + list);
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	return list;
 }
 
 }

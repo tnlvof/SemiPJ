@@ -373,6 +373,7 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
+
 			pstmt.setInt(1, bno);
 			pstmt.setString(2, boardCategory);
 			

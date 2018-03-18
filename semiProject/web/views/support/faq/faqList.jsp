@@ -32,6 +32,13 @@
 		<div class="tableListArea">
 		<div class="paging-top">
 		<p><%= currentPage %> / <%= maxPage %></p>
+		<%
+				if (loginUser != null) {
+			%>
+			<button
+				onclick="location.href='/pj/views/support/qna/qnaInsertForm.jsp'"
+				class="boardBtn writeBtn">글쓰기</button>
+			<% } %>
 		</div>
 			<table align="center">
 				<tr>
@@ -77,15 +84,15 @@
 		</div>
 		
 		<div class="searchArea" align="center">
-			<input type="search" name="searchValue">
-			<button type="button" class="boardBtn"><span class="glyphicon glyphicon-search"></span></button>
-			<%
-				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
-			%>
-			<button
-				onclick="location.href='/pj/views/support/faq/faqInsertForm.jsp'"
-				class="boardBtn writeBtn">글쓰기</button>
-			<% } %>
+			<form action="<%=request.getContextPath()%>/searchFaq.sp">
+				<select class="searchCategory" name="selectCategory">
+					<option>제목</option>
+					<option>작성자</option>
+					<option>내용</option>
+				</select>
+					<input type="text" class="form_text" name="searchValue">
+				<button type="submit" class="boardBtn "><span class="glyphicon glyphicon-search"></span></button>
+			</form>
 		</div>
 	</div>
 	</div>	

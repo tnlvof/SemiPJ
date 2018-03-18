@@ -35,7 +35,9 @@
 	#reportHeader1 h5 {
     width: 50%;
     letter-spacing: -2px;
-    font-weight: 700; 
+
+    font-weight: 700;
+
     margin: 0;
     padding: 0;
     display:inline-block;

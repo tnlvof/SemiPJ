@@ -4,7 +4,9 @@ import static com.kh.pj.common.JDBCTemplet.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.kh.pj.board.model.dao.BoardDao;
 import com.kh.pj.support.model.dao.SupportDao;
 import com.kh.pj.support.model.vo.Support;
 
@@ -86,5 +88,31 @@ public class SupportService {
 		
 		return list;
 	}
+
+
+	public int insertReply(Support s, String boardCategory) {
+		Connection con = getConnection();
+
+		int result = new SupportDao().insertReply(con, s, boardCategory);
+
+		if(result > 0) commit(con);
+		else rollback(con);
+
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<Support> search(int currentPage, int limit, String searchValue,
+			String searchCategory, String boardCategory) {
+			Connection con = getConnection();
+
+			ArrayList<Support> list = new SupportDao().search(con, currentPage,limit,searchValue,searchCategory, boardCategory);
+			System.out.println("service list : " + list);
+			close(con);
+			
+			return list;
+	}
+
 
 }
