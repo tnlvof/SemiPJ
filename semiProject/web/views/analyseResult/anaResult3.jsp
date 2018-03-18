@@ -58,23 +58,25 @@
 	<h1 align="center">인구분석</h1>
 	
 	<h3 align="center">1. 유동인구</h3>
+	<div class="titleDiv">
+선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+		<div class="printBtn" id="printBtn1">유동인구 다운로드</div>
+	</div>
 	<div class="anaResult detailResult0"></div>
 
 	<div align="center" class="tableArea">
 		<table>
 			<tr align="center">
 				<th>지역</th>
+				<th>2017.06</th>
+				<th>2017.07</th>
 				<th>2017.08</th>
-				<th>2017.09</th>
-				<th>2017.10</th>
-				<th>2017.11</th>
 			</tr>
 			<tr align="center">
 				<th>선택상권</th>
 				<td><%= moveFront.get(0).get("총_수") %>명</td>
 				<td><%= moveFront.get(1).get("총_수") %>명</td>
 				<td><%= moveFront.get(2).get("총_수") %>명</td>
-				<td><%= moveFront.get(3).get("총_수") %>명</td>
 			</tr>
 		</table>
 	</div>
@@ -142,6 +144,10 @@
 	</div>
 	<br><br>
 	<h3 align="center">2. 상주인구</h3>
+	<div class="titleDiv">
+선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+		<div class="printBtn" id="printBtn2">상주인구 다운로드</div>
+	</div>
 	<div class="anaResult1 detailResult3"><div class="twoPie Pie1"></div>
 	<div class="twoPie Pie2"></div></div>
 	<div align="center" class="tableArea">
@@ -178,6 +184,10 @@
 	</div>
 	<br><br>
 	<h3 align="center">3. 직장인구</h3>
+	<div class="titleDiv">
+선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+		<div class="printBtn" id="printBtn3">직장인구 다운로드</div>
+	</div>
 	<div class="anaResult1 detailResult4"><div class="twoPie Pie1"></div>
 	<div class="twoPie Pie2"></div></div>
 	<div align="center" class="tableArea">
@@ -214,6 +224,10 @@
 	</div>
 	<br><br>
 	<h3 align="center">4. 주거형태</h3>
+	<div class="titleDiv">
+선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+		<div class="printBtn" id="printBtn4">아파트 다운로드</div>
+	</div>
 	<div class="anaResult detailResult5"></div>
 	<div align="center" class="tableArea">
 	<table border="1">
@@ -254,6 +268,20 @@
 
 	<script>
 	$(function () {	
+		$("#printBtn1").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_추정유동인구&areaCode=<%=moveFrontRecentRow.get("상권_코드")%>';
+		});	
+		$("#printBtn2").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_상주인구&areaCode=<%=moveFrontRecentRow.get("상권_코드")%>';
+		});	
+		$("#printBtn3").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_직장인구&areaCode=<%=moveFrontRecentRow.get("상권_코드")%>';			
+		});	
+		$("#printBtn4").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_아파트&areaCode=<%=moveFrontRecentRow.get("상권_코드")%>';
+		});	
+		
+	
 		    <%
 		    String[] moveLineText = {"detailResult0", "월별 유동인구 ("+recentDate+"기준)", "유동인구", "명", am.getCategories("기준_년월_코드", moveFront)};
 			String[] moveLinedataName = {"상권"};

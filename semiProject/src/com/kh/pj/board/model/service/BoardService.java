@@ -68,12 +68,12 @@ public class BoardService {
 
 
 
-	public HashMap<String, Object> selectOneBoard1(int num) {
+	public HashMap<String, Object> selectOneBoard1(int num, String boardCategory) {
 		Connection con = getConnection();
 		
 		HashMap<String,Object> hmap = null; 
 		
-		int result = new BoardDao().updateCount(con, num);
+		int result = new BoardDao().updateCount(con, num, boardCategory);
 		
 		if(result > 0) {
 			commit(con);
@@ -113,10 +113,10 @@ public class BoardService {
 	}
 
 
-	public int deleteBoard(int bno) {
+	public int deleteBoard(int bno, String boardCategory) {
 		Connection con = getConnection();
 		
-		int result = new BoardDao().deleteBoard(con,bno);
+		int result = new BoardDao().deleteBoard(con,bno,boardCategory);
 		
 		if(result > 0) commit(con);
 		else rollback(con);
@@ -124,5 +124,17 @@ public class BoardService {
 		close(con);
 		
 		return result;
+	}
+
+
+	public ArrayList<HashMap<String, Object>> searchBoard1(int currentPage, int limit, String searchValue,
+			String searchCategory) {
+		Connection con = getConnection();
+
+		ArrayList<HashMap<String,Object>> list = new BoardDao().searchBoard1(con,currentPage,limit,searchValue,searchCategory);
+		
+		close(con);
+		
+		return list;
 	}
 }
