@@ -326,11 +326,13 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, boardCategory);
-			pstmt.setInt(2, bno);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, boardCategory);
 			
 			result = pstmt.executeUpdate();
-		
+			
+			System.out.println("dao result : " +result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

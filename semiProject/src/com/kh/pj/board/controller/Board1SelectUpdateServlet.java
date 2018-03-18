@@ -38,7 +38,9 @@ public class Board1SelectUpdateServlet extends HttpServlet {
 		
 		System.out.println(num);
 		
-		HashMap<String, Object> hmap = new BoardService().selectOneBoard1(num);
+		String boardCategory = "1";
+		
+		HashMap<String, Object> hmap = new BoardService().selectOneBoard1(num,boardCategory);
 		
 		System.out.println(hmap);
 		
