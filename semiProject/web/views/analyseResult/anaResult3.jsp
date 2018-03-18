@@ -68,10 +68,9 @@
 		<table>
 			<tr align="center">
 				<th>지역</th>
+				<th>2017.06</th>
+				<th>2017.07</th>
 				<th>2017.08</th>
-				<th>2017.09</th>
-				<th>2017.10</th>
-				<th>2017.11</th>
 			</tr>
 			<tr align="center">
 				<th>선택상권</th>
