@@ -265,30 +265,4 @@ public int deleteNotice(Connection con, int bno, String boardCategory) {
 	return result;
 }
 
-public int insertReply(Connection con, Support s, String boardCategory) {
-	PreparedStatement pstmt = null;
-	int result = 0;
-	
-	String query = prop.getProperty("insertReply");
-	
-	System.out.println("query : " + query);
-	
-	try {
-		pstmt = con.prepareStatement(query);
-
-		pstmt.setString(1, s.getbText());
-		pstmt.setInt(2, Integer.parseInt(s.getbWriter()));
-		pstmt.setString(3, boardCategory);
-
-		result = pstmt.executeUpdate();
-
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} finally{
-		close(pstmt);
-	}
-
-	return result;
-}
-
 }
