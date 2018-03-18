@@ -164,6 +164,7 @@ public class Board1InsertServlet extends HttpServlet {
 			
 			String page = "";
 			if (result > 0) {
+				
 			} else {
 				request.setAttribute("msg", "게시판 작성 실패");
 				request.getRequestDispatcher(page);

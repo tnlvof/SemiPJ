@@ -69,7 +69,7 @@ public class DeleteNoticeServlet extends HttpServlet {
         
 		System.out.println("bno" + bno);
 		
-		ArrayList<Support> list = new SupportService().deleteNotice(bno, currentPage, limit);
+		ArrayList<Support> list = new SupportService().deleteNotice(bno, currentPage, limit, boardCategory);
 		
 		String page="";
 		if(list != null){

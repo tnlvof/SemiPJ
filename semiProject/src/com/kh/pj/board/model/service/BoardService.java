@@ -57,19 +57,6 @@ public class BoardService {
 		return list;
 	}
 
-
-
-  /*
-	public ArrayList<Board> selectAll(int currentPage, int limit) {
-		Connection con = getConnection();
-
-		ArrayList<Board> list = new BoardDao().selectAll(con, currentPage, limit);
-
-		close(con);
-
-		return list;
-	}
-	*/
 	public int getListCount(String boardCategory) {
 		Connection con = getConnection();
 
@@ -79,32 +66,15 @@ public class BoardService {
 
 		return listCount;
 	}
-	/*
-	public Board selectOne(int num) {
-		Connection con = getConnection();
-		Board b = null;
-
-		int result = new BoardDao().updateCount(con, num);
-
-		if(result > 0){
-			commit(con);
-			b = new BoardDao().selectOne(con, num);
-		} else{
-			rollback(con);
-		}
-
-		close(con);
-
-		return b;
-  */
 
 
-	public HashMap<String, Object> selectOneBoard1(int num) {
+
+	public HashMap<String, Object> selectOneBoard1(int num, String boardCategory) {
 		Connection con = getConnection();
 		
 		HashMap<String,Object> hmap = null; 
 		
-		int result = new BoardDao().updateCount(con, num);
+		int result = new BoardDao().updateCount(con, num, boardCategory);
 		
 		if(result > 0) {
 			commit(con);
@@ -112,15 +82,12 @@ public class BoardService {
 		}else {
 			rollback(con);
 		}
-		
 		close(con);
 		
 		//new BoardDao().selectThumbnailMap; 
 		
 		return hmap;
 	}
-
-
 	public ArrayList<Board> boardSelctAll() {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
@@ -130,4 +97,53 @@ public class BoardService {
 		return list;
 	}
 
+
+	public int updateBoard(Board b, ArrayList<Attachment> fileList) {
+		Connection con = getConnection();
+
+		int result = 0;
+		
+		int result1 = new BoardDao().updateBoard(con, b);
+		
+		int result2 = new BoardDao().updateAttachment(con,b,fileList);
+		
+		System.out.println("service result2 : " + result2);
+		
+		if(result1 >0 || result2 >0) {
+			commit(con);
+			result =1;
+		}else {
+			rollback(con);
+		}
+	
+		close(con);
+
+		return result;
+	}
+
+
+	public int deleteBoard(int bno, String boardCategory) {
+		Connection con = getConnection();
+		
+		int result = new BoardDao().deleteBoard(con,bno,boardCategory);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	public ArrayList<HashMap<String, Object>> searchBoard1(int currentPage, int limit, String searchValue,
+			String searchCategory) {
+		Connection con = getConnection();
+
+		ArrayList<HashMap<String,Object>> list = new BoardDao().searchBoard1(con,currentPage,limit,searchValue,searchCategory);
+		
+		close(con);
+		
+		return list;
+	}
 }

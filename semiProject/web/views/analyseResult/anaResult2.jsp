@@ -42,7 +42,7 @@
          }
       }
    }
-
+   System.out.println("매출분석에 사용자 접속");
 %>
 <!DOCTYPE html>
 <html>
@@ -80,13 +80,17 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
 	<h1 align="center">매출분석</h1>
-	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+	
 	<!-- <h2 align="center">1. 업종별 추이</h2>
 	<hr> -->
 	
 	<h2 align="center">1. 상권별 매출비교</h2>
+	<div class="titleDiv">
+선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+		<div class="printBtn" id="printBtn">추정매출 다운로드</div>
+	</div>
 	<div class="anaResult detailResult0"></div>
-	<div class="anaResult detailResult1"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="anaResult1 detailResult1"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
 	<div align="center" class="tableArea">
 	<table border="1">
 		<tr align="center">
@@ -143,7 +147,7 @@
 	<br><br>
 	
 	<h2 align="center">2. 시기별 매출특성</h2>
-	<div class="anaResult detailResult2"><div class="thePie Pie1"></div><div class="thePie Pie2"></div><div class="thePie Pie3"></div></div>
+	<div class="anaResult1 detailResult2"><div class="thePie Pie1"></div><div class="thePie Pie2"></div><div class="thePie Pie3"></div></div>
 	<h3 align="center">주중/주말, 요일별 비율</h3>
 	<br>
 	<div class="tableArea" align="center">
@@ -241,7 +245,7 @@
 	<br><br><br>
 	<h2 align="center">3. 고객별 매출특성</h2>
 	<br><br>
-	<div class="anaResult detailResult3"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
+	<div class="anaResult1 detailResult3"><div class="twoPie Pie1"></div><div class="twoPie Pie2"></div></div>
 	<div class="tableArea" align="center">
 		<table>
 			<tr>
@@ -293,6 +297,10 @@
 <%@ include file="../common/footer.jsp"%>
 <script>
 	$(function(){
+		$("#printBtn").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_추정매출&areaCode=<%=frontRecentRow.get("상권_코드")%>';
+		});
+	
 		<%	
 		
 		String[] inLineText = {"detailResult0", "매출 추이 ("+recentDate+"기준)", "매출", "만원", am.getCategories("기준_년월_코드", frontRows)};

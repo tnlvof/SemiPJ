@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="stylesheet" href="/pj/css/sidebar.css">
 <link rel="shortcut icon" href="/pj/images/slogo.png">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>앞날이 창창</title>
 </head>
 <script>
@@ -26,13 +25,19 @@
 			</div>
 			<div id="sidenav-menu">
 			<a onclick="goSupport();">공지사항</a>
-			<a href="/pj/views/support/qna/qnaList.jsp">Q&A</a>
-			<a href="/pj/views/support/faq/faqList.jsp">FAQ</a>
+			<a onclick="goQna();">Q&A</a>
+			<a onclick="goFaq();">FAQ</a>
 			</div>
 		</div>
 		<script>
 		function goSupport(){
-			  location.href="<%= request.getContextPath() %>/select.sp";
+			  location.href="<%=request.getContextPath()%>/select.sp";
+		  }
+		function goQna(){
+			  location.href="<%=request.getContextPath()%>/selectQna.sp";
+		  }
+		function goFaq(){
+			  location.href="<%=request.getContextPath()%>/selectFaq.sp";
 		  }
 		</script>
 </body>

@@ -29,107 +29,42 @@ public class BoardDao {
 			e.printStackTrace();
 		}
 	}
-	/*
-	 * public ArrayList<Board> selectAll(Connection con, int currentPage, int
-	 * limit) { PreparedStatement pstmt = null;
-	 * 
-	 * ResultSet rset = null; ArrayList<Board> list = null;
-	 * 
-	 * String query = prop.getProperty("selecAll");
-	 * 
-	 * try { pstmt = con.prepareStatement(query);
-	 * 
-	 * //議고쉶 �떆�옉�븷 �븷 踰덊샇�� 留덉�留� �뻾 踰덊샇 怨꾩궛 int startRow = (currentPage - 1) *
-	 * limit + 1; int endRow = startRow + limit - 1;
-	 * 
-	 * //pstmt.setString(1, rset.getString("bCategory")); pstmt.setInt(1,
-	 * startRow); pstmt.setInt(2, endRow);
-	 * 
-	 * rset = pstmt.executeQuery();
-	 * 
-	 * list = new ArrayList<Board>();
-	 * 
-	 * while(rset.next()){ Board b = new Board();
-	 * 
-	 * b.setbId(rset.getInt("bId"));
-	 * 
-	 * 
-	 * list.add(b); } } catch (SQLException e) { e.printStackTrace(); } finally{
-	 * close(rset); close(pstmt); }
-	 * 
-	 * return list; }
-	 */
 
 	public int getListCount(Connection con, String boardCategory) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
-
+		
 		String query = prop.getProperty("listCount");
-
+		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, boardCategory);
-
+			
 			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
+			
+			if(rset.next()) {
 				listCount = rset.getInt(1);
 			}
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			close(rset);
 			close(pstmt);
 		}
 		return listCount;
 	}
 
-	/*
-	 * public Board selectOne(Connection con, int num) { PreparedStatement pstmt
-	 * = null; ResultSet rset = null; Board b = null;
-	 * 
-	 * String query = prop.getProperty("selectOne");
-	 * 
-	 * try { pstmt = con.prepareStatement(query); pstmt.setInt(1, num);
-	 * 
-	 * rset = pstmt.executeQuery();
-	 * 
-	 * if(rset.next()){ b = new Board();
-	 * 
-	 * b.setbId(rset.getInt("bId")); }
-	 * 
-	 * System.out.println(b);
-	 * 
-	 * } catch (SQLException e) { e.printStackTrace(); } finally{ close(pstmt);
-	 * close(rset); }
-	 * 
-	 * return b; }
-	 * 
-	 * public int updateCount(Connection con, int num) { PreparedStatement pstmt
-	 * = null; int result = 0;
-	 * 
-	 * String query = prop.getProperty("updateCount");
-	 * 
-	 * try { pstmt = con.prepareStatement(query); pstmt.setInt(1, num);
-	 * pstmt.setInt(2, num);
-	 * 
-	 * result = pstmt.executeUpdate();
-	 * 
-	 * } catch (SQLException e) { e.printStackTrace(); } finally{ close(pstmt);
-	 * }
-	 * 
-	 * return result; }
-	 */
 	public int insertBoard(Connection con, Board b) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-
+		
 		String query = prop.getProperty("inserBoard");
-
+		
 		try {
-			pstmt = con.prepareStatement(query);
+			pstmt= con.prepareStatement(query);
+      
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbText());
 			pstmt.setInt(3, b.getmNo());
@@ -252,7 +187,7 @@ public class BoardDao {
 		return list;
 	}
 
-	public int updateCount(Connection con, int num) {
+	public int updateCount(Connection con, int num, String boardCategory) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
@@ -261,8 +196,10 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, num);
-
+			pstmt.setString(2, boardCategory);
+			pstmt.setInt(3, num);
+			pstmt.setString(4, boardCategory);
+		
 			result = pstmt.executeUpdate();
 
 			System.out.println(result);
@@ -333,6 +270,7 @@ public class BoardDao {
 		return hmap;
 	}
 
+
 	public ArrayList<Board> boardSelctAll(Connection con) {
 		// TODO Auto-generated method stub
 
@@ -374,6 +312,140 @@ public class BoardDao {
 		} finally {
 			close(rset);
 			close(stmt);
+
+	public int updateBoard(Connection con, Board b) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBoard");
+		
+		try {
+			pstmt= con.prepareStatement(query);
+			pstmt.setString(1, b.getbTitle());
+			pstmt.setString(2, b.getbText());
+			pstmt.setInt(3, b.getbNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	public int updateAttachment(Connection con, Board b, ArrayList<Attachment> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateAttachment");
+		
+		try {
+			for(int i = 0; i< fileList.size(); i++) {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, fileList.get(i).getOriginName());
+				pstmt.setString(2, fileList.get(i).getChangeName());
+				pstmt.setString(3, fileList.get(i).getFilePath());
+				pstmt.setInt(4, b.getbNo());
+				
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	public int deleteBoard(Connection con, int bno, String boardCategory) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteBoard");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, boardCategory);
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("dao result : " +result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public ArrayList<HashMap<String, Object>> searchBoard1(Connection con, int currentPage, int limit,
+			String searchValue, String searchCategory) {
+		PreparedStatement pstmt = null;
+		ArrayList<HashMap<String,Object>> list = null;
+		HashMap<String,Object> hmap = null;
+		ResultSet rset = null;
+		String query = null; 
+				
+		if(searchCategory.equals("제목")) {
+			query = prop.getProperty("searchBoard1Title");
+		}else if(searchCategory.equals("작성자")){
+			query = prop.getProperty("searchBoard1Writer");
+		}else if(searchCategory.equals("내용")){
+			query = prop.getProperty("searchBoard1Content");
+		}else{
+			query = prop.getProperty("selectThumbnailMap");
+		};
+		
+		System.out.println(query);
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit -1;
+
+		try {
+			pstmt  = con.prepareStatement(query);
+			pstmt.setString(1, searchValue);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+		
+			list = new ArrayList<HashMap<String,Object>>();
+			
+			while(rset.next()) {
+				hmap = new HashMap<String,Object>();
+				
+				hmap.put("b_id", rset.getInt("b_id"));
+				hmap.put("b_no", rset.getInt("b_no"));
+				hmap.put("b_title",rset.getString("b_title"));
+				hmap.put("b_text",rset.getString("b_text"));
+				hmap.put("nickname",rset.getString("nickname"));
+				hmap.put("view_count",rset.getInt("view_count"));
+				hmap.put("b_date",rset.getDate("b_date"));
+				hmap.put("f_no", rset.getInt("f_no"));
+				hmap.put("origin_name", rset.getString("origin_name"));
+				hmap.put("change_name", rset.getString("change_name"));
+				hmap.put("file_path", rset.getString("file_path"));
+				hmap.put("upload_date", rset.getString("upload_date"));
+				
+				list.add(hmap);
+			}
+			System.out.println(list);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
 		return list;
 	}

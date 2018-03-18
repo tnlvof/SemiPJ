@@ -20,6 +20,11 @@
 <body>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
+	<div>
+		<div class="printBtn" id="printBtn">
+			다운로드
+		</div>
+	</div>	
 	<h1 align="center">업종분석</h1>
 	<div class="anaResult detailResult0"></div>
 	<div class="anaResult detailResult1"></div>

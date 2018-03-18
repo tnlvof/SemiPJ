@@ -20,6 +20,7 @@
 	}
 	HashMap<String, String> frontRecentRow =rows.get(0);
 	String recentDate = String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(0, 4) + "년 " + String.valueOf(frontRecentRow.get("기준_년월_코드")).substring(4, 6) + "월";
+	System.out.println("상권평가에 사용자 접속");
 %>
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,10 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/resultMenu.jsp" %>
 	<h1 align="center">종합결과</h1>
-	선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+	<div class="titleDiv">
+선택한 업종 : <%=catagoryName[0] +" > "+ catagoryName[1] %>
+		<div class="printBtn" id="printBtn">지수지표 다운로드</div>
+	</div>
 	<div class="anaResult detailResult0"></div>
 	<!-- <div class="anaResult detailResult1"></div> -->
 	<div class="tableArea">
@@ -73,6 +77,10 @@
 <%@ include file="../common/footer.jsp"%>
 <script>
 	$(function(){
+		$("#printBtn").click(function(){
+			location.href='<%=request.getContextPath()%>/downloadExcel.an?tableName=상권_지수지표&areaCode=<%=frontRecentRow.get("상권_코드")%>';
+		});
+	
 	<%
 		
 	String[] lineText = {"detailResult0", "지표 추이 ("+recentDate+"기준)", "지표", "점", am.getCategories("기준_년월_코드", rows)};

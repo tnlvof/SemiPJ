@@ -34,9 +34,8 @@
 
 .insertArea {
 	float: left;
-	width: 980px;
-	height: 800px;
-	margin-right: auto;
+    width: 800px;
+    margin-right: auto;
 }
 
 .btnArea {
@@ -64,7 +63,7 @@
 			<div class="bannerHeader">광고게시판</div>
 			<div class="bannerSub">회원분들의 제품을 자유롭게 홍보하세요</div>
 			<div class="searchDiv">
-				<select class="searchCategory">
+				<select class="searchCategory" name="searchCategory">
 					<option>제목</option>
 					<option>작성자</option>
 					<option>내용</option>

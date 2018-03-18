@@ -31,14 +31,13 @@ public class SelectOneServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		int num = Integer.parseInt(request.getParameter("num"));
+		String boardCategory = "6";
 		
 		System.out.println("num : " + num);
 		
-		Support s = new SupportService().selectOne(num);
+		Support s = new SupportService().selectOne(num, boardCategory);
 		
 		String page = null;
 		if(s != null){
