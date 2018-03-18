@@ -21,7 +21,7 @@ table {
     }
     
 .paging-top{
-	padding: 10px;
+	padding: 5px 10px;
 }
     
 .tableListArea, .tableArea-detail, .formArea, .tableArea-update {
@@ -118,6 +118,15 @@ table {
 
 .pagingArea button{
 	border:none;
+}
+
+.paging-top p{
+	display:inline-block;
+}
+
+.writeBtn{
+	float:right;
+	margin-bottom: 10px;
 }
 
 /* summerNote */

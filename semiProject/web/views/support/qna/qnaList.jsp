@@ -32,6 +32,13 @@
 		<div class="tableListArea">
 		<div class="paging-top">
 		<p><%= currentPage %> / <%= maxPage %></p>
+		<%
+				if (loginUser != null) {
+			%>
+			<button
+				onclick="location.href='/pj/views/support/qna/qnaInsertForm.jsp'"
+				class="boardBtn writeBtn">글쓰기</button>
+			<% } %>
 		</div>
 			<table align="center">
 				<tr>
@@ -88,13 +95,6 @@
 					<input type="text" class="form_text" name="searchValue">
 				<button type="submit" class="boardBtn "><span class="glyphicon glyphicon-search"></span></button>
 			</form>
-			<%
-				if (loginUser != null) {
-			%>
-			<button
-				onclick="location.href='/pj/views/support/qna/qnaInsertForm.jsp'"
-				class="boardBtn writeBtn">글쓰기</button>
-			<% } %>
 		</div>
 	</div>
 	</div>	

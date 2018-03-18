@@ -32,7 +32,14 @@
 		<div class="tableListArea">
 		<div class="paging-top">
 		<p><%= currentPage %> / <%= maxPage %></p>
-		</div>
+				<%
+					if (loginUser != null && loginUser.getMemberId().equals("admin")) {
+				%>
+				<button
+					onclick="location.href='/pj/views/support/notice/noticeInsertForm.jsp'"
+					class="boardBtn writeBtn">글쓰기</button>
+				<% } %>
+			</div>
 			<table align="center">
 				<tr>
 					<th width="100px" class="tableLeft-none">번호</th>
@@ -88,13 +95,6 @@
 					<input type="text" class="form_text" name="searchValue">
 				<button type="submit" class="searchBtn "><span class="glyphicon glyphicon-search"></span></button>
 			</form>
-			<%
-				if (loginUser != null && loginUser.getMemberId().equals("admin")) {
-			%>
-			<button
-				onclick="location.href='/pj/views/support/notice/noticeInsertForm.jsp'"
-				class="boardBtn writeBtn">글쓰기</button>
-			<% } %>
 		</div>
 	</div>
 	</div>	
