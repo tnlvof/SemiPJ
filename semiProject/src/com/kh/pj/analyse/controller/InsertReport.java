@@ -37,7 +37,7 @@ public class InsertReport extends HttpServlet {
 		String areaCode = request.getParameter("areaCode");
 		String catagoryCode = request.getParameter("catagoryCode");
 		String memberNo = request.getParameter("memberNo");
-		
+
 		int result = new AnalyseService().insertCode(address, areaCode, catagoryCode, Integer.parseInt(memberNo));
 		
 		System.out.println("insertcode : "+address+ " " + areaCode + " " + catagoryCode);

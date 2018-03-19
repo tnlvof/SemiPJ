@@ -3,6 +3,7 @@
 <%
 	Board b = (Board) request.getAttribute("b");
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
+	ArrayList<Board> replyList = (ArrayList<Board>) request.getAttribute("replyList");
 	Attachment titleImg = fileList.get(0);
 %>
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <link rel="stylesheet" href="/pj/css/support.css">
 <title>Insert title here</title>
 
 <style>
@@ -45,8 +47,31 @@
 }
 
 #titleImg {
-	width: 400px;
-	height: 300px;
+	    max-height: 1000px;
+}
+.replyArea{
+	background:#f7f7f7;
+	margin-left:30px;
+}
+#replySelectArea{
+	width:100%;
+	min-height:100px;
+}
+.replyWriteArea  table  tr  td{
+	vertical-align:middle;
+	text-align:center;
+}
+.replyWriteArea  table  tr  td textarea{
+	resize:none;
+}
+.replyWriteArea{
+	margin-top:30px;
+	margin-bottom:50px;
+}
+#replySelectTable tr td{
+	vertical-align:middle;
+	height:50px;
+	border-bottom:1px solid white;
 }
 </style>
 </head>
@@ -54,31 +79,116 @@
 	<%@ include file="/views/common/menubar.jsp"%>
 
 	<div class="div1">
-
+		
 		<%@ include file="/views/common/communitySidebar.jsp"%>
 		<div class="outer">
-			<table class="detail" align="center">
+			
+			<div class="supportHeader">
+			<h2>광고 게시판</h2>
+		</div>
+		<div class="tableArea-detail">
+			<table align="center">
 				<tr>
-					<td colspan="5"><label><%=b.getbTitle()%></label></td>
+					<th scope="row">작성일</th>
+					<td colspan="2"><span><%=b.getbDate()%></span></td>
+					<th scope="row">조회수</th>
+					<td colspan="1"><span><%=b.getvCount()%></span></td>
 				</tr>
 				<tr>
-					<td><label><%=b.getbWriter()%></label></td>
-					<td><label><%=b.getvCount()%></label></td>
-					<td><label><%=b.getbDate()%></label></td>
+					<th scope="row">제목</th>
+					<td colspan="4"><span><%=b.getbTitle()%></span></td>
 				</tr>
 				<tr>
-					<td colspan="5"><img id="titleImg"
+					<th scope="row">작성자</th>
+					<td colspan="4"><span><%=b.getbWriter()%></span></td>
+				</tr>
+				<tr>
+					<td colspan="5" align="center" style="border-left:1px solid white;">
+					<img id="titleImg"
 						src="<%=request.getContextPath()%>/thumbnail_uploadFiles/<%=titleImg.getChangeName()%>">
 					</td>
-					<td>
-					</td>
 				</tr>
 				<tr>
-					<td colspan="5">
-						<p id="contentArea"><%=b.getbText()%></p>
+					<td colspan="5" class="textBox">
+					<div class="textDiv">
+						<p id="content"><%=b.getbText()%>
+						</p>
+						</div>
 					</td>
 				</tr>
-			</table>
+				</table>
+		</div>
+			<div class="replyArea">
+				<div id="replySelectArea" align="center">
+					<table id="replySelectTable" border="1" align="center">
+					<%for(int i=0; i < replyList.size();i++ ){ %>
+						<tr>
+							<td width="150px" style="font-weight:600;text-align:center;"><%= replyList.get(i).getbWriter() %></td>
+							<td width="350px" style="padding-left:20px;text-align:left;"><%= replyList.get(i).getbText() %></td>
+							<td width="200px" style="text-align:center;"><%= replyList.get(i).getbDate() %></td>
+						</tr>
+					<% } %>
+					</table>
+				</div>
+				
+				<div class="replyWriteArea">
+					<table align="center">
+						<tr>
+							<td width="100">댓글 작성</td>
+							<td width="450">
+								<textarea rows="3" cols="60" id="replyContent"></textarea>
+							</td>
+							<td>
+								<button class="submitBtn" id="addReply">댓글 등록</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<script>
+		$(function() {
+			$("#addReply").click(
+				function() {
+					var writer = <%=loginUser.getMemberNo()%>;
+					var bid = <%= b.getbId() %>;
+					var content = $("#replyContent").val();
+				
+					console.log(writer);
+					console.log(bid);
+					console.log(content);
+					$.ajax({
+						url:"/pj/insertReply.b1",
+						data:{writer:writer, content:content , bid:bid},
+						type:"post",
+						success:function(data){
+							//console.log(data)
+							var $replySelectTable =$("#replySelectTable");
+							$replySelectTable.html('');
+							
+						for(var key in data){
+							var $tr = $("<tr>");
+							var $writerTd = $("<td>").text(data[key].bWriter).css({"width":"150px","height":"50px","vertical-align":"middle","text-align":"center","font-weight":"600","border-bottom":"1px solid white"});
+							var $contentTd = $("<td>").text(data[key].bText).css({"width":"350px","vertical-align":"middle","border-bottom":"1px solid white","padding-left":"20px"});
+							var $dateTd = $("<td>").text(data[key].bDate).css({"width":"200px","vertical-align":"middle","text-align":"center","border-bottom":"1px solid white"});
+							
+							$tr.append($writerTd);
+							$tr.append($contentTd);
+							$tr.append($dateTd);
+							$replySelectTable.append($tr);
+						};
+					},
+					error:function(data){
+						alert(msg);
+					}
+				});
+				
+				$("#replyContent").val('');
+			});
+		});
+	</script>
+			
+			
 			<div class="btnArea" align="center">
 					<button type="button" class="submitBtn" 
 						onclick="location.href='<%= request.getContextPath() %>/selectUpdate.b1?num=<%= b.getbNo()%>'">수정</button>

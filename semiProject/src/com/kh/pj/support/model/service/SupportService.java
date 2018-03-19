@@ -89,6 +89,23 @@ public class SupportService {
 		return list;
 	}
 
+<<<<<<< HEAD
+=======
+
+	public int insertReply(Support s, String boardCategory) {
+		Connection con = getConnection();
+
+		int result = new SupportDao().insertReply(con, s, boardCategory);
+
+		if(result > 0) commit(con);
+		else rollback(con);
+
+		close(con);
+		
+		return result;
+	}
+
+>>>>>>> master
 	public ArrayList<Support> search(int currentPage, int limit, String searchValue,
 			String searchCategory, String boardCategory) {
 			Connection con = getConnection();

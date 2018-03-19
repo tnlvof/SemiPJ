@@ -85,8 +85,9 @@
 					<td><div id="chemail">확인</div></td>
 				</tr>
 				<tr>
-					<th class="table-indent">우편번호</th>
+					<td>우편번호</td>
 					<td><input type="text" name="zipCode"></td>
+					<td><div id="ckZip">검색</div></td>
 				</tr>
 				<tr>
 					<th class="table-indent">주소</th>
@@ -98,6 +99,18 @@
 					<td><input type="text" name="address2" id="address2"></td>
 					<td></td>
 				</tr>
+				<!-- <tr>
+					<td>관심분야</td>
+					<td>
+						<input type="checkbox" id="sports" name="interest" value="운동"><label for="sports">운동</label>
+						<input type="checkbox" id="climbing" name="interest" value="등산"><label for="climbing">등산</label>
+						<input type="checkbox" id="fishing" name="interest" value="낚시"><label for="fishing">낚시</label>
+						<input type="checkbox" id="cooking" name="interest" value="요리"><label for="cooking">요리</label>
+						<input type="checkbox" id="game" name="interest" value="게임"><label for="game">게임</label>
+						<input type="checkbox" id="etc" name="interest" value="기타"><label for="etc">기타</label>
+					</td>
+					<td></td>
+				</tr> -->
 			</table>
 
 			<div class="wrap-btns">

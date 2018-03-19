@@ -42,6 +42,9 @@
 							<div class="loginOkbtns" style="text-indent:10px;">
 								<div id="changeInfo" onclick="myPage();">마이페이지</div>
 								<div id="logoutBtn" onclick="logout();">로그아웃</div>
+								<% if(loginUser.getMemberId().equals("admin")){ %>
+								<div id="logoutBtn" onclick="location.href='/semiProject/web/views/admin/adminsidebar.jsp'">관리자페이지 가기</div>
+								<%} %>
 							</div>
 						</div>
 			<% } %>

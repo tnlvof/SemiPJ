@@ -87,6 +87,14 @@ public class BoardService {
 		
 		return hmap;
 	}
+	public ArrayList<Board> boardSelctAll() {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		ArrayList<Board>list = new BoardDao().boardSelctAll(con);
+		System.out.println(list+"service");
+		close(con);
+		return list;
+	}
 
 
 	public int updateBoard(Board b, ArrayList<Attachment> fileList) {
@@ -136,5 +144,71 @@ public class BoardService {
 		close(con);
 		
 		return list;
+	}
+
+	public ArrayList<Board> boardSearchAll(String searchval, String searchcon) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		ArrayList<Board>list = new BoardDao().boardSearchAll(con,searchval,searchcon);
+		System.out.println(list+"service");
+		close(con);
+		return list;
+	}
+
+
+	public int boardRemove(String bTitle) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		int result = new BoardDao().boardRemove(con,bTitle);
+		if(result>0)
+		{
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+
+	public int boardReturn(String bTitle) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		int result = new BoardDao().boardReturn(con, bTitle);
+		if(result>0)
+		{
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+  }
+	public ArrayList<Board> insertReply(Board b) {
+		Connection con = getConnection();
+		ArrayList<Board> replyList = null;
+		
+		int result = new BoardDao().insertReply(con,b);
+		
+		if(result > 0) {
+			commit(con);
+			replyList = new BoardDao().selectReplyList(con,b.getpNo());
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return replyList;
+		}
+
+
+	public ArrayList<Board> selectReplyList(Board b) {
+		Connection con = getConnection();
+		ArrayList<Board> replyList = new BoardDao().selectReplyList(con,b.getbId());
+		
+		close(con);
+		
+		return replyList;
 	}
 }
