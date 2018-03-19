@@ -43,7 +43,7 @@
 								<div id="changeInfo" onclick="myPage();">마이페이지</div>
 								<div id="logoutBtn" onclick="logout();">로그아웃</div>
 								<% if(loginUser.getMemberId().equals("admin")){ %>
-								<div id="logoutBtn" onclick="location.href='/semiProject/web/views/admin/adminsidebar.jsp'">관리자페이지 가기</div>
+								<div id="logoutBtn" onclick="location.href='/pj/views/admin/adminsidebar.jsp'">관리자페이지 가기</div>
 								<%} %>
 							</div>
 						</div>
@@ -60,7 +60,7 @@
 
 				<li class="menu" onclick="location.href='/pj/views/analysis/map/map.jsp'">상권분석</li>
 				<li class="bar">|</li>
-				<li class="menu">정부시책</li>
+				<li class="menu" onclick="location.href='http://www.sbiz.or.kr/sup/policy/policystartup.do'">정부시책</li>
 				<li class="bar">|</li>
 				<li class="menu" onclick="goCommunity()">커뮤니티</li>
 				<li class="bar">|</li>
