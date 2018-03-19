@@ -33,27 +33,23 @@ public class InsertReply extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String text = request.getParameter("text");
+		String writer = request.getParameter("writer");
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		String content = request.getParameter("content");
 		
-		String writer = String.valueOf((((Member)(request.getSession().getAttribute("loginUser"))).getMemberNo()));
-		String boardCategory = "7";
-		
-		System.out.println(text);
 		System.out.println(writer);
+		System.out.println(bid);
+		System.out.println(content);
 		
 		Support s = new Support();
-		s.setbText(text);
+		s.setpNo(bid);
 		s.setbWriter(writer);
+		s.setbText(content);
 		
-		int result = new SupportService().insertReply(s, boardCategory);
+		ArrayList<Support> replyList = new SupportService().insertReply(s);
 		
-		String page="";
-		if(result > 0){
-			response.sendRedirect(request.getContextPath() + "/selectQna.sp");
-		} else{
-			request.setAttribute("msg", "게시판 작성 실패!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}
+		response.setContentType("application/json");
+		new Gson().toJson(replyList, response.getWriter());
 	}
 
 	/**
