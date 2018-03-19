@@ -451,6 +451,7 @@ public class BoardDao {
 		}
 		return list;
 	}
+
 	public ArrayList<Board> boardSearchAll(Connection con, String searchval, String searchcon) {
 		// TODO Auto-generated method stub
 
@@ -542,5 +543,65 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return result;
+  }
+
+	public int insertReply(Connection con, Board b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertReply");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, b.getbText());
+			pstmt.setInt(2, Integer.parseInt(b.getbWriter()));
+			pstmt.setInt(3, b.getpNo());
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Board> selectReplyList(Connection con, int getpNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("selectReplyList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, getpNo);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next()) {
+				Board b = new Board();
+				b.setbId(rset.getInt("b_id"));
+				b.setbText(rset.getString("b_text"));
+				b.setbWriter(rset.getString("nickname"));
+				b.setpNo(rset.getInt("p_no"));
+				b.setRefLevel(rset.getInt("ref_level"));
+				b.setbDate(rset.getDate("b_date"));
+				
+				list.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
 	}
 }

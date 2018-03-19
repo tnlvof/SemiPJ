@@ -35,7 +35,7 @@ public class Boadr1SearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchValue = request.getParameter("searchValue");
 		String searchCategory = request.getParameter("selectCategory");
-		
+		 
 		System.out.println("searchValue : " + searchValue);
 		System.out.println("searchCategory : " + searchCategory);
 		
