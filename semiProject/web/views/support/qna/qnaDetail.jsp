@@ -108,7 +108,7 @@ margin-left:30px;
 						<td width="100px" style="font-weight:600; text-align:center;"><%= replyList.get(i).getbWriter() %></td>
 						<td width="300px" style="padding-left:20px; text-align:left;"><%= replyList.get(i).getbText() %></td>
 						<td width="150px" style="text-align:center;"><%= replyList.get(i).getbDate() %></td>
-					</tr> 
+					</tr>
 					<% } %>
 				</table>
 			</div>
