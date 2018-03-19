@@ -83,9 +83,6 @@ body {
 			<tbody id=addData>
 			</tbody>
 		</table>
-		<hr>
-		<button onclick="memberWithdraw();">탈퇴</button>
-		<hr>
 	</div>
 
 	<script type="text/javascript">
