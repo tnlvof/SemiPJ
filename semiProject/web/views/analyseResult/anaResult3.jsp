@@ -73,7 +73,7 @@
 				<th>2017.08</th>
 			</tr>
 			<tr align="center">
-				<th>선택상권</th>
+				<th><%= moveFrontRecentRow.get("상권_코드_명") %></th>
 				<td><%= moveFront.get(0).get("총_수") %>명</td>
 				<td><%= moveFront.get(1).get("총_수") %>명</td>
 				<td><%= moveFront.get(2).get("총_수") %>명</td>
@@ -102,7 +102,7 @@
 			<th>60대이상</th>
 		</tr>
 		<tr align="center">
-			<th rowspan="2">선택영역</th>
+			<th rowspan="2"><%= moveFrontRecentRow.get("상권_코드_명") %></th>
 			<th>명</th>
 			<td><%= moveFront.get(0).get("남성_수") %>명</td>
 			<td><%= moveFront.get(0).get("여성_수") %>명</td>
@@ -131,7 +131,7 @@
 			<th>21 ~ 24시</th>
 		</tr>
 		<tr align="center">
-			<th rowspan="2">선택영역</th>
+			<th rowspan="2"><%= moveFrontRecentRow.get("상권_코드_명") %></th>
 			<th>명</th>
 			<td><%= moveFront.get(0).get("시간대_1_수") %>명</td>
 			<td><%= moveFront.get(0).get("시간대_2_수") %>명</td>
@@ -169,7 +169,7 @@
 			<th>60대이상</th>
 		</tr>
 		<tr align="center">
-			<th rowspan="2">선택영역</th>
+			<th rowspan="2"><%= moveFrontRecentRow.get("상권_코드_명") %></th>
 			<th>명</th>
 			<td><%= liveFront.get(0).get("남성_수") %>명</td>
 			<td><%= liveFront.get(0).get("여성_수") %>명</td>
@@ -209,7 +209,7 @@
 			<th>60대이상</th>
 		</tr>
 		<tr align="center">
-			<th rowspan="2">선택영역</th>
+			<th rowspan="2"><%= moveFrontRecentRow.get("상권_코드_명") %></th>
 			<th>명</th>
 			<td><%= workFront.get(0).get("남성_수") %>명</td>
 			<td><%= workFront.get(0).get("여성_수") %>명</td>
@@ -251,7 +251,7 @@
 			
 		</tr>
 		<tr align="center">
-			<th rowspan="2">선택영역</th>
+			<th rowspan="2"><%= moveFrontRecentRow.get("상권_코드_명") %></th>
 			<th>가구</th>
 			<td><%= liveFront.get(0).get("아파트_가구_수") %></td>
 			<td><%= liveFront.get(0).get("비_아파트_가구_수") %></td>

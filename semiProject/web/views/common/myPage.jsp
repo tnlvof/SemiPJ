@@ -85,7 +85,7 @@
 					<td><%= list.get(i).get("analysisNo") %></td>
 					<td><%= list.get(i).get("memberNo") %></td>
 					<td><%= list.get(i).get("address") %></td>
-					<td><%= list.get(i).get("BigCategory") + " > " + list.get(0).get("smallCategory") %></td>
+					<td><%= list.get(i).get("BigCategory") + " > " + list.get(i).get("smallCategory") %></td>
 					<td><%= list.get(i).get("analyDate") %></td>
 					<td><button onclick="reportPage('<%= list.get(i).get("areaCode") %>', '<%= list.get(i).get("categoryCode") %>');">보고서 다시보기</button></td>
 				</tr>
