@@ -97,7 +97,7 @@ margin-left:30px;
 			<button onclick="location.href='<%= request.getContextPath() %>/selectUpdateQna.sp?num=<%= s.getbNo() %>'">수정</button>
 			<button onclick="deleteQna();">삭제</button>
 			<%
-				}
+				} 
 			%>
 		</div>
 		<div class="replyArea" align="center">
