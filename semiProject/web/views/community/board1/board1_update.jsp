@@ -69,7 +69,8 @@
 			<div class="bannerHeader">광고게시판</div>
 			<div class="bannerSub">회원분들의 제품을 자유롭게 홍보하세요</div>
 			<div class="searchDiv">
-				<select class="searchCategory">
+			<form action="<%=request.getContextPath()%>/search.b1">
+				<select class="searchCategory" name="selectCategory">
 					<option>제목</option>
 					<option>작성자</option>
 					<option>내용</option>
@@ -77,7 +78,8 @@
 				<div class="inputDiv">
 					<input type="text" class="form_text" name="searchValue">
 				</div>
-				<button class="searchBtn">검색</button>
+				<button type="submit" class="searchBtn">검색</button>
+			</form>
 			</div>
 		</div>
 	</div>

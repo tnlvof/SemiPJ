@@ -77,7 +77,7 @@ public class BoardService {
 		
 		if(result > 0) {
 			commit(con);
-			hmap = new BoardDao().selectOneBoard1(con,num);
+			hmap = new BoardDao().selectOneBoard1(con,num,boardCategory);
 		}else {
 			rollback(con);
 		}
@@ -87,6 +87,30 @@ public class BoardService {
 		
 		return hmap;
 	}
+	
+	public HashMap<String, Object> selectOneBoard2(int num, String boardCategory) {
+		Connection con = getConnection();
+		
+		HashMap<String,Object> hmap = null; 
+		
+		int result = new BoardDao().updateCount(con, num, boardCategory);
+		
+		System.out.println("boardservice result = " + result);
+		
+		if(result > 0) {
+			commit(con);
+			hmap = new BoardDao().selectOneBoard2(con,num,boardCategory);
+			System.out.println("boardService hmap = " + hmap);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		//new BoardDao().selectThumbnailMap; 
+		
+		return hmap;
+	}
+	
 	public ArrayList<Board> boardSelctAll() {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
@@ -210,5 +234,45 @@ public class BoardService {
 		close(con);
 		
 		return replyList;
+	}
+
+
+	public ArrayList<HashMap<String, Object>> selectList(int currentPage, int limit, String boardCategory) {
+		Connection con = getConnection();
+
+		ArrayList<HashMap<String,Object>> list = new BoardDao().selectList2(con,currentPage,limit,boardCategory);
+		
+		close(con);
+		
+		return list;
+	}
+
+
+	public int insertBoard2(Board b) {
+		Connection con = getConnection();
+		
+		int result = new BoardDao().insertBoard2(con, b);
+		
+		if(result >0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+	
+		close(con);
+
+		return result;
+	}
+
+
+	public ArrayList<HashMap<String, Object>> searchBoard2(int currentPage, int limit, String searchValue,
+			String searchCategory, String boardCategory) {
+		Connection con = getConnection();
+
+		ArrayList<HashMap<String,Object>> list = new BoardDao().searchBoard2(con,currentPage,limit,searchValue,searchCategory,boardCategory);
+		
+		close(con);
+		
+		return list;
 	}
 }

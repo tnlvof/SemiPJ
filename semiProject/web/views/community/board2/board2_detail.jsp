@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8" import="com.kh.pj.board.model.vo.*, java.util.*"%>
 <%
 	Board b = (Board) request.getAttribute("b");
-	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
 	ArrayList<Board> replyList = (ArrayList<Board>) request.getAttribute("replyList");
-	Attachment titleImg = fileList.get(0);
 %>
 <!DOCTYPE html>
 <html>
@@ -104,14 +102,15 @@
 				</tr>
 				<tr>
 					<td colspan="5" align="center" style="border-left:1px solid white;">
-					<img id="titleImg"
+					<%-- <img id="titleImg"
 						src="<%=request.getContextPath()%>/thumbnail_uploadFiles/<%=titleImg.getChangeName()%>">
-					</td>
+					</td> --%>
 				</tr>
 				<tr>
 					<td colspan="5" class="textBox">
 					<div class="textDiv">
-						<%=b.getbText()%>
+						<p id="content"><%=b.getbText()%>
+						</p>
 						</div>
 					</td>
 				</tr>
@@ -190,21 +189,21 @@
 			
 			<div class="btnArea" align="center">
 					<button type="button" class="submitBtn" 
-						onclick="location.href='<%= request.getContextPath() %>/selectUpdate.b1?num=<%= b.getbNo()%>'">수정</button>
+						onclick="location.href='<%= request.getContextPath() %>/selectUpdate.b2?num=<%= b.getbNo()%>'">수정</button>
 					<button type="button" class="submitBtn"
 						onclick="deleteBoard();">삭제</button>
 						<script>
 							function deleteBoard(){
 								var result = confirm('정말 삭제하시겠습니까?'); 
 								if(result) { 
-									location.href="<%= request.getContextPath() %>/delete.b1?num=<%= b.getbNo()%>";
+									location.href="<%= request.getContextPath() %>/delete.b2?num=<%= b.getbNo()%>";
 								} else { 
 
 								}
 							}
 						</script>
 					<button type="button" class="submitBtn"
-						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b1'">목록</button>
+						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b2'">목록</button>
 			</div>
 		</div>
 	</div>
