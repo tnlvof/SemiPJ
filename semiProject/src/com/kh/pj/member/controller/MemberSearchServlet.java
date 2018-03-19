@@ -32,25 +32,7 @@ public class MemberSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD:semiProject/src/com/kh/pj/support/controller/InsertReply.java
-		String writer = request.getParameter("writer");
-		int bid = Integer.parseInt(request.getParameter("bid"));
-		String content = request.getParameter("content");
-		
-		System.out.println(writer);
-		System.out.println(bid);
-		System.out.println(content);
-		
-		Support s = new Support();
-		s.setpNo(bid);
-		s.setbWriter(writer);
-		s.setbText(content);
-		
-		ArrayList<Support> replyList = new SupportService().insertReply(s);
-		
-		response.setContentType("application/json");
-		new Gson().toJson(replyList, response.getWriter());
-=======
+
 		// TODO Auto-generated method stub
 		String searchval=request.getParameter("searchval");
 		String searchcon=request.getParameter("searchcon");
@@ -62,8 +44,6 @@ public class MemberSearchServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		new Gson().toJson(list, response.getWriter());
-		
->>>>>>> master:semiProject/src/com/kh/pj/member/controller/MemberSearchServlet.java
 	}
 
 	/**
