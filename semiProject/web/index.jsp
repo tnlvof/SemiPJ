@@ -42,7 +42,7 @@
 .btn2 {
 	width: 180px;
 	height: 183px;
-}
+} 
 
 .btn3 {
 	width: 370px;
@@ -82,15 +82,15 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
+					<img src="images/main_bg2.png" width="100%">
+				</div>
+
+				<div class="item">
+					<img src="images/main_bg3.png" width="100%">
+				</div>
+
+				<div class="item">
 					<img src="images/bg1.png" width="100%">
-				</div>
-
-				<div class="item">
-					<img src="http://placehold.it/1200x500" width="100%">
-				</div>
-
-				<div class="item">
-					<img src="http://placehold.it/1200x500" width="100%">
 				</div>
 			</div>
 
@@ -103,7 +103,7 @@
 				<span class="sr-only">Next</span>
 			</a>
 
-			<div class="btns-wrap">
+			<!-- <div class="btns-wrap">
 				<ul>
 					<li class="btn1 btns"><a href="#"><img
 							src="http://placehold.it/180x370"></a></li>
@@ -115,7 +115,7 @@
 					<li class="btn3 btns"><a href="#"><img
 							src="http://placehold.it/370x180"></a></li>
 				</ul>
-			</div>
+			</div> -->
 			<!-- btns-wrap -->
 		</div>
 		<!-- myCarousel -->

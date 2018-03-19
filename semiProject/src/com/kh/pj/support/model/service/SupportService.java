@@ -89,6 +89,8 @@ public class SupportService {
 		return list;
 	}
 
+<<<<<<< HEAD
+=======
 
 	public int insertReply(Support s, String boardCategory) {
 		Connection con = getConnection();
@@ -103,6 +105,7 @@ public class SupportService {
 		return result;
 	}
 
+>>>>>>> master
 	public ArrayList<Support> search(int currentPage, int limit, String searchValue,
 			String searchCategory, String boardCategory) {
 			Connection con = getConnection();
@@ -112,6 +115,33 @@ public class SupportService {
 			close(con);
 			
 			return list;
+	}
+
+	public ArrayList<Support> insertReply(Support s) {
+		Connection con = getConnection();
+		ArrayList<Support> replyList = null;
+		
+		int result = new SupportDao().insertReply(con, s);
+		
+		if(result > 0) {
+			commit(con);
+			replyList = new SupportDao().selectReplyList(con, s.getpNo());
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return replyList;
+	}
+
+	public ArrayList<Support> selectReplyList(Support s) {
+		Connection con = getConnection();
+		ArrayList<Support> replyList = new SupportDao().selectReplyList(con, s.getbId());
+		
+		close(con);
+		
+		return replyList;
 	}
 
 
