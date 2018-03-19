@@ -37,16 +37,18 @@
 }
 
 .submitBtn{
-text-align:right;
+float: right;
+    margin: 40px;
 } 
 
 .replyWriteArea textarea{
-margin-left:30px;
+margin-left:45px;
 }
 
 .replyWriteArea{
-   margin-top:30px;
-   margin-bottom:30px;
+   margin-top:20px;
+   margin-bottom:20px;
+   padding-bottom:20px;
 }
 #replySelectTable tr td{
    vertical-align:middle;

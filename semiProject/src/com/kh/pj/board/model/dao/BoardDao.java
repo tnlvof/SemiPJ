@@ -212,7 +212,7 @@ public class BoardDao {
 		return result;
 	}
 
-	public HashMap<String, Object> selectOneBoard1(Connection con, int num) {
+	public HashMap<String, Object> selectOneBoard1(Connection con, int num, String boardCategory) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		HashMap<String, Object> hmap = null;
@@ -224,7 +224,8 @@ public class BoardDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, boardCategory);
+			pstmt.setInt(2, num);
 
 			rset = pstmt.executeQuery();
 
@@ -260,6 +261,53 @@ public class BoardDao {
 			hmap = new HashMap<String, Object>();
 			hmap.put("board", b);
 			hmap.put("attachment", list);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return hmap;
+	}
+	
+	public HashMap<String, Object> selectOneBoard2(Connection con, int num, String boardCategory) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		HashMap<String, Object> hmap = null;
+		Board b = null;
+		Attachment at = null;
+		ArrayList<Attachment> list = null;
+
+		String query = prop.getProperty("selectOneBoard2");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, boardCategory);
+			pstmt.setInt(2, num);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				b = new Board();
+				b.setbId(rset.getInt("b_id"));
+				b.setbTitle(rset.getString("b_title"));
+				b.setbDate(rset.getDate("b_date"));
+				b.setbText(rset.getString("b_text"));
+				b.setbWriter(rset.getString("nickname"));
+				b.setmNo(rset.getInt("member_no"));
+				b.setbCategory(rset.getString("board_category"));
+				b.setvCount(rset.getInt("view_count"));
+				b.setpNo(rset.getInt("p_no"));
+				b.setAdopt(rset.getString("adopt_yn"));
+				b.setbNo(rset.getInt("b_no"));
+				b.setRecCount(rset.getInt("rec_count"));
+				b.setRefLevel(rset.getInt("ref_level"));
+				b.setbPassword(rset.getString("b_password"));
+
+			}
+			hmap = new HashMap<String, Object>();
+			hmap.put("board", b);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -602,6 +650,136 @@ public class BoardDao {
 			close(rset);
 		}
 		
+		return list;
+	}
+
+	public ArrayList<HashMap<String, Object>> selectList2(Connection con, int currentPage, int limit,
+			String boardCategory) {
+		PreparedStatement pstmt = null;
+		ArrayList<HashMap<String, Object>> list = null;
+		HashMap<String, Object> hmap = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectBoard2List");
+
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		System.out.println("boardDao boardCategory : " + boardCategory);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, boardCategory);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<HashMap<String, Object>>();
+
+			while (rset.next()) {
+				hmap = new HashMap<String, Object>();
+
+				hmap.put("b_id", rset.getInt("b_id"));
+				hmap.put("b_no", rset.getInt("b_no"));
+				hmap.put("b_title", rset.getString("b_title"));
+				hmap.put("b_text", rset.getString("b_text"));
+				hmap.put("nickname", rset.getString("nickname"));
+				hmap.put("view_count", rset.getInt("view_count"));
+				hmap.put("b_date", rset.getDate("b_date"));
+
+				list.add(hmap);
+			}
+			System.out.println(list);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int insertBoard2(Connection con, Board b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("inserBoard2");
+		
+		try {
+			pstmt= con.prepareStatement(query);
+
+			pstmt.setString(1, b.getbTitle());
+			pstmt.setString(2, b.getbText());
+			pstmt.setInt(3, b.getmNo());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<HashMap<String, Object>> searchBoard2(Connection con, int currentPage, int limit,
+			String searchValue, String searchCategory, String boardCategory) {
+		PreparedStatement pstmt = null;
+		ArrayList<HashMap<String,Object>> list = null;
+		HashMap<String,Object> hmap = null;
+		ResultSet rset = null;
+		String query = null; 
+				
+		if(searchCategory.equals("제목")) {
+			query = prop.getProperty("searchBoard2Title");
+		}else if(searchCategory.equals("작성자")){
+			query = prop.getProperty("searchBoard2Writer");
+		}else if(searchCategory.equals("내용")){
+			query = prop.getProperty("searchBoard2Content");
+		}else{
+			query = prop.getProperty("selectBoard2List");
+		};
+		
+		System.out.println(query);
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit -1;
+
+		try {
+			pstmt  = con.prepareStatement(query);
+			pstmt.setString(1, searchValue);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+		
+			list = new ArrayList<HashMap<String,Object>>();
+			
+			while(rset.next()) {
+				hmap = new HashMap<String,Object>();
+				
+				hmap.put("b_id", rset.getInt("b_id"));
+				hmap.put("b_no", rset.getInt("b_no"));
+				hmap.put("b_title",rset.getString("b_title"));
+				hmap.put("b_text",rset.getString("b_text"));
+				hmap.put("nickname",rset.getString("nickname"));
+				hmap.put("view_count",rset.getInt("view_count"));
+				hmap.put("b_date",rset.getDate("b_date"));
+				
+				list.add(hmap);
+			}
+			System.out.println(list);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
 		return list;
 	}
 }

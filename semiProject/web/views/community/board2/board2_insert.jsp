@@ -63,8 +63,7 @@
 			<div class="bannerHeader">광고게시판</div>
 			<div class="bannerSub">회원분들의 제품을 자유롭게 홍보하세요</div>
 			<div class="searchDiv">
-			<form action="<%=request.getContextPath()%>/search.b1">
-				<select class="searchCategory" name="selectCategory">
+				<select class="searchCategory" name="searchCategory">
 					<option>제목</option>
 					<option>작성자</option>
 					<option>내용</option>
@@ -72,8 +71,7 @@
 				<div class="inputDiv">
 					<input type="text" class="form_text" name="searchValue">
 				</div>
-				<button type="submit" class="searchBtn">검색</button>
-			</form>
+				<button class="searchBtn">검색</button>
 			</div>
 		</div>
 	</div>
@@ -88,21 +86,13 @@
 			<%
 				if (loginUser != null) {
 			%>
-			<form action="<%=request.getContextPath()%>/insert.b1" method="post" encType="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/insert.b2" method="post" encType="multipart/form-data">
 				<div class="insertArea">
 					<table align="center">
 						<tr>
 							<td width="100px">제목</td>
 							<td colspan="3"><input type="text" class="boardInput"
 								size="45" name="title"></td>
-						</tr>
-						<tr>
-							<td>대표 이미지</td>
-							<td colspan="3">
-								<div id="titleImgArea">
-									<img id="titleImg" width="390" height="200">
-								</div>
-							</td>
 						</tr>
 						<tr>
 							<td colspan="4">
@@ -124,7 +114,7 @@
 				</div>
 				<div class="btnArea" align="center">
 					<button type="button" class="submitBtn"
-						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b1'">뒤로가기</button>
+						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b2'">뒤로가기</button>
 					<button type="submit" class="submitBtn">작성완료</button>
 				</div>
 			</form>

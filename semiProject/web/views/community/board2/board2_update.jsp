@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.pj.board.model.vo.*, java.util.*"%>
+<%
+	Board b = (Board) request.getAttribute("b");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +37,8 @@
 
 .insertArea {
 	float: left;
-    width: 800px;
-    margin-right: auto;
+	width: 980px;
+	margin-right: auto;
 }
 
 .btnArea {
@@ -88,27 +91,20 @@
 			<%
 				if (loginUser != null) {
 			%>
-			<form action="<%=request.getContextPath()%>/insert.b1" method="post" encType="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/update.b2?num=<%= b.getbNo()%>" method="post" encType="multipart/form-data">
 				<div class="insertArea">
 					<table align="center">
 						<tr>
 							<td width="100px">제목</td>
 							<td colspan="3"><input type="text" class="boardInput"
-								size="45" name="title"></td>
-						</tr>
-						<tr>
-							<td>대표 이미지</td>
-							<td colspan="3">
-								<div id="titleImgArea">
-									<img id="titleImg" width="390" height="200">
-								</div>
-							</td>
+								size="45" name="title" value="<%=b.getbTitle()%>"></td>
 						</tr>
 						<tr>
 							<td colspan="4">
 								<div class="contentDiv">
 									<textarea id="summernote" name="content">
-								</textarea>
+										<%=b.getbText()%>
+									</textarea>
 								</div> <script>
 									$(function() {
 										$('#summernote').summernote();
@@ -117,46 +113,23 @@
 							</td>
 						</tr>
 					</table>
-					<div id="fileArea">
-						<input type="file" id="thumbnail1" name="thumbnailImg1"
-							onchange="LoadImg1(this);">
-					</div>
 				</div>
 				<div class="btnArea" align="center">
 					<button type="button" class="submitBtn"
-						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b1'">뒤로가기</button>
+						onclick="location.href='<%= request.getContextPath() %>/selectAllList.b2'">뒤로가기</button>
 					<button type="submit" class="submitBtn">작성완료</button>
 				</div>
 			</form>
 
 		</div>
 	</div>
-		<script>
-			$(function() {
-				$("#fileArea").hide();
-
-				$("#titleImgArea").click(function() {
-					$("#thumbnail1").click();
-				});
-			});
-
-			function LoadImg1(value) {
-				if (value.files && value.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$("#titleImg").attr("src", e.target.result)
-					}
-					reader.readAsDataURL(value.files[0]);
-				}
-			}
-		</script>
+		
 		<%
 			} else {
 				request.setAttribute("msg", "잘못된 경로로 접근하셨습니다");
 				request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 			}
 		%>
-	
 
 </body>
 </html>
