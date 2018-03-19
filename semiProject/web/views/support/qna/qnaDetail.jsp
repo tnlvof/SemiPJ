@@ -19,7 +19,6 @@
 <link rel="stylesheet" href="/pj/css/reset.css">
 <link rel="stylesheet" href="/pj/css/support.css">
 <title>앞날이 창창</title>
-<<<<<<< HEAD
 <style>
 .replyArea{
    background:#f7f7f7;
@@ -55,8 +54,6 @@ margin-left:30px;
    border-bottom:1px solid white;
 }
 </style>
-=======
->>>>>>> master
 </head>
 <body>
 	<%@ include file="/views/common/menubar.jsp"%>
@@ -103,7 +100,7 @@ margin-left:30px;
 				}
 			%>
 		</div>
-<<<<<<< HEAD
+
 		<div class="replyArea" align="center">
 		<div id="replySelectArea">
 				<table id="replySelectTable" border="1" align="center">
@@ -131,8 +128,7 @@ margin-left:30px;
 		</div>
 		<% } %>
 	</div>
-=======
->>>>>>> master
+		
 	</div>
 	</div>
 	<script>
