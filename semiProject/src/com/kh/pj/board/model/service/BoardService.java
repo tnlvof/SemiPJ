@@ -146,4 +146,45 @@ public class BoardService {
 		
 		return list;
 	}
+
+
+
+	public ArrayList<Board> boardSearchAll(String searchval, String searchcon) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		ArrayList<Board>list = new BoardDao().boardSearchAll(con,searchval,searchcon);
+		System.out.println(list+"service");
+		close(con);
+		return list;
+	}
+
+
+	public int boardRemove(String bTitle) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		int result = new BoardDao().boardRemove(con,bTitle);
+		if(result>0)
+		{
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+
+	public int boardReturn(String bTitle) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		int result = new BoardDao().boardReturn(con, bTitle);
+		if(result>0)
+		{
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 }

@@ -1,5 +1,9 @@
+<%@page import="com.kh.pj.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+	<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,24 +35,27 @@ background: darkgray;
 </head>
 
 <body>
+<% if(loginUser.getMemberId().equals("admin")){ %>
 	<div id=adminmenubar class="well-sm">
 		<label>ADMIN PAGE</label>
 		<hr>
 		<label>회원관리</label>
 		<hr>
 		<ul>
-			<a href="admin_member.jsp"><li>회원정보보기</li></a>
-			<li>회원정보수정</li>
-			<li>회원신고 관리</li>
+			<a href="admin_member.jsp"><li>[검색/조작]</li></a>
+
 		</ul>
 		<hr>
 		<label>게시판관리</label>
 		<hr>
 		<ul>
-			<a href="admin_board.jsp"><li>게시판보기</li></a>
-			<li>게시글삭제</li>
-			<li>신고게시판 관리</li>
+			<a href="admin_board.jsp"><li>[검색/조작]</li></a>
+
 		</ul>
 	</div>
+	<%}else{
+		%><label>잘못된접근입니다.</label><%
+		}%>
+	
 </body>
 </html>
