@@ -63,8 +63,8 @@
 	<!-- 검색창 -->
 	<div class="searchContainer">
 		<div class="searchBanner" align="center">
-			<div class="bannerHeader">광고게시판</div>
-			<div class="bannerSub">회원분들의 제품을 자유롭게 홍보하세요</div>
+			<div class="bannerHeader">자유게시판</div>
+			<div class="bannerSub">회원님들의 이야기를 자유롭게 이야기하세요</div>
 			<div class="searchDiv">
 			<form action="<%=request.getContextPath()%>/search.b1">
 				<select class="searchCategory" name="selectCategory">
