@@ -36,7 +36,7 @@ public class InsertReply extends HttpServlet {
 		String writer = request.getParameter("writer");
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		String content = request.getParameter("content");
-		
+		 
 		System.out.println(writer);
 		System.out.println(bid);
 		System.out.println(content);
