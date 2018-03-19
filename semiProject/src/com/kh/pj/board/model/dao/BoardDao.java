@@ -64,7 +64,7 @@ public class BoardDao {
 		
 		try {
 			pstmt= con.prepareStatement(query);
-      
+
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbText());
 			pstmt.setInt(3, b.getmNo());
@@ -451,6 +451,99 @@ public class BoardDao {
 		}
 		return list;
 	}
+
+	public ArrayList<Board> boardSearchAll(Connection con, String searchval, String searchcon) {
+		// TODO Auto-generated method stub
+
+		Statement stmt = null;
+		ResultSet rset = null;
+		System.out.println("dao");
+		String query = "";
+		switch (searchcon) {
+		case "nick":
+			query = prop.getProperty("searchBoard1Title");
+			break;
+		case "title":
+			query = prop.getProperty("searchBoard1Writer");
+			break;
+		case "text":
+			query = prop.getProperty("searchBoard1Content");
+			break;
+		}
+		System.out.println(query);
+
+		ArrayList<Board> list = new ArrayList<Board>();
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			while (rset.next()) {
+				Board b = new Board();
+				b.setbId(rset.getInt(1));
+				b.setbTitle(rset.getString(2));
+				b.setbDate(rset.getDate(3));
+				b.setbText(rset.getString(4));
+				b.setbWriter(rset.getString(15));
+				b.setmNo(rset.getInt(5));
+				b.setbCategory(rset.getString(6));
+				b.setvCount(rset.getInt(7));
+				b.setpNo(rset.getInt(8));
+				b.setAdopt(rset.getString(9));
+				b.setStatus(rset.getString(10));
+				b.setbNo(rset.getInt(11));
+				b.setRecCount(rset.getInt(12));
+				b.setRefLevel(rset.getInt(13));
+				b.setbPassword(rset.getString(14));
+				System.out.println(b.toString());
+
+				list.add(b);
+			}
+			System.out.println(list + "dao");
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return list;
+	}
+
+	public int boardRemove(Connection con, String bTitle) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		System.out.println(bTitle);
+		String query = prop.getProperty("removeBoard");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, bTitle);
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int boardReturn(Connection con, String bTitle) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		System.out.println(bTitle);
+		String query = prop.getProperty("returnBoard");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, bTitle);
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			close(pstmt);
+		}
+		return result;
+  }
 
 	public int insertReply(Connection con, Board b) {
 		PreparedStatement pstmt = null;

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+	
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,6 +128,7 @@ body {
 						console.log(member_arr);
 						console.log(member_arr.length);
 						console.log(members.length);
+
 						table.innerHTML += "<tr><td>" + member_arr[0] + "</td>"
 								+ "<td>" + member_arr[1] + "</td>" +
 								//"<td>"+member_arr[2]+"</td>"+
@@ -196,6 +200,7 @@ body {
 						console.log(member_arr);
 						console.log(member_arr.length);
 						console.log(members.length);
+
 						table.innerHTML += "<tr><td>" + member_arr[0] + "</td>"
 								+ "<td>" + member_arr[1] + "</td>" +
 								//"<td>"+member_arr[2]+"</td>"+
