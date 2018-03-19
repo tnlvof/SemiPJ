@@ -42,7 +42,7 @@
 .btn2 {
 	width: 180px;
 	height: 183px;
-}
+} 
 
 .btn3 {
 	width: 370px;
