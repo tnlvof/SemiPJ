@@ -40,4 +40,20 @@ public class AnalyseService {
 		return list;
 	}
 
+	public int deleteAnalyse(String analysisNo) {
+		Connection con = getConnection();
+		int result = 0;
+		
+		result = new AnalyseDao().deleteAnalyse(con, analysisNo);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
 }

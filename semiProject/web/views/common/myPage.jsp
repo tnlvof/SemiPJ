@@ -76,6 +76,7 @@
 					<th>업종</th>
 					<th>분석일</th>
 					<th>보고서</th>
+					<th>삭제</th>
 				</tr>
 				<%if(list!=null){ 
 					for(int i=0; i < list.size(); i++){%>				
@@ -86,6 +87,7 @@
 					<td><%= list.get(i).get("BigCategory") + " > " + list.get(i).get("smallCategory") %></td>
 					<td><%= list.get(i).get("analyDate") %></td>
 					<td><button onclick="reportPage('<%= list.get(i).get("areaCode") %>', '<%= list.get(i).get("categoryCode") %>');">보고서 다시보기</button></td>
+					<td><button onclick="deleteReport('<%= list.get(i).get("analysisNo") %>');">보고서 삭제</button></td>
 				</tr>
 				<%} }%>
 			</table>
@@ -104,6 +106,9 @@
 			console.log(j);
 			
 			location.href="<%=request.getContextPath()%>/runAnalyse.an?areaCode=" + i + "&catagoryCode=" + j;
+		}
+		function deleteReport(i){
+			location.href="<%=request.getContextPath()%>/deleteReport.an?analysisNo=" + i+ "&memberNo=<%=loginUser.getMemberNo()%>";
 		}
 		</script>
 	<%@ include file="/../views/common/footer.jsp"%>
