@@ -2,10 +2,6 @@
 	pageEncoding="UTF-8" import="java.util.*"%>
 <% ArrayList<HashMap<String, String>> list = null;
 	list = (ArrayList<HashMap<String, String>>)request.getAttribute("list"); 
-	if(list!=null){
-		out.print(list.get(0));	
-	}
-	
 	%>
 
 <!DOCTYPE html>
