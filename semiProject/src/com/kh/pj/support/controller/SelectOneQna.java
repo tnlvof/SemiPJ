@@ -1,6 +1,7 @@
 package com.kh.pj.support.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,12 +39,15 @@ public class SelectOneQna extends HttpServlet {
 		
 		Support s = new SupportService().selectOne(num, boardCategory);
 		
+		ArrayList<Support> replyList = new SupportService().selectReplyList(s);
+		
 		System.out.println("s : " + s);
 		
 		String page = null;
 		if(s != null){
 			page = "views/support/qna/qnaDetail.jsp";
 			request.setAttribute("s", s);
+			request.setAttribute("replyList", replyList);
 		} else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 상세 조회 실패!");

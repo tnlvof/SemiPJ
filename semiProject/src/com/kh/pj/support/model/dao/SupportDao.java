@@ -268,32 +268,6 @@ public int deleteNotice(Connection con, int bno, String boardCategory) {
 	return result;
 }
 
-public int insertReply(Connection con, Support s, String boardCategory) {
-	PreparedStatement pstmt = null;
-	int result = 0;
-	
-	String query = prop.getProperty("insertReply");
-	
-	System.out.println("query : " + query);
-	
-	try {
-		pstmt = con.prepareStatement(query);
-
-		pstmt.setString(1, s.getbText());
-		pstmt.setInt(2, Integer.parseInt(s.getbWriter()));
-		pstmt.setString(3, boardCategory);
-
-		result = pstmt.executeUpdate();
-
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} finally{
-		close(pstmt);
-	}
-
-	return result;
-}
-
 public ArrayList<Support> search(Connection con, int currentPage, int limit, String searchValue,
 		String searchCategory, String boardCategory) {
 	PreparedStatement pstmt = null;
@@ -360,6 +334,68 @@ public ArrayList<Support> search(Connection con, int currentPage, int limit, Str
 		close(rset);
 		close(pstmt);
 	}
+	return list;
+}
+
+public int insertReply(Connection con, Support s) {
+	PreparedStatement pstmt = null;
+	int result = 0;
+	
+	String query = prop.getProperty("insertReply");
+	
+	try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setString(1, s.getbText());
+		pstmt.setInt(2, Integer.parseInt(s.getbWriter()));
+		pstmt.setInt(3, s.getpNo());
+		
+		result = pstmt.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+	
+	
+	return result;
+}
+
+public ArrayList<Support> selectReplyList(Connection con, int getpNo) {
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	ArrayList<Support> list = null;
+
+	String query = prop.getProperty("selectReplyList");
+	
+	try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, getpNo);
+		
+		rset = pstmt.executeQuery();
+		
+		list = new ArrayList<Support>();
+		
+		while(rset.next()) {
+			Support s = new Support();
+			
+			s.setbId(rset.getInt("b_id"));
+			s.setbText(rset.getString("b_text"));
+			s.setbWriter(rset.getString("nickname"));
+			s.setpNo(rset.getInt("p_no"));
+			s.setRefLevel(rset.getInt("ref_level"));
+			s.setbDate(rset.getDate("b_date"));
+			
+			list.add(s);
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+		close(rset);
+	}
+	
 	return list;
 }
 
